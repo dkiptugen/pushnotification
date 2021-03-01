@@ -15,7 +15,7 @@ function initSW() {
     }
 
     //register the service worker
-    navigator.serviceWorker.register('../smg_notification/service_worker.js')
+    navigator.serviceWorker.register('../notifications/service_worker.js')
         .then((data) => {
             console.log('serviceWorker installed!')
             initPush();
@@ -90,7 +90,7 @@ function storePushSubscription(pushSubscription) {
     //const token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
     
 
-    fetch('/smg_notification/api/push', {
+    fetch('/notifications/api/push', {
         method: 'POST',
         body: JSON.stringify(pushSubscription),
         headers: {
