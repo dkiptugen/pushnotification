@@ -40,6 +40,7 @@ function initPush() {
             permissionResult.then(resolve, reject);
         }
     })
+    
         .then((permissionResult) => {
             if (permissionResult !== 'granted') {
                 throw new Error('Permission not granted!');
