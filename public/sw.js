@@ -1,10 +1,11 @@
+
 self.addEventListener('push', function (e) {
     console.log("push called")
     if (!(self.Notification && self.Notification.permission === 'granted')) {
         //notifications aren't supported or permission not granted!
         return;
     }    
-
+    console.log("Event notification data")
     if (e.data) {
         var msg = e.data.json();
         console.log(msg)
@@ -18,26 +19,24 @@ self.addEventListener('push', function (e) {
 });
 
 self.addEventListener('notificationclick', function(event) {   
-    // Android doesn't close the notification when you click on it  
-    // See: http://crbug.com/463146  
-    event.notification.close();
-    // This looks to see if the current is already open and  
-    // focuses if it is  
-    console.log("Event notification data", event.notification.data)
+        // Android doesn't close the notification when you click on it  
+        // See: http://crbug.com/463146  
+        event.notification.close();
+        // This looks to see if the current is already open and  
+        // focuses if it is  
+        console.log("Event notification data", event.notification.data)
     if (event.action === 'view_notification') {
         // Do something...
         self.clients.openWindow(event.notification.data)
-      } else {
+    } else {
         self.clients.openWindow(event.notification.data)
-      }
-  });
+    }
+});
 
-  self.addEventListener('fetch', (event) => {
-    console.log("at least we got to fetch")
-    event.respondWith(
-      caches.match(event.request).then((response) => {
-        console.log("cache issues: ",event.request)
-        return response || fetch(event.request);
-      })
-    );
-  });
+globalScope.addEventListener('activate', function(event) {
+    console.log("Activation checked", event)
+});
+
+self.addEventListener("push", event => {
+    console.log('push event test', event)
+  }, false);
