@@ -54,7 +54,7 @@ class PushController extends Controller
         ])->json()[0];
 
         
-        dd(Notification::send(Guest::all(),new PushNotifications($response)));
+        Notification::send(Guest::all(),new PushNotifications($response));
         
         //return redirect()->back();
         

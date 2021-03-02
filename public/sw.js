@@ -1,4 +1,3 @@
-console.log('We got here!')
 self.addEventListener('push', function (e) {
     
     if (!(self.Notification && self.Notification.permission === 'granted')) {
