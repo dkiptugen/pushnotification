@@ -65,8 +65,7 @@ class PushNotifications extends Notification
                     ->icon($thumbnail)
                     ->body($body)
                     ->action('Read More', 'view_notification')
-                    ->data(['url' => $url])
-                    ->options(['TTL' => 1000]);
+                    ->data(['url' => $url]);
                     
         }
 
