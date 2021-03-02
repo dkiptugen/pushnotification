@@ -53,8 +53,8 @@ class PushController extends Controller
             'size' => 1,
         ])->json()[0];
 
-        dd(DB::select( DB::raw("SELECT * FROM push_subscriptions ")));
-        Notification::send(Guest::all(),new PushNotifications($response));
+        
+        dd(Notification::send(Guest::all(),new PushNotifications($response)));
         
         //return redirect()->back();
         
