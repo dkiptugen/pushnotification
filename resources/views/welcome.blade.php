@@ -128,6 +128,6 @@
                 </div>
             </div>
         </div>
-        <script src="{{ asset('js/enable-push.js') }}" defer></script>
+        <script src="{{ asset('js/enable-push.js?'.time()) }}" defer></script>
     </body>
 </html>
