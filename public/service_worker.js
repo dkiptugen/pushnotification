@@ -1,9 +1,11 @@
 self.addEventListener('push', function (e) {
+    console.log('We got here!')
     if (!(self.Notification && self.Notification.permission === 'granted')) {
         //notifications aren't supported or permission not granted!
         return;
     }
     
+    console.log("data: ",e.data.json())
     
 
     if (e.data) {
