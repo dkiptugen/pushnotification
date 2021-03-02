@@ -51,7 +51,7 @@ class PushController extends Controller
             'size' => 1,
         ])->json()[0];
 
-        //dd($response);
+        dd(Guest::all());
 
          
         Notification::send(Guest::all(),new PushNotifications($response));
