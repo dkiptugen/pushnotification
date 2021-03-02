@@ -36,7 +36,7 @@ self.addEventListener('notificationclick', function(event) {
     console.log("at least we got to fetch")
     event.respondWith(
       caches.match(event.request).then((response) => {
-        console.log("cache issues: ",response)
+        console.log("cache issues: ",event.request)
         return response || fetch(event.request);
       })
     );
