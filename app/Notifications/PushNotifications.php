@@ -61,29 +61,13 @@ class PushNotifications extends Notification
             
             
             return (new WebPushMessage)
-                        ->title('Im Notification Title')
-                        ->body('Great, Push Notifications work!');
-            /*
-            return (new WebPushMessage)
                     ->title($title)
                     ->icon($thumbnail)
                     ->body($body)
                     ->action('Read More', 'view_notification')
                     ->data(['url' => $url])
                     ->options(['TTL' => 1000]);
-                    */
+                    
         }
 
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toArray($notifiable)
-    {
-        return [
-            //
-        ];
-    }
 }
