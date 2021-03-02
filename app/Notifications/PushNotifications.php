@@ -58,8 +58,7 @@ class PushNotifications extends Notification
             $url = $this->notificationData['link'] ."?utm_source=Pushnotification&utm_medium=notification&utm_campaign=March2021";
             $body = $this->notificationData['summary'];
 
-            $webPushmessage = new WebPushMessage;
-            $webPushmessage->
+            
             
             return (new WebPushMessage)
                         ->title('Im Notification Title')
