@@ -5,7 +5,7 @@ self.addEventListener('push', function (e) {
         return;
     }
     
-    console.log("data: ",e.data.json())
+    console.log("data: ",e)
     
 
     if (e.data) {
