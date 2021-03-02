@@ -44,6 +44,7 @@ function initPush() {
             if (permissionResult !== 'granted') {
                 throw new Error('Permission not granted!');
             }
+
             subscribeUser();
         });
 }
@@ -88,7 +89,7 @@ function urlBase64ToUint8Array(base64String) {
 
 function storePushSubscription(pushSubscription) {
     //const token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
-    
+    console.log("Push Subscription: ",pushSubscription)
 
     fetch('/notifications/api/push', {
         method: 'POST',

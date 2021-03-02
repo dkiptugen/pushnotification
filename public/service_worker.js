@@ -4,7 +4,7 @@ self.addEventListener('push', function (e) {
         return;
     }
     
-    console.log("event data: ",e)
+    
 
     if (e.data) {
         var msg = e.data.json();
