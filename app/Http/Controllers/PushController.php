@@ -5,7 +5,9 @@ use Illuminate\Http\Request;
 use App\Notifications\PushNotifications;
 use App\Models\Guest;
 use Auth;
+use DB;
 use Notification;
+
 use Illuminate\Support\Facades\Http;
 
 class PushController extends Controller
@@ -51,7 +53,7 @@ class PushController extends Controller
             'size' => 1,
         ])->json()[0];
 
-       // dd(Guest::all());
+        dd(DB::select( DB::raw("SELECT * FROM push_subscriptions ")));
         Notification::send(Guest::all(),new PushNotifications($response));
         
         //return redirect()->back();
