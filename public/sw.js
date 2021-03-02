@@ -31,3 +31,13 @@ self.addEventListener('notificationclick', function(event) {
         self.clients.openWindow(event.notification.data)
       }
   });
+
+  self.addEventListener('fetch', (event) => {
+    console.log("at least we got to fetch")
+    event.respondWith(
+      caches.match(event.request).then((response) => {
+        console.log("cache issues: ",response)
+        return response || fetch(event.request);
+      })
+    );
+  });
