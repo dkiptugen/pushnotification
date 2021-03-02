@@ -15,9 +15,9 @@ function initSW() {
     }
 
     //register the service worker
-    navigator.serviceWorker.register('../notifications/service_worker.js')
-        .then(() => {
-            console.log('serviceWorker installed!')
+    navigator.serviceWorker.register('notifications/service_worker.js')
+        .then(function(registration) {
+            console.log('serviceWorker installed!', registration.scope)
             initPush();
         })
         .catch((err) => {
