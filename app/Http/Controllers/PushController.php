@@ -54,7 +54,7 @@ class PushController extends Controller
          
         Notification::send(Guest::all(),new PushNotifications($response));
         
-        return redirect()->back();
+        //return redirect()->back();
         
 
     }
