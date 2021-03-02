@@ -33,7 +33,7 @@ self.addEventListener('notificationclick', function(event) {
     }
 });
 
-globalScope.addEventListener('activate', function(event) {
+self.addEventListener('activate', function(event) {
     console.log("Activation checked", event)
 });
 
