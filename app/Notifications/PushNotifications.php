@@ -60,12 +60,12 @@ class PushNotifications extends Notification
 
             
             
-            return (new WebPushMessage)
-                                ->title($title)
-                                ->icon($thumbnail)
-                                ->body($body)
-                                ->action('Read More', 'view_notification')
-                                ->data(['url' => $url]);
+            return (new WebPushMessage())
+                        ->title($title)
+                        ->icon($thumbnail)
+                        ->body($body)
+                        ->action('Read More', 'view_notification')
+                        ->data(['url' => $url]);
                     
         }
 
