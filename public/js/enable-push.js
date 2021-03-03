@@ -91,7 +91,7 @@ function storePushSubscription(pushSubscription) {
     //const token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
     
 
-    fetch('api/push', {
+    fetch('/notifications/api/push', {
         method: 'POST',
         body: JSON.stringify(pushSubscription),
         headers: {
