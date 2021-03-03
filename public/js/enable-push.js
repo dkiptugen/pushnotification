@@ -44,13 +44,11 @@ function initPush() {
             if (permissionResult !== 'granted') {
                 throw new Error('Permission not granted!');
             }
-console.log("subscribe to user")
             subscribeUser();
         });
 }
 
 function subscribeUser() {
-    console.log("subscribe to user2")
 
     navigator.serviceWorker.ready.then(data => console.log(data))
     navigator.serviceWorker.ready
@@ -89,7 +87,7 @@ function urlBase64ToUint8Array(base64String) {
 
 function storePushSubscription(pushSubscription) {
     //const token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
-    console.log("subscribe to user3")
+    
 
     fetch('/notifications/api/push', {
         method: 'POST',
