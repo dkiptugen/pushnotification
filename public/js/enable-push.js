@@ -91,7 +91,7 @@ function storePushSubscription(pushSubscription) {
     //const token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
     
 
-    fetch('https://www.standardmedia.co.ke/notifications/api/push', {
+    fetch('api/push', {
         method: 'POST',
         body: JSON.stringify(pushSubscription),
         headers: {
