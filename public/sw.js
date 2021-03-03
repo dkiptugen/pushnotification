@@ -5,7 +5,6 @@ self.addEventListener('notificationclick', function(event) {
     event.notification.close();
     // This looks to see if the current is already open and  
     // focuses if it is  
-    console.log("Event notification data", event.notification.data)
 if (event.action === 'view_notification') {
     // Do something...
     self.clients.openWindow(event.notification.data)
@@ -21,7 +20,7 @@ self.addEventListener('push', function (e) {
         //notifications aren't supported or permission not granted!
         return;
     }    
-    console.log("Event notification data")
+
     if (e.data) {
         var msg = e.data.json();
         console.log(msg)
@@ -34,7 +33,3 @@ self.addEventListener('push', function (e) {
     }
 });
 
-self.addEventListener('push', function (e) {
-    console.log("A test application:")
-   
-});
