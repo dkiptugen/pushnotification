@@ -8,6 +8,7 @@ use Auth;
 use DB;
 use Notification;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
 
 class PushController extends Controller
