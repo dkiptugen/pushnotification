@@ -53,8 +53,10 @@ class PushController extends Controller
             'size' => 1,
         ])->json()[0];
 
-        
-        Notification::send(Guest::all(),new PushNotifications($response));
+        Log::info($response);
+        $notifications = Notification::send(Guest::all(),new PushNotifications($response));
+
+        Log::error($notifications);
         
         //return redirect()->back();
         
