@@ -15,8 +15,9 @@ function initSW() {
     }
 
     //register the service worker
-    navigator.serviceWorker.register('sw.js')
-        .then(function(registration) {
+    navigator.serviceWorker.register('https://www.standardmedia.co.ke/notifications/sw.js', {
+        scope: '/',
+    }).then(function(registration) {
             console.log('serviceWorker installed!', registration.scope)
             initPush();
         })
