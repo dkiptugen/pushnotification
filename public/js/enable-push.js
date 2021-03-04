@@ -51,9 +51,11 @@ function initPush() {
 
 function subscribeUser() {
     console.log("test2")
+
     navigator.serviceWorker.ready.then(data => console.log(data))
     navigator.serviceWorker.ready
         .then((registration) => {
+            console.log("A service worker is active: ",registration.active)
             const subscribeOptions = {
                 userVisibleOnly: true,
                 applicationServerKey: urlBase64ToUint8Array(
