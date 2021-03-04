@@ -15,7 +15,7 @@ function initSW() {
     }
 
     //register the service worker
-    navigator.serviceWorker.register('notifications/sw.js')
+    navigator.serviceWorker.register('assets/js/sw.js')
         .then(function(registration) {
             console.log('serviceWorker installed!', registration.scope)
             initPush();
