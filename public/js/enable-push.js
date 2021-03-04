@@ -61,11 +61,12 @@ function subscribeUser() {
                     'BK-EjpXz65Cj_ux5UGXwO0KS1DBDemXRn0PU3dEga7pIQBGVvA4Nef7xSHnU2VK_3cBmgeJ_AEhDovZwdTBrhbI'
                 )
             };
+            console.log("test3")
 
             return registration.pushManager.subscribe(subscribeOptions);
         })
         .then((pushSubscription) => {
-            console.log("test3")
+            console.log("test4")
             console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
             storePushSubscription(pushSubscription);
         });
@@ -73,6 +74,7 @@ function subscribeUser() {
 
 
 function urlBase64ToUint8Array(base64String) {
+    console.log("test5")
     var padding = '='.repeat((4 - base64String.length % 4) % 4);
     var base64 = (base64String + padding)
         .replace(/\-/g, '+')
@@ -90,7 +92,7 @@ function urlBase64ToUint8Array(base64String) {
 function storePushSubscription(pushSubscription) {
     //const token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
     
-    console.log("test4")
+    console.log("test6")
     fetch('/notifications/api/push', {
         method: 'POST',
         body: JSON.stringify(pushSubscription),
