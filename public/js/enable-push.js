@@ -44,12 +44,13 @@ function initPush() {
             if (permissionResult !== 'granted') {
                 throw new Error('Permission not granted!');
             }
+            console.log('test1')
             subscribeUser();
         });
 }
 
 function subscribeUser() {
-
+    console.log("test2")
     navigator.serviceWorker.ready.then(data => console.log(data))
     navigator.serviceWorker.ready
         .then((registration) => {
@@ -64,6 +65,7 @@ function subscribeUser() {
             return registration.pushManager.subscribe(subscribeOptions);
         })
         .then((pushSubscription) => {
+            console.log("test3")
             console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
             storePushSubscription(pushSubscription);
         });
@@ -88,8 +90,8 @@ function urlBase64ToUint8Array(base64String) {
 function storePushSubscription(pushSubscription) {
     //const token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
     
-
-    fetch('https://www.standardmedia.co.ke/notifications/api/push', {
+    console.log("test4")
+    fetch('notifications/api/push', {
         method: 'POST',
         body: JSON.stringify(pushSubscription),
         headers: {
