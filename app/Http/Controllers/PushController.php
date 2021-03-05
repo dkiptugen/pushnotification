@@ -56,7 +56,7 @@ class PushController extends Controller
             'offset' => 1,
         ])->json()[0];
 
-        dd($response);
+        //dd($response);
 
         Guest::chunk(200, function ($guests) {
             foreach ($guests as $guest) {
