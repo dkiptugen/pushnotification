@@ -14,11 +14,12 @@ use Illuminate\Support\Facades\Http;
 class PushController extends Controller
 {
 
-    /* 
+     
     public function __construct(){
-      $this->middleware('auth');
+        ini_set('memory_limit', '3000M');
+        ini_set('max_execution_time', '0');
     }
-    */
+    
 
     /**
      * Store the PushSubscription.
@@ -52,10 +53,22 @@ class PushController extends Controller
             'appkey' => '3UhZEQ9pSQ6GxGh4hZbwvzWRvLqX6CrrNjH49MkLxxXSF'
         ])->get('https://www.standardmedia.co.ke/analytics/stories', [
             'size' => 1,
+            'offset' => 1,
         ])->json()[0];
+
+        Guest::chunk(200, function ($guests) {
+            foreach ($guests as $guest) {
+                dd($guest);
+            }
+        });
+
+
+        dd($response);
+
 
         Log::info($response);
         $notifications = Notification::send(Guest::all(),new PushNotifications($response));
+       
 
         Log::error($notifications);
         
