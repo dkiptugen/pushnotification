@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Http;
 class PushController extends Controller
 {
 
-     
     public function __construct(){
         ini_set('memory_limit', '3000M');
         ini_set('max_execution_time', '0');
@@ -46,9 +45,8 @@ class PushController extends Controller
         return response()->json(['success' => true],200);
     }
 
-    public function push(){
-        
-        
+    public function fetchStories(){
+
         $response = Http::withHeaders([
             'appkey' => '3UhZEQ9pSQ6GxGh4hZbwvzWRvLqX6CrrNjH49MkLxxXSF'
         ])->get('https://www.standardmedia.co.ke/analytics/stories', [
@@ -56,24 +54,20 @@ class PushController extends Controller
             'offset' => 1,
         ])->json()[0];
 
-        //dd($response);
+        return $response;
+    }
 
-        Guest::chunk(200, function ($guests) {
+    public function push(){
+       
+        $Guest = Guest::chunk(50, function ($guests) {
+
+            $response = $this->fetchStories();
+
             foreach ($guests as $guest) {
-                Notification::send($guest,new PushNotifications($response));
+                Notification::send($guest, new PushNotifications($response));
             }
         });
-        
-
-
-        //dd($response);
-
-
-        Log::info($response);
-        $notifications = Notification::send(Guest::all(),new PushNotifications($response));
-       
-
-        Log::error($notifications);
+    
         
         //return redirect()->back();
         
