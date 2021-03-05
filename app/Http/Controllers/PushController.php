@@ -16,7 +16,7 @@ class PushController extends Controller
 
     public function __construct(){
         ini_set('memory_limit', '3000M');
-        ini_set('max_execution_time', '0');
+        ini_set('max_execution_time', '300');
     }
     
 
@@ -51,7 +51,8 @@ class PushController extends Controller
             'appkey' => '3UhZEQ9pSQ6GxGh4hZbwvzWRvLqX6CrrNjH49MkLxxXSF'
         ])->get('https://www.standardmedia.co.ke/analytics/stories', [
             'size' => 1,
-            'offset' => 1,
+            'offset' => 3,
+            'source' => 'business',
         ])->json()[0];
 
         return $response;

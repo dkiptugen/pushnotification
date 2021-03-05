@@ -43,16 +43,22 @@ class DailyPushNotifications extends Command
      */
     public function handle()
     {
-        $response = Http::withHeaders([
-            'appkey' => '3UhZEQ9pSQ6GxGh4hZbwvzWRvLqX6CrrNjH49MkLxxXSF'
-        ])->get('https://www.standardmedia.co.ke/analytics/stories', [
-            'size' => 1,
-        ])->json()[0];
+        
 
-        //dd($response);
+        $Guest = Guest::chunk(200, function ($guests) {
 
-         
-        Notification::send(Guest::all(),new PushNotifications($response));
+            $response = Http::withHeaders([
+                'appkey' => '3UhZEQ9pSQ6GxGh4hZbwvzWRvLqX6CrrNjH49MkLxxXSF'
+            ])->get('https://www.standardmedia.co.ke/analytics/stories', [
+                'size' => 1,
+                'offset' => 3,
+                'source' => 'business',
+            ])->json()[0];
+
+            foreach ($guests as $guest) {
+                Notification::send($guest, new PushNotifications($response));
+            }
+        });
          
         $this->info('Notification sent!!');
     }
