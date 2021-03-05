@@ -25,3 +25,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //make a push notification.
 Route::get('/push',[App\Http\Controllers\PushController::class, 'push'])->name('push');
+
+//make a push notification.
+Route::get('/subscribers/view',[App\Http\Controllers\GuestController::class, 'index'])->name('subscribers_view');
+

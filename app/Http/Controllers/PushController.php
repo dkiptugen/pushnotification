@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Notifications\PushNotifications;
 use App\Models\Guest;
+use App\Models\User;
 use Auth;
 use DB;
 use Notification;
@@ -14,9 +15,10 @@ use Illuminate\Support\Facades\Http;
 class PushController extends Controller
 {
 
+    public $response;
     public function __construct(){
         ini_set('memory_limit', '3000M');
-        ini_set('max_execution_time', '300');
+        ini_set('max_execution_time', '0');
     }
     
 
@@ -59,13 +61,13 @@ class PushController extends Controller
     }
 
     public function push(){
+
+        $this->response = $this->fetchStories();
        
-        $Guest = Guest::chunk(50, function ($guests) {
-
-            $response = $this->fetchStories();
-
+        
+        $Guest = Guest::chunk(500, function ($guests) {
             foreach ($guests as $guest) {
-                Notification::send($guest, new PushNotifications($response));
+                Notification::send($guest, new PushNotifications($this->response));
             }
         });
     

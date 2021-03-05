@@ -31,6 +31,8 @@ class DailyPushNotifications extends Command
      *
      * @return void
      */
+    public $response;
+
     public function __construct()
     {
         parent::__construct();
@@ -43,20 +45,18 @@ class DailyPushNotifications extends Command
      */
     public function handle()
     {
+        $this->response = Http::withHeaders([
+            'appkey' => '3UhZEQ9pSQ6GxGh4hZbwvzWRvLqX6CrrNjH49MkLxxXSF'
+        ])->get('https://www.standardmedia.co.ke/analytics/stories', [
+            'size' => 1,
+            'offset' => 3,
+            'source' => 'business',
+        ])->json()[0];
         
 
         $Guest = Guest::chunk(200, function ($guests) {
-
-            $response = Http::withHeaders([
-                'appkey' => '3UhZEQ9pSQ6GxGh4hZbwvzWRvLqX6CrrNjH49MkLxxXSF'
-            ])->get('https://www.standardmedia.co.ke/analytics/stories', [
-                'size' => 1,
-                'offset' => 3,
-                'source' => 'business',
-            ])->json()[0];
-
             foreach ($guests as $guest) {
-                Notification::send($guest, new PushNotifications($response));
+                Notification::send($guest, new PushNotifications($this->response));
             }
         });
          

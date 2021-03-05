@@ -19,3 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/push', [App\Http\Controllers\PushController::class, 'store']);
+
+//make a push notification.
+Route::get('/subscribers/fetch',[App\Http\Controllers\GuestController::class, 'fetch_subscribed_users']);

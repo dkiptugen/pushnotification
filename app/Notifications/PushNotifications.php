@@ -10,8 +10,11 @@ use Illuminate\Notifications\Notification;
 use NotificationChannels\WebPush\WebPushMessage;
 use NotificationChannels\WebPush\WebPushChannel;
 
+https://fcm.googleapis.com/fcm/send/flK62oRa7Ic:APA91bGxUjXdJVoAArDpsU02wBkoA3Q9E4NeJVhtwTK74CleSRudhay_gcF83dcdSmwnrnV0ZZTGw3WaqYmlUoaP7vMJBtK7CtMHp7V4L5L8WbwZOOiIFLqK_IpF4tcFB_etWdR-pnrx
 
-class PushNotifications extends Notification
+
+class PushNotifications extends Notification implements ShouldQueue
+
 {
     use Queueable;
 
