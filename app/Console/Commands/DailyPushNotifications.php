@@ -49,7 +49,7 @@ class DailyPushNotifications extends Command
             'appkey' => '3UhZEQ9pSQ6GxGh4hZbwvzWRvLqX6CrrNjH49MkLxxXSF'
         ])->get('https://www.standardmedia.co.ke/analytics/stories', [
             'size' => 1,
-            'offset' => 3,
+            'offset' => 2,
             'source' => 'business',
         ])->json()[0];
         
