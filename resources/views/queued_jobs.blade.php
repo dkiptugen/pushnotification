@@ -15,7 +15,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($queued_jobs as $queued_jobs)
+            @foreach ($queued_jobs as $queued_job)
                 <tr>
                     <td>{{ $queued_job->id }}</td>
                     <td>{{ $queued_job->attempts }}</td>
