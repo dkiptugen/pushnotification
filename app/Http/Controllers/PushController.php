@@ -6,11 +6,12 @@ use App\Notifications\PushNotifications;
 use App\Models\Guest;
 use App\Models\User;
 use Auth;
-use DB;
+
 use Notification;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
 
 class PushController extends Controller
 {
@@ -101,5 +102,21 @@ class PushController extends Controller
 
         return redirect()->back()->with('message','Notifications Queued!');
     }
+
+    public function failedJobs()
+    {
+        $failed_jobs = DB::table('failed_jobs')->get();
+
+        return view('failed_jobs', ['failed_jobs' => $failed_jobs]);
+
+    }
+
+    public function queuedJobs()
+    {
+        $queued_jobs = DB::table('jobs')->get();
+
+        return view('queued_jobs', ['queued_jobs' => $queued_jobs]);
+    }
+    
     
 }

@@ -55,6 +55,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('stories') }}">{{ __('Create stories') }}</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('failed_jobs') }}">{{ __('Failed jobs') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('queued_jobs') }}">{{ __('Queued jobs') }}</a>
+                        </li>
                     </ul>
                     
                     <!-- Right Side Of Navbar -->

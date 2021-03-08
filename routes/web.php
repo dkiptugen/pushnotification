@@ -32,3 +32,9 @@ Route::get('/subscribers/view',[App\Http\Controllers\GuestController::class, 'in
 //make a push notification story.
 Route::get('/stories',[App\Http\Controllers\PushController::class, 'index'])->name('stories');
 
+//view failed jobs.
+Route::get('/failed_jobs',[App\Http\Controllers\PushController::class, 'failedJobs'])->name('failed_jobs');
+
+//view queued jobs.
+Route::get('/queued_jobs',[App\Http\Controllers\PushController::class, 'queuedJobs'])->name('queued_jobs');
+
