@@ -113,7 +113,8 @@ class PushController extends Controller
     public function queuedJobs()
     {
 
-        DB::table('jobs')->delete();
+        //DB::table('jobs')->delete();
+        
         $queued_jobs = DB::table('jobs')->get();
 
         return view('queued_jobs', ['queued_jobs' => $queued_jobs]);
