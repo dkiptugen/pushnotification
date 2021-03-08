@@ -60,7 +60,6 @@ class PushController extends Controller
             'appkey' => '3UhZEQ9pSQ6GxGh4hZbwvzWRvLqX6CrrNjH49MkLxxXSF'
         ])->get('https://www.standardmedia.co.ke/analytics/stories', [
             'size' => 1,
-            'offset' => 1,
             'source' => 'business',
         ])->json()[0];
 
@@ -113,6 +112,8 @@ class PushController extends Controller
 
     public function queuedJobs()
     {
+
+        DB::table('jobs')::query()->delete();
         $queued_jobs = DB::table('jobs')->get();
 
         return view('queued_jobs', ['queued_jobs' => $queued_jobs]);
