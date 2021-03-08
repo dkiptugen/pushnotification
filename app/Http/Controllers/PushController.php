@@ -16,6 +16,7 @@ class PushController extends Controller
 {
 
     public $response;
+    public $pushRequest;
     public function __construct(){
         ini_set('memory_limit', '3000M');
         ini_set('max_execution_time', '0');
@@ -64,7 +65,6 @@ class PushController extends Controller
 
         $this->response = $this->fetchStories();
        
-        
         $Guest = Guest::chunk(500, function ($guests) {
             foreach ($guests as $guest) {
                 Notification::send($guest, new PushNotifications($this->response));
@@ -75,6 +75,17 @@ class PushController extends Controller
         //return redirect()->back();
         
 
+    }
+
+    public function dynamicPushNotification(Request $request)
+    {
+        $this->pushRequest = $request->all();
+
+        $Guest = Guest::chunk(500, function ($guests) {
+            foreach ($guests as $guest) {
+                Notification::send($guest, new PushNotifications($this->pushRequest));
+            }
+        });
     }
     
 }

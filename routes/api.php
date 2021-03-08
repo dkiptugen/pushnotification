@@ -22,3 +22,6 @@ Route::post('/push', [App\Http\Controllers\PushController::class, 'store']);
 
 //make a push notification.
 Route::get('/subscribers/fetch',[App\Http\Controllers\GuestController::class, 'fetch_subscribed_users']);
+
+
+Route::post('/dynamic/push', [App\Http\Controllers\PushController::class, 'dynamicPushNotification']);
