@@ -21,6 +21,11 @@ class PushController extends Controller
         ini_set('memory_limit', '3000M');
         ini_set('max_execution_time', '0');
     }
+
+    public function index()
+    {
+        return view('stories');
+    }
     
 
     /**
@@ -79,6 +84,13 @@ class PushController extends Controller
 
     public function dynamicPushNotification(Request $request)
     {
+        $this->validate($request,[
+            'title'    => 'required',
+            'link'   => 'required',
+            'thumbnail' => 'required',
+            'summary' => 'required'
+        ]);
+
         $this->pushRequest = $request->all();
 
         $Guest = Guest::chunk(500, function ($guests) {
@@ -86,6 +98,8 @@ class PushController extends Controller
                 Notification::send($guest, new PushNotifications($this->pushRequest));
             }
         });
+
+        return redirect()->back()->with('message','Notifications Queued!');
     }
     
 }

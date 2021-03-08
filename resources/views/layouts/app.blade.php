@@ -52,8 +52,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('subscribers_view') }}">{{ __('View Subscribers') }}</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('stories') }}">{{ __('Create stories') }}</a>
+                        </li>
                     </ul>
-
+                    
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
