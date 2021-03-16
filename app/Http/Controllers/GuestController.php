@@ -25,7 +25,7 @@ class GuestController extends Controller
     public function index()
     {
 
-        $subscribers = Guest::chunk(5000, function ($guests) {
+        $subscribers = Guest::chunk(5000, function ($subscribers) {
             return view('subscribers', ['subscribers' => $subscribers]);
             /*
             foreach ($guests as $guest) {
