@@ -25,17 +25,10 @@ class GuestController extends Controller
     public function index()
     {
 
-        $subscribers = Guest::chunk(5000, function ($subscribers) {
-            return view('subscribers', ['subscribers' => $subscribers]);
-            /*
-            foreach ($guests as $guest) {
-                Notification::send($guest, new PushNotifications($this->response));
-            }
-            */
-        });
+        
        // $subscribers = Guest::all();
-
-        //return view('subscribers', ['subscribers' => $subscribers]);
+        $subscribers = DB::table('guests')->get();
+        return view('subscribers', ['subscribers' => $subscribers]);
     }
 
     public function fetch_subscribed_users()
