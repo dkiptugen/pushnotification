@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Notifications\PushNotifications;
 use App\Models\Guest;
 use App\Models\User;
+use App\Models\Stories;
 use Auth;
 
 use Notification;
@@ -12,6 +13,7 @@ use Notification;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class PushController extends Controller
 {
@@ -80,10 +82,8 @@ class PushController extends Controller
     
         
         //return redirect()->back();
-        
-
     }
-
+    
     public function dynamicPushNotification(Request $request)
     {
         $this->validate($request,[
@@ -93,15 +93,33 @@ class PushController extends Controller
             'summary' => 'required'
         ]);
 
+        /*
+        $request = $request->all();
+     
+        $stories = Stories::create([
+            "title" => $request['title'],
+            "link" => $request['link'],
+            "thumbnail" => $request['thumbnail'],
+            "summary" => $request['summary'],
+        ]);
+
+        Session::flash('message', 'Notifications Queued!');
+
+        return redirect()->back();
+        */
+
         $this->pushRequest = $request->all();
 
+        
         $Guest = Guest::chunk(500, function ($guests) {
             foreach ($guests as $guest) {
                 Notification::send($guest, new PushNotifications($this->pushRequest));
             }
+            sleep(5);
         });
+        
 
-        return redirect()->back()->with('message','Notifications Queued!');
+        
     }
 
     public function failedJobs()

@@ -24,6 +24,13 @@
                             {{ session('message') }}
                         </div>
                     @endif
+
+                    @if ($message = Session::get('message'))
+                        <div class="alert alert-success alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>	
+                                <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
                     <!-- Change this -->
                     <form action="http://localhost/notifications/api/dynamic/push" method="POST">
                         @csrf
