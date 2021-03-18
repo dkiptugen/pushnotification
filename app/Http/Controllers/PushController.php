@@ -20,6 +20,7 @@ class PushController extends Controller
 
     public $response;
     public $pushRequest;
+    public $i;
     public function __construct(){
 
         ini_set('memory_limit', '3000M');
@@ -83,7 +84,7 @@ class PushController extends Controller
         
         //return redirect()->back();
     }
-    
+
     public function dynamicPushNotification(Request $request)
     {
         $this->validate($request,[
@@ -110,12 +111,13 @@ class PushController extends Controller
 
         $this->pushRequest = $request->all();
 
-        
         $Guest = Guest::chunk(500, function ($guests) {
+
             foreach ($guests as $guest) {
                 Notification::send($guest, new PushNotifications($this->pushRequest));
             }
-            sleep(5);
+            sleep(10);
+
         });
         
 
