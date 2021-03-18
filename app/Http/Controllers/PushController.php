@@ -117,7 +117,7 @@ class PushController extends Controller
 
         //DB::table('jobs')->delete();
         
-        $queued_jobs = DB::table('jobs')->latest('updated_at')->limit(2000)->get();
+        $queued_jobs = DB::table('jobs')->latest('created_at')->limit(2000)->get();
 
         return view('queued_jobs', ['queued_jobs' => $queued_jobs]);
     }
