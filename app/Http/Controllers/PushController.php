@@ -19,8 +19,10 @@ class PushController extends Controller
     public $response;
     public $pushRequest;
     public function __construct(){
+
         ini_set('memory_limit', '3000M');
         ini_set('max_execution_time', '0');
+
     }
 
     public function index()
@@ -115,7 +117,7 @@ class PushController extends Controller
 
         //DB::table('jobs')->delete();
         
-        $queued_jobs = DB::table('jobs')->get();
+        $queued_jobs = DB::table('jobs')->latest('updated_at')->limit(2000)->get();
 
         return view('queued_jobs', ['queued_jobs' => $queued_jobs]);
     }
