@@ -72,7 +72,8 @@ class PushController extends Controller
     }
 
     public function push(){
-
+        
+        
         $this->response = $this->fetchStories();
        
         $Guest = Guest::chunk(500, function ($guests) {
@@ -80,9 +81,8 @@ class PushController extends Controller
                 Notification::send($guest, new PushNotifications($this->response));
             }
         });
-    
         
-        //return redirect()->back();
+        return redirect()->back();
     }
 
     public function dynamicPushNotification(Request $request)
@@ -94,7 +94,6 @@ class PushController extends Controller
             'summary' => 'required'
         ]);
 
-        /*
         $request = $request->all();
      
         $stories = Stories::create([
@@ -107,8 +106,8 @@ class PushController extends Controller
         Session::flash('message', 'Notifications Queued!');
 
         return redirect()->back();
-        */
 
+        /*
         $this->pushRequest = $request->all();
 
         $Guest = Guest::chunk(500, function ($guests) {
@@ -119,9 +118,7 @@ class PushController extends Controller
             sleep(10);
 
         });
-        
-
-        
+        */
     }
 
     public function failedJobs()

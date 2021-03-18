@@ -19,6 +19,8 @@ class CreateStoriesTable extends Migration
             $table->string('link');
             $table->string('thumbnail');
             $table->string('summary');
+            $table->integer('flag')->default(0);
+            $table->integer('offset')->default(0);
             $table->timestamps();
         });
     }
