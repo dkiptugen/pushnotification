@@ -50,7 +50,7 @@ class QueueNotifications extends Command
         if($stories != null){
             
             if($stories->flag == 0){
-                if(($stories->offset + 1000) >= $total_guests){
+                if(($stories->offset + 5000) >= $total_guests){
 
                     $guests = Guest::skip($stories->offset)->take($total_guests - $stories->offset)->get();
 
@@ -69,14 +69,14 @@ class QueueNotifications extends Command
                     
                 } else {
                     //prepare for the iterations here i.e. increment the offset value then take 1000 guests to queue them
-                    $guests = Guest::skip($stories->offset)->take(1000)->get();
+                    $guests = Guest::skip($stories->offset)->take(5000)->get();
 
                     foreach($guests as $guest){
                         Notification::send($guest, new PushNotifications($stories)); 
                     }
                     
                     //increment the offset by 1000
-                    $stories->offset = $stories->offset + 1000;
+                    $stories->offset = $stories->offset + 5000;
                     $stories->save();
     
                     return $this->info('Notifications Batch Queued');
