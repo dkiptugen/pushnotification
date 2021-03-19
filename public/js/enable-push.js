@@ -15,7 +15,9 @@ function initSW() {
     }
 
     //register the service worker
-    navigator.serviceWorker.register('/notifications/public/sw.js').then(function(registration) {
+    navigator.serviceWorker.register('/sw.js', {
+        scope: '/',
+    }).then(function(registration) {
             console.log('serviceWorker installed!', registration.scope)
             initPush();
         })
@@ -88,7 +90,7 @@ function storePushSubscription(pushSubscription) {
     //const token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
     
 
-    fetch('/notifications/api/push', {
+    fetch('https://www.standardmedia.co.ke/notifications/api/push', {
         method: 'POST',
         body: JSON.stringify(pushSubscription),
         headers: {
