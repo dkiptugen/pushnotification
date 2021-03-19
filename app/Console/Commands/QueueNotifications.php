@@ -46,12 +46,16 @@ class QueueNotifications extends Command
         $total_guests = DB::table('guests')->count();
         
         $stories = Stories::latest('updated_at')->first();
-        return $this->info($stories);
+        
         if($stories != null){
+            
             if($stories->flag == 0){
+                echo $stories->flag;
+                echo "\n";
                 if(($stories->offset + 1000) >= $total_guests){
+                    echo $total_guests;
                     $guests = DB::table('guests')->skip($stories->offset)->take($total_guests - $stories->offset);
-    
+                    return $this->info($guests);
                     //create notification for this guests                    
                     Notification::send($guests, new PushNotifications($stories));
                     
