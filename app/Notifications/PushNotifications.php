@@ -53,9 +53,6 @@ class PushNotifications extends Notification implements ShouldQueue
 
             //Notification data
 
-            
-            
-            
             //$id = $this->notificationData['id'];
             $title = $this->notificationData['title'];
             $thumbnail = $this->notificationData['thumbnail'];

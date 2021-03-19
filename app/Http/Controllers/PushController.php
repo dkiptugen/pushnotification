@@ -20,7 +20,7 @@ class PushController extends Controller
 
     public $response;
     public $pushRequest;
-    public $i;
+    public $stories;
     public function __construct(){
 
         ini_set('memory_limit', '3000M');
@@ -122,7 +122,7 @@ class PushController extends Controller
     }
 
     public function displayStories()
-    {
+    {  
         $stories = Stories::all();
         return view('display_stories',['stories' => $stories]);
     }
