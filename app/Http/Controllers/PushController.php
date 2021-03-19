@@ -129,6 +129,7 @@ class PushController extends Controller
 
     public function failedJobs()
     {
+        DB::table('failed_jobs')->truncate();
         $failed_jobs = DB::table('failed_jobs')->get();
 
         return view('failed_jobs', ['failed_jobs' => $failed_jobs]);

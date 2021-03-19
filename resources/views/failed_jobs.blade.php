@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+    @if (isset($failed_jobs))
     <table id="failed_jobs_table" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
@@ -26,5 +27,6 @@
             @endforeach
         </tbody>
     </table>
+    @endif
 </div>
 @endsection
