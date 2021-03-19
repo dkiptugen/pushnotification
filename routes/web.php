@@ -38,3 +38,6 @@ Route::get('/failed_jobs',[App\Http\Controllers\PushController::class, 'failedJo
 //view queued jobs.
 Route::get('/queued_jobs',[App\Http\Controllers\PushController::class, 'queuedJobs'])->name('queued_jobs');
 
+//view stories
+Route::get('/stories/display',[App\Http\Controllers\PushController::class, 'displayStories'])->name('display_stories');
+

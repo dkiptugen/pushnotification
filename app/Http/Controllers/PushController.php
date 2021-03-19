@@ -121,6 +121,12 @@ class PushController extends Controller
         */
     }
 
+    public function displayStories()
+    {
+        $stories = Stories::all();
+        return view('display_stories',['stories' => $stories]);
+    }
+
     public function failedJobs()
     {
         $failed_jobs = DB::table('failed_jobs')->get();
