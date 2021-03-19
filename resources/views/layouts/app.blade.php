@@ -12,7 +12,8 @@
     <!--Import jQuery before export.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
-    
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="noindex">
 
 
     <!-- Scripts -->
