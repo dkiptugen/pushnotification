@@ -87,6 +87,7 @@ class PushController extends Controller
 
     public function dynamicPushNotification(Request $request)
     {
+
         $this->validate($request,[
             'title'    => 'required',
             'link'   => 'required',
@@ -123,6 +124,7 @@ class PushController extends Controller
 
     public function displayStories()
     {  
+
         $stories = Stories::all();
         return view('display_stories',['stories' => $stories]);
     }
@@ -138,8 +140,8 @@ class PushController extends Controller
 
     public function queuedJobs()
     {
-
-        //DB::table('jobs')->delete();
+        //DB::table('failed_jobs')->truncate();
+        DB::table('jobs')->delete();
         
         $queued_jobs = DB::table('jobs')->latest('created_at')->limit(2000)->get();
 
