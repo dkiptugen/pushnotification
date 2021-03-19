@@ -44,8 +44,9 @@ class QueueNotifications extends Command
     public function handle()
     {
         $total_guests = DB::table('guests')->count();
-        return $this->info($total_guests);
+        
         $stories = Stories::latest('updated_at')->first();
+        return $this->info($stories);
         if($stories != null){
             if($stories->flag == 0){
                 if(($stories->offset + 1000) >= $total_guests){
