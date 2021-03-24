@@ -27,10 +27,8 @@ class GuestController extends Controller
      */
     public function index()
     {
-
-        
        // $subscribers = Guest::all();
-        $subscribers = DB::table('guests')->get();
+        $subscribers = DB::table('guests')->latest('updated_at')->limit(5000)->get();
         return view('subscribers', ['subscribers' => $subscribers]);
     }
 
