@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return route('/login');
-});
+Route::get('/', [App\Http\Controllers\PushController::class, 'displayStories'])->name('login');
 
 Auth::routes(['register' => false]);
 

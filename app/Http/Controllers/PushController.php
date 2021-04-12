@@ -129,7 +129,8 @@ class PushController extends Controller
             $stories = Stories::all();
             return view('display_stories',['stories' => $stories]);
         } 
-        return redirect()->route('/login')
+        
+        return redirect()->route('login');
         
     }
 
