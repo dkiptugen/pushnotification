@@ -18,6 +18,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    
+    <script src="{{ asset('js/btn.js?'.time()) }}) }}" defer></script>
 
     <!--Data Table-->
     <script type="text/javascript"  src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js" defer></script>
@@ -27,14 +29,19 @@
 
     <script src="{{ asset('js/datatable.js') }}" defer></script>
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
+    <link href="{{ asset('css/btn.css?'.time()) }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
