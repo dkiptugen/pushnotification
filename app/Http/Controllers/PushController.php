@@ -125,9 +125,12 @@ class PushController extends Controller
     public function displayStories()
     {  
 
-        $this->middleware('auth');
-        $stories = Stories::all();
-        return view('display_stories',['stories' => $stories]);
+        if(Auth::user()){
+            $stories = Stories::all();
+            return view('display_stories',['stories' => $stories]);
+        } 
+        return redirect()->route('/login')
+        
     }
 
     public function failedJobs()

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('/stories/display');
+    return route('/login');
 });
 
 Auth::routes(['register' => false]);
