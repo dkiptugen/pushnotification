@@ -117,7 +117,7 @@
 
             </div>
             <div class="modal-footer d-flex justify-content-center">
-              <button id="update_button" class="btn btn-primary" data-dismiss="modal">Update</button>
+              <button id="update_button" class="btn btn-primary" data-dismiss="modal">Edit Details</button>
               <button id="confirm_button" class="btn btn-primary">Confirm</button>
               <button id="cancel_confirmation" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             </div>
@@ -133,19 +133,19 @@
               <img src="https://www.standardmedia.co.ke/payments/assets/img/mpesa.png" height="50" alt=" mpesa logo">
             </div>
             <div class="modal-body">
-              <h4 class="font-12">Payment Option One</h4>
+              <h4 class="font-12">Payment option one</h4>
+              <hr>
+              <p><strong>Success:</strong> Check your mobile phone handset for an instant payment request from Safaricom M-PESA.</p>
+              <p>Incase you did not get the request kindly use <strong>Payment option two</strong> below then click done.</p>
+
+              <hr>
+              <div class="mt-4 mb-2">
+                <h4 class="font-12">Payment option two</h4>
                 <hr>
-                <p><strong>Successful</strong> Now then check your mobile phone handset for an instant payment request from Safaricom M-PESA.</p>
-                <p>Incase you did not get the request use <strong>Payment Option Two</strong> below then click Done</p>
-  
-                <hr>
-                <div class="mt-4 mb-2">
-                  <h4 class="font-12">Payment Option Two</h4>
-                  <hr>
-                  <p>Paybill No: <strong>505604</strong></p>
-                  <p>Account No: <strong><span id="account_number" class="account_number"></span></strong></p>
-                  <p>Amount: <strong><span id="amount_to_pay" class="amount"></span></strong></p>
-                  </div>
+                <p>Paybill No: <strong>505604</strong></p>
+                <p>Account No: <strong><span id="account_number" class="account_number"></span></strong></p>
+                <p>Amount: <strong><span id="amount_to_pay" class="amount"></span></strong></p>
+              </div>
             </div>
             <div class="modal-footer d-flex justify-content-center">
               <button id="done" class="btn btn-primary" data-dismiss="modal">Done</button>
