@@ -104,23 +104,17 @@
                 </button>
             </div>
             <div class="modal-body">
-              <div class="form-group">
-                <label for="FormControlPhoneNumber"><strong> Amount: </strong></label>
-                <input type="text"  id="confirm_amount_to_buy" disabled name="confirm_amount_to_buy" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="FormControlPhoneNumber"><strong>Mpesa Phone Number: </strong></label>
-                <input type="text" id="confirm_mpesa_phone_number" disabled name="confirm_mpesa_phone_number" class="form-control" >
-              </div>
-              <div class="form-group">
-                <label for="FormControlPhoneNumber"><strong>Recipient Phone Number: </strong></label>
-                <input type="text" required id="confirm_recipient_phone_number" disabled name="confirm_recipient_phone_number" class="form-control" >
-              </div>
-              <div class="form-group">
-                <label for="FormControlPhoneNumber"><strong>Network: </strong></label>
-                <input type="text" required id="confirm_network" disabled name="confirm_network" class="form-control" >
-              </div>
               
+              {{-- Amount --}}
+              <p>Amount: <strong><span id="confirm_amount_to_buy" class="confirm_amount_to_buy"></span></strong></p>
+
+
+              <p>Mpesa Phone Number: <strong><span id="confirm_mpesa_phone_number" class="confirm_mpesa_phone_number"></span></strong></p>
+
+              <p>Recipient Phone Number: <strong><span id="confirm_recipient_phone_number" class="confirm_recipient_phone_number"></span></strong></p>
+
+              <p>Network: <strong><span id="confirm_network" class="confirm_network"></span></strong></p>
+
             </div>
             <div class="modal-footer d-flex justify-content-center">
               <button id="update_button" class="btn btn-primary" data-dismiss="modal">Update</button>
