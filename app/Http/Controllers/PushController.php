@@ -30,7 +30,12 @@ class PushController extends Controller
 
     public function index()
     {
-        return view('stories');
+        if(Auth::user()){
+            return view('stories');
+        } 
+        
+        return redirect()->route('login');
+        
     }
     
 
@@ -61,28 +66,28 @@ class PushController extends Controller
 
     public function fetchStories(){
 
-        $response = Http::withHeaders([
-            'appkey' => '3UhZEQ9pSQ6GxGh4hZbwvzWRvLqX6CrrNjH49MkLxxXSF'
-        ])->get('https://www.standardmedia.co.ke/analytics/stories', [
-            'size' => 1,
-            'source' => 'business',
-        ])->json()[0];
+        // $response = Http::withHeaders([
+        //     'appkey' => '3UhZEQ9pSQ6GxGh4hZbwvzWRvLqX6CrrNjH49MkLxxXSF'
+        // ])->get('https://www.standardmedia.co.ke/analytics/stories', [
+        //     'size' => 1,
+        //     'source' => 'business',
+        // ])->json()[0];
 
-        return $response;
+        // return $response;
     }
 
     public function push(){
         
-        
-        $this->response = $this->fetchStories();
+    
+        // $this->response = $this->fetchStories();
        
-        $Guest = Guest::chunk(500, function ($guests) {
-            foreach ($guests as $guest) {
-                Notification::send($guest, new PushNotifications($this->response));
-            }
-        });
+        // $Guest = Guest::chunk(500, function ($guests) {
+        //     foreach ($guests as $guest) {
+        //         Notification::send($guest, new PushNotifications($this->response));
+        //     }
+        // });
         
-        return redirect()->back();
+        // return redirect()->back();
     }
 
     public function dynamicPushNotification(Request $request)
@@ -125,8 +130,11 @@ class PushController extends Controller
     public function displayStories()
     {  
         if(Auth::user()){
+
             $stories = Stories::all();
+
             return view('display_stories',['stories' => $stories]);
+
         } 
         
         return redirect()->route('login');
@@ -136,9 +144,15 @@ class PushController extends Controller
     public function failedJobs()
     {
         //DB::table('failed_jobs')->truncate();
-        $failed_jobs = DB::table('failed_jobs')->get();
+        if(Auth::user()){
 
-        return view('failed_jobs', ['failed_jobs' => $failed_jobs]);
+            $failed_jobs = DB::table('failed_jobs')->get();
+
+            return view('failed_jobs', ['failed_jobs' => $failed_jobs]);
+            
+        } 
+        
+        return redirect()->route('login');
 
     }
 
@@ -147,9 +161,15 @@ class PushController extends Controller
         //DB::table('failed_jobs')->truncate();
        // DB::table('jobs')->delete();
         
+       if(Auth::user()){
+
         $queued_jobs = DB::table('jobs')->latest('created_at')->limit(2000)->get();
 
         return view('queued_jobs', ['queued_jobs' => $queued_jobs]);
+        
+        } 
+        
+        return redirect()->route('login');
     }
     
     
