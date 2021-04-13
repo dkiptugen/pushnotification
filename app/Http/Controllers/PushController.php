@@ -125,12 +125,12 @@ class PushController extends Controller
     public function displayStories()
     {  
 
-        if(Auth::user()){
+        //if(Auth::user()){
             $stories = Stories::all();
             return view('display_stories',['stories' => $stories]);
-        } 
+        //} 
         
-        return redirect()->route('login');
+       // return redirect()->route('login');
         
     }
 
