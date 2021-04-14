@@ -30,12 +30,10 @@ class PushController extends Controller
 
     public function index()
     {
-        if(Auth::user()){
             return view('stories');
-        } 
         
-        return redirect()->route('login');
         
+       
     }
     
 
@@ -113,63 +111,35 @@ class PushController extends Controller
 
         return redirect()->back();
 
-        /*
-        $this->pushRequest = $request->all();
-
-        $Guest = Guest::chunk(500, function ($guests) {
-
-            foreach ($guests as $guest) {
-                Notification::send($guest, new PushNotifications($this->pushRequest));
-            }
-            sleep(10);
-
-        });
-        */
     }
 
     public function displayStories()
     {  
-        if(Auth::user()){
+        $stories = Stories::all();
+        return view('display_stories',['stories' => $stories]);
 
-            $stories = Stories::all();
-
-            return view('display_stories',['stories' => $stories]);
-
-        } 
-        
-        return redirect()->route('login');
-        
     }
 
     public function failedJobs()
     {
         //DB::table('failed_jobs')->truncate();
-        if(Auth::user()){
+       
+        $failed_jobs = DB::table('failed_jobs')->get();
 
-            $failed_jobs = DB::table('failed_jobs')->get();
-
-            return view('failed_jobs', ['failed_jobs' => $failed_jobs]);
+        return view('failed_jobs', ['failed_jobs' => $failed_jobs]);
             
-        } 
-        
-        return redirect()->route('login');
+       
 
     }
 
     public function queuedJobs()
     {
-        //DB::table('failed_jobs')->truncate();
-       // DB::table('jobs')->delete();
-        
-       if(Auth::user()){
+        // DB::table('jobs')->delete();
 
         $queued_jobs = DB::table('jobs')->latest('created_at')->limit(2000)->get();
 
         return view('queued_jobs', ['queued_jobs' => $queued_jobs]);
-        
-        } 
-        
-        return redirect()->route('login');
+     
     }
     
     

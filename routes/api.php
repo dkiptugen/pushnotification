@@ -18,10 +18,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//Subscribe a user
 Route::post('/push', [App\Http\Controllers\PushController::class, 'store']);
 
 //make a push notification.
 Route::get('/subscribers/fetch',[App\Http\Controllers\GuestController::class, 'fetch_subscribed_users']);
 
-
+//Create a dynamic story
 Route::post('/dynamic/push', [App\Http\Controllers\PushController::class, 'dynamicPushNotification']);

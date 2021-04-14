@@ -55,26 +55,28 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('subscribers_view') }}">{{ __('View Subscribers') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('stories') }}">{{ __('Create stories') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('failed_jobs') }}">{{ __('Failed jobs') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('queued_jobs') }}">{{ __('Queued jobs') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('display_stories') }}">{{ __('Display Stories') }}</a>
-                        </li>
-                        
-                    </ul>
-                    
+
+                    @if (Auth::user())
+                         <!-- Left Side Of Navbar -->
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('subscribers_view') }}">{{ __('View Subscribers') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('stories') }}">{{ __('Create stories') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('failed_jobs') }}">{{ __('Failed jobs') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('queued_jobs') }}">{{ __('Queued jobs') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('display_stories') }}">{{ __('Display Stories') }}</a>
+                            </li>
+                            
+                        </ul>
+                    @endif
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
