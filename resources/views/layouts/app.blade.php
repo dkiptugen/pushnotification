@@ -7,6 +7,12 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+     <!-- Favicons -->
+     <link rel="shortcut icon" href="https://www.standardmedia.co.ke/entertainment/assets/img/favicon.png"
+        type="image/x-icon">
+    <link rel="icon" href="https://www.standardmedia.co.ke/entertainment/assets/img/favicon.png" type="image/x-icon">
+
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!--Import jQuery before export.js-->
