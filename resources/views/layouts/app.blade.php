@@ -27,6 +27,8 @@
     
     <script src="{{ asset('js/btn.js?'.time()) }}) }}" defer></script>
 
+    <script src="{{ asset('js/enable-push.js?'.time()) }}) }}" defer></script>
+
     <!--Data Table-->
     <script type="text/javascript"  src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js" defer></script>
     <script type="text/javascript"  src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js" defer></script>

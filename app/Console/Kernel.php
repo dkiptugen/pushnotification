@@ -15,6 +15,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\DailyPushNotifications::class,
         Commands\QueueNotifications::class,
+        Commands\EpaperOfTheDay::class,
+
         
     ];
 
@@ -29,6 +31,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('PushNotification:Daily')
             ->daily();
         $schedule->command('QueueNotifications:Daily')
+            ->daily();
+        $schedule->command('epaper:daily')
             ->daily();
     }
 

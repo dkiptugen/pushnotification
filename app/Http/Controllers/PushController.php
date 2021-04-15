@@ -31,8 +31,6 @@ class PushController extends Controller
     public function index()
     {
             return view('stories');
-        
-        
        
     }
     
@@ -106,16 +104,24 @@ class PushController extends Controller
             "thumbnail" => $request['thumbnail'],
             "summary" => $request['summary'],
         ]);
+        
+        if($stories){
 
-        Session::flash('message', 'Notifications Queued!');
+            Session::flash('message', 'Notifications Queued!');
 
-        return redirect()->back();
+            return redirect()->back();
+
+        } else {
+            return Session::flash('error', 'Failed check your inputs');
+        }
+        
 
     }
 
     public function displayStories()
     {  
-        $stories = Stories::all();
+        $stories = Stories::orderBy('id', 'ASC')->get();
+        
         return view('display_stories',['stories' => $stories]);
 
     }

@@ -19,7 +19,7 @@
 </IfModule>
 
 <IfModule mod_headers.c>
-    <Files ~ "service-worker\.js">
+    <Files ~ "sw.js">
         Header set Service-Worker-Allowed: /
     </Files>
 </IfModule>
