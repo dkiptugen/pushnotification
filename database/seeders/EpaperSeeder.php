@@ -17,8 +17,9 @@ class EpaperSeeder extends Seeder
         DB::table('epaper')->insert([
             "title" => "The Standard Epaper is Ready - " . date('d/m/Y'),
             "link" => "https://epaper.standardmedia.co.ke/",
-            "thumbnail" => "101",
-            "summary" => "Click read more to get to the epaper",
+            "thumbnail" => "https://epaper.standardmedia.co.ke/issues/the_standard/101/1.jpg",
+            "summary" => "Public schools lead private in Mt Kenya",
+            "flag" => 1,
             "created_at" => now(),
             "updated_at" => now(),
         ]);

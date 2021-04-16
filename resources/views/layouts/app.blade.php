@@ -82,6 +82,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('display_stories') }}">{{ __('Display Stories') }}</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('display_epaper') }}">{{ __('Display Epaper') }}</a>
+                            </li>
                             
                         </ul>
                     @endif

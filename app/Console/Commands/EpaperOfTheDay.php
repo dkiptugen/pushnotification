@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\Notifications\PushNotifications;
 use App\Models\Guest;
 use App\Models\Epaper;
+use Illuminate\Support\Facades\Http;
 
 
 use Notification;
@@ -49,9 +50,8 @@ class EpaperOfTheDay extends Command
 
         $total_guests = DB::table('guests')->count();
         
+        $old_epaper = Epaper::orderby('id','DESC')->first();
 
-
-        $old_epaper = Epaper::latest('updated_at')->first();
         if($old_epaper != null){
             
             $dt = Carbon::parse($old_epaper->updated_at);
@@ -59,27 +59,25 @@ class EpaperOfTheDay extends Command
 
             // if current date is greater than updated date on db we create a new story
             if(date('Y-m-d') > $story_date){
+                $response = Http::get('https://epaper.standardmedia.co.ke/api/get-issues/3/0/1')->json();
+
                 DB::table('epaper')->insert([
                     "title" => "The Standard Epaper is Ready - " . date('d/m/Y'),
                     "link" => "https://epaper.standardmedia.co.ke/",
-                    "thumbnail" => (int)$old_epaper->thumbnail + 1,
-                    "summary" => "Fetch the summary from somewhere first",
+                    "thumbnail" => $response['issues'][0]['cover'],
+                    "summary" => $response['issues'][0]['summary'],
                     "created_at" => now(),
                     "updated_at" => now(),
                 ]);
             }
         }
     
-        $epaper = Epaper::latest('updated_at')->first();
+        $epaper = Epaper::orderby('id','DESC')->first();
         
         if($epaper != null){
             
             
             if($epaper->flag == 0){
-                //$epaper->thumbnail = "https://epaper.standardmedia.co.ke/images/the_standard/" . "100" . "/1.jpg";
-                
-                $epaper->thumbnail = "https://epaper.standardmedia.co.ke/images/the_standard/" . "$epaper->thumbnail" . "/1.jpg";
-                
                 if(($epaper->offset + 10000) >= $total_guests){
 
                     $guests = Guest::skip($epaper->offset)->take($total_guests - $epaper->offset)->get();

@@ -6,6 +6,8 @@ use App\Notifications\PushNotifications;
 use App\Models\Guest;
 use App\Models\User;
 use App\Models\Stories;
+use App\Models\Epaper;
+
 use Auth;
 
 use Notification;
@@ -21,6 +23,7 @@ class PushController extends Controller
     public $response;
     public $pushRequest;
     public $stories;
+    
     public function __construct(){
 
         ini_set('memory_limit', '3000M');
@@ -123,6 +126,14 @@ class PushController extends Controller
         $stories = Stories::orderBy('id', 'ASC')->get();
         
         return view('display_stories',['stories' => $stories]);
+
+    }
+
+    public function displayEpaper()
+    {  
+        $epaper = Epaper::orderBy('id', 'ASC')->get();
+        
+        return view('display_epaper',['epaper' => $epaper]);
 
     }
 

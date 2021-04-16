@@ -49,4 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
     //view stories
     Route::get('/stories/display',[App\Http\Controllers\PushController::class, 'displayStories'])->name('display_stories');
 
+    //view epaper
+    Route::get('/epaper/display',[App\Http\Controllers\PushController::class, 'displayEpaper'])->name('display_epaper');
+
 });
