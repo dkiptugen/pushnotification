@@ -19,9 +19,9 @@ use Illuminate\Support\Facades\Route;
 //Authentication routes
 Auth::routes(['register' => false]);
 
-Route::post('/login',[App\Http\Controllers\AuthenticationController::class, 'login'])->name('login');
+/*Route::post('/login',[App\Http\Controllers\AuthenticationController::class, 'login'])->name('login');
 Route::post('/reset',[App\Http\Controllers\AuthenticationController::class, 'resetPassword'])->name('reset');
-Route::get('/logout',[App\Http\Controllers\AuthenticationController::class, 'logout'])->name('logout');
+Route::get('/logout',[App\Http\Controllers\AuthenticationController::class, 'logout'])->name('logout');*/
 
 //Airtime test route
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
