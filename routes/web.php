@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,7 +27,7 @@ Route::get('/logout',[App\Http\Controllers\AuthenticationController::class, 'log
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::group(['middleware' => 'auth'], function () { 
+Route::group(['middleware' => 'auth'], function () {
 
     //Display stories on the root
     Route::get('/', [App\Http\Controllers\PushController::class, 'displayStories']);
@@ -45,7 +46,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     //view queued jobs.
     Route::get('/queued_jobs',[App\Http\Controllers\PushController::class, 'queuedJobs'])->name('queued_jobs');
-    
+
     //view stories
     Route::get('/stories/display',[App\Http\Controllers\PushController::class, 'displayStories'])->name('display_stories');
 
