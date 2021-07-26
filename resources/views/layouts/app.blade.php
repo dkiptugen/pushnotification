@@ -128,6 +128,6 @@
             @yield('content')
         </main>
     </div>
-    <script src="{{ asset('sw.js') }}"></script>
+
 </body>
 </html>

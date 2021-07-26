@@ -15,7 +15,7 @@ function initSW() {
     }
 
     //register the service worker
-    navigator.serviceWorker.register('/sw.js', {
+    navigator.serviceWorker.register('./sw.js', {
         scope: '/',
     }).then(function(registration) {
             console.log('serviceWorker installed!', registration.scope)
@@ -88,14 +88,14 @@ function urlBase64ToUint8Array(base64String) {
 
 function storePushSubscription(pushSubscription) {
     //const token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
-    
+
 
     fetch('https://www.standardmedia.co.ke/notifications/api/push', {
         method: 'POST',
         body: JSON.stringify(pushSubscription),
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'   
+            'Content-Type': 'application/json'
         }
     })
         .then((res) => {
