@@ -15,15 +15,14 @@ function initSW() {
     }
 
     //register the service worker
-    navigator.serviceWorker.register('http://165.232.146.37/sw.js', {
-        scope: '/',
-    }).then(function(registration) {
+    navigator.serviceWorker.register('http://165.232.146.37/sw.js').then(function(registration) {
             console.log('serviceWorker installed!', registration.scope)
             initPush();
         })
         .catch((err) => {
-            console.log(err)
+            console.log('ServiceWorker registration failed',err)
         });
+
 }
 
 
