@@ -8,9 +8,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
      <!-- Favicons -->
-     <link rel="shortcut icon" href="https://www.standardmedia.co.ke/entertainment/assets/img/favicon.png"
-        type="image/x-icon">
-    <link rel="icon" href="https://www.standardmedia.co.ke/entertainment/assets/img/favicon.png" type="image/x-icon">
+
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 
 
     <title>{{ config('app.name', 'Laravel') }}</title>
