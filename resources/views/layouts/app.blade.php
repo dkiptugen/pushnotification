@@ -24,7 +24,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    
+
     <script src="{{ asset('js/btn.js?'.time()) }}) }}" defer></script>
 
     <script src="{{ asset('js/enable-push.js?'.time()) }}) }}" defer></script>
@@ -32,7 +32,7 @@
     <!--Data Table-->
     <script type="text/javascript"  src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js" defer></script>
     <script type="text/javascript"  src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js" defer></script>
-   
+
 
 
     <script src="{{ asset('js/datatable.js') }}" defer></script>
@@ -40,15 +40,15 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-   
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    
+
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    
+
     <link href="{{ asset('css/btn.css?'.time()) }}" rel="stylesheet">
 </head>
 <body>
@@ -82,10 +82,8 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('display_stories') }}">{{ __('Display Stories') }}</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('display_epaper') }}">{{ __('Display Epaper') }}</a>
-                            </li>
-                            
+
+
                         </ul>
                     @endif
                     <!-- Right Side Of Navbar -->
@@ -97,7 +95,7 @@
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
-                            
+
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
@@ -131,6 +129,6 @@
             @yield('content')
         </main>
     </div>
-
+    <script src="{{ asset('sw.js') }}"></script>
 </body>
 </html>
