@@ -40,8 +40,8 @@ return [
      * @deprecated
      */
     'gcm' => [
-        'key' => env('GCM_KEY'),
-        'sender_id' => env('GCM_SENDER_ID'),
+        'key' => env('AIzaSyAgh-CBIl0m2j9wYS-xGB6LC19jxXvtQYY'),
+        'sender_id' => env('78269827128'),
     ],
 
 ];
