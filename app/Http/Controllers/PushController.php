@@ -9,7 +9,7 @@ use App\Models\User;
 use App\Models\Stories;
 use App\Models\Epaper;
 
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 use Notification;
 
