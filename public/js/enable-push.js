@@ -20,7 +20,9 @@ function initSW() {
     }).then(function(registration) {
             console.log('serviceWorker installed!', registration.scope)
             initPush();
-        })
+
+
+    })
         .catch((err) => {
             console.log(err)
         });
@@ -58,7 +60,7 @@ function subscribeUser() {
                 userVisibleOnly: true,
                 applicationServerKey: urlBase64ToUint8Array(
                     //'{{env('VAPID_PUBLIC_KEY')}}'
-                    'BK-EjpXz65Cj_ux5UGXwO0KS1DBDemXRn0PU3dEga7pIQBGVvA4Nef7xSHnU2VK_3cBmgeJ_AEhDovZwdTBrhbI'
+                    'BAq2RFav9JTohNsnxY0wmF0aulgwchDfP8-dnFl0ChLJbEqZGEbAXVk_k15Q4wIZTZdkeCU1G5XxeBY3ugrQxKE'
                 )
             };
 
@@ -69,6 +71,7 @@ function subscribeUser() {
             storePushSubscription(pushSubscription);
         });
 }
+
 
 
 function urlBase64ToUint8Array(base64String) {
@@ -90,7 +93,7 @@ function storePushSubscription(pushSubscription) {
     //const token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
 
 
-    fetch('https://www.standardmedia.co.ke/notifications/api/push', {
+    fetch('http://localhost/web-notification/api/push', {
         method: 'POST',
         body: JSON.stringify(pushSubscription),
         headers: {

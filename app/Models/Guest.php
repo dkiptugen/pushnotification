@@ -15,13 +15,17 @@ class Guest extends Model
     protected $fillable = [
         'endpoint',
     ];
-
+    public function product()
+        {
+            return $this->belongsTo(Product::class);
+        }
     /**
      * Determine if the given subscription belongs to this user.
      *
      * @param  \NotificationChannels\WebPush\PushSubscription $subscription
      * @return bool
      */
+
     public function pushSubscriptionBelongsToUser($subscription){
         return (int) $subscription->subscribable_id === (int) $this->id;
     }

@@ -16,6 +16,7 @@ class CreateGuestsTable extends Migration
         Schema::create('guests', function (Blueprint $table) {
             $table->id();
             $table->string('endpoint',255)->unique();
+            $table->unsignedBigInteger('product_id');
             $table->timestamps();
         });
     }

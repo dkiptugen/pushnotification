@@ -22,13 +22,13 @@ class PushNotifications extends Notification implements ShouldQueue
      *
      * @return void
      */
-    
+
     public $notificationData;
     public function __construct($response)
     {
-        $this->notificationData = $response;  
+        $this->notificationData = $response;
     }
-    
+
 
 
     /**
@@ -54,19 +54,21 @@ class PushNotifications extends Notification implements ShouldQueue
             //Notification data
 
             //$id = $this->notificationData['id'];
-            $title = $this->notificationData['title'];
-            $thumbnail = $this->notificationData['thumbnail'];
-            $url = $this->notificationData['link'] ."?utm_source=Pushnotification&utm_medium=notification&utm_campaign=". date("FY");
-            $body = $this->notificationData['summary'];
+            $title      =   $this->notificationData['title'];
+            $thumbnail  =   $this->notificationData['thumbnail'];
+            $url        =   $this->notificationData['link'] ."?utm_source=Pushnotification&utm_medium=notification&utm_campaign=". date("FY");
+            $body       =   $this->notificationData['summary'];
+            $icon       =   $this->notificationData['icon'];
 
-            
+
             return (new WebPushMessage())
                         ->title($title)
-                        ->icon($thumbnail)
+                        ->icon($icon)
                         ->body($body)
                         ->action('Read More', 'view_notification')
+                        ->image($thumbnail)
                         ->data(['url' => $url]);
-                    
+
         }
 
 }
