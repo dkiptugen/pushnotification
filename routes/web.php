@@ -19,38 +19,64 @@ use Illuminate\Support\Facades\Route;
 //Authentication routes
 Auth::routes(['register' => false]);
 
-/*Route::post('/login',[App\Http\Controllers\AuthenticationController::class, 'login'])->name('login');
-Route::post('/reset',[App\Http\Controllers\AuthenticationController::class, 'resetPassword'])->name('reset');
-Route::get('/logout',[App\Http\Controllers\AuthenticationController::class, 'logout'])->name('logout');*/
 
-//Airtime test route
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::prefix('backend')->middleware(['middleware' => 'auth'])->group( function () {
 
-
-Route::group(['middleware' => 'auth'], function () {
-
+    Route::get('/',[\App\Http\Controllers\DashboardController::class,'index'])->name('dashboard');
     //Display stories on the root
-    Route::get('/', [App\Http\Controllers\PushController::class, 'displayStories']);
+    Route::prefix('notification')->group(function(){
+        Route::resource('/',\App\Http\Controllers\NotificationController::class);
+        Route::get('/push',[App\Http\Controllers\NotificationController::class, 'push'])->name('push');
+        Route::post('/get',[App\Http\Controllers\NotificationController::class, 'get'])->name('get notification');
+    });
 
-    //make a push notification.
-    Route::get('/push',[App\Http\Controllers\PushController::class, 'push'])->name('push');
+    Route::prefix('products')->group(function(){
+        Route::resource('/',\App\Http\Controllers\ProductsController::class,['as'=>'product']);
+        Route::post('/get',[\App\Http\Controllers\ProductsController::class,'get'])->name('get products');
+        Route::get('/export',[\App\Http\Controllers\ProductsController::class,'export_view'])->name('export view products');
+        Route::post('/export',[\App\Http\Controllers\ProductsController::class,'export'])->name('export products');
+    });
 
-    //view subscribers.
-    Route::get('/subscribers/view',[App\Http\Controllers\GuestController::class, 'index'])->name('subscribers_view');
+    Route::prefix('subscribers')->group(function(){
+        Route::resource('/',\App\Http\Controllers\SubcribersController::class,['as'=>'subscriber']);
+        Route::post('/get',[\App\Http\Controllers\SubcribersController::class,'get'])->name('get subscribers');
+        Route::get('/export',[\App\Http\Controllers\SubcribersController::class,'export_view'])->name('export view subscribers');
+        Route::post('/export',[\App\Http\Controllers\SubcribersController::class,'export'])->name('export subscribers');
+    });
 
-    //make a push notification story.
-    Route::get('/stories',[App\Http\Controllers\PushController::class, 'index'])->name('stories');
+    Route::prefix('user')->group(function(){
+        Route::resource('/',\App\Http\Controllers\UserController::class,['as'=>'user']);
+        Route::post('/get',[\App\Http\Controllers\UserController::class,'get'])->name('get users');
+        Route::get('/export',[\App\Http\Controllers\UserController::class,'export_view'])->name('export view users');
+        Route::post('/export',[\App\Http\Controllers\UserController::class,'export'])->name('export users');
 
-    //view failed jobs.
-    Route::get('/failed_jobs',[App\Http\Controllers\PushController::class, 'failedJobs'])->name('failed_jobs');
+        Route::prefix('roles')->group(function(){
+            Route::resource('/',\App\Http\Controllers\RolesController::class,['as'=>'role']);
+            Route::post('/get',[\App\Http\Controllers\RolesController::class,'get'])->name('get roles');
+            Route::get('/export',[\App\Http\Controllers\RolesController::class,'export_view'])->name('export view roles');
+            Route::post('/export',[\App\Http\Controllers\RolesController::class,'export'])->name('export roles');
+        });
 
-    //view queued jobs.
-    Route::get('/queued_jobs',[App\Http\Controllers\PushController::class, 'queuedJobs'])->name('queued_jobs');
+        Route::prefix('permissions')->group(function(){
+            Route::resource('/',\App\Http\Controllers\PermissionsController::class,['as'=>'permission']);
+            Route::post('/get',[\App\Http\Controllers\PermissionsController::class,'get'])->name('get permissions');
+            Route::get('/export',[\App\Http\Controllers\PermissionsController::class,'export_view'])->name('export view permissions');
+            Route::post('/export',[\App\Http\Controllers\PermissionsController::class,'export'])->name('export permissions');
+        });
+    });
 
-    //view stories
-    Route::get('/stories/display',[App\Http\Controllers\PushController::class, 'displayStories'])->name('display_stories');
+    Route::prefix('jobs')->group(function(){
+        Route::get('/failed',[\App\Http\Controllers\JobsController::class,'failed'])->name('Failed jobs');
+        Route::post('/failed/get',[\App\Http\Controllers\JobsController::class,'get_failed']);
 
-    //view epaper
-    Route::get('/epaper/display',[App\Http\Controllers\PushController::class, 'displayEpaper'])->name('display_epaper');
+        Route::get('/queued',[\App\Http\Controllers\JobsController::class,'queued'])->name('Queued jobs');
+        Route::post('/queued/get',[\App\Http\Controllers\JobsController::class,'get_queued']);
+    });
 
+    Route::prefix('logs')->group(function(){
+        Route::resource('/',\App\Http\Controllers\LogsController::class,['as'=>'log']);
+        Route::post('/get',[\App\Http\Controllers\LogsController::class,'get'])->name('get logs');
+        Route::get('/export',[\App\Http\Controllers\LogsController::class,'export_view'])->name('export view logs');
+        Route::post('/export',[\App\Http\Controllers\LogsController::class,'export'])->name('export logs');
+    });
 });

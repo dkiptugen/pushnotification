@@ -5,20 +5,21 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Responsive Bootstrap 4 Admin Template">
-    <meta name="author" content="Bootlab">
+    <meta name="description" content="{{ $description }}">
+    <meta name="author" content="{{ $author }}">
 
-    <title>Paper - Responsive Admin Template</title>
+    <title>{{ ucfirst($name) }} : {{ $title }}</title>
 
     <link href="{{ asset('assets/css/app.css')}}" rel="stylesheet">
-
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" />
+    @yield('header')
 </head>
 
 <body>
 @include('includes.sidebar')
 <div class="main">
     <nav class="navbar navbar-expand navbar-light bg-white sticky-top">
-        <a class="sidebar-toggle d-flex mr-3">
+        <a class="sidebar-toggle d-flex mr-3 text-dark">
             <i class="align-self-center" data-feather="menu"></i>
         </a>
 

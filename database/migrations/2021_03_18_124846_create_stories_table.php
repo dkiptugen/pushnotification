@@ -20,6 +20,9 @@ class CreateStoriesTable extends Migration
             $table->string('thumbnail');
             $table->string('summary');
             $table->unsignedBigInteger('product_id');
+            $table->bigInteger('deliveries')->default(0);
+            $table->tinyInteger('status')->default(0);
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }

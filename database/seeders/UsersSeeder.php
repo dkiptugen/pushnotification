@@ -21,6 +21,7 @@ class UsersSeeder extends Seeder
                 'email' =>  'caydee209@gmail.com',
                 'password' => bcrypt('15442'), // password
                 'email_verified_at' => now()->format('Y-m-d H:i:s'),
+                'status'=>1,
                 'remember_token' => Str::random(10)
             ],
 

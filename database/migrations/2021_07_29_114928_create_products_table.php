@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('domain');
             $table->bigInteger('subscriptions')->default(0);
+            $table->text('logo')->default('assets/img/logo.jpg');
             $table->timestamps();
         });
     }

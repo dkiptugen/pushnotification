@@ -15,7 +15,7 @@
     <meta name="robots" content="noindex">
     <meta name="googlebot" content="noindex">
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">
 
 
 </head>
@@ -28,7 +28,7 @@
     </div>
 </main>.
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/enable-push.js?'.time()) }}) }}" defer></script>
+    <script src="{{ asset('assets/js/app.js') }}" defer></script>
+    <script src="{{ asset('assets/js/enable-push.js?'.time()) }}) }}" defer></script>
 </body>
 </html>

@@ -13,7 +13,7 @@ class ProductsController extends Controller
          */
         public function index()
             {
-                //
+                return view('modules.products.index',$this->data);
             }
 
         /**

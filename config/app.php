@@ -175,7 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         NotificationChannels\WebPush\WebPushServiceProvider::class,
-
+        App\Providers\LaravelPermissionServiceProvider::class,
     ],
 
     /*

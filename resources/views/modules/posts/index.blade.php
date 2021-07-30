@@ -4,28 +4,35 @@
         <div class="card-header d-flex justify-content-between align-items-center">
             <h3>Notifications</h3>
             <div class="actionbtn">
-                <a href="" class="btn btn-sm btn-outline-dark"></a>
+                <a href="" class="btn btn-sm btn-outline-dark"><i class="fas fa-plus mr-1"></i>Add Notification</a>
             </div>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table id="notificationtable" class="table table-striped table-bordered" >
+                <table id="notificationtable" class="table table-striped table-condensed" >
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>title</th>
                             <th>Date</th>
-                            <th>flag</th>
-                            <th>offset</th>
+                            <th>Deliveries</th>
+                            <th>Author</th>
+                            <th>status</th>
+                            <th>Product</th>
                         </tr>
                     </thead>
+                    <tbody>
+
+                    </tbody>
                     <tfoot>
                         <tr>
                             <th>#</th>
                             <th>title</th>
                             <th>Date</th>
-                            <th>flag</th>
-                            <th>offset</th>
+                            <th>Deliveries</th>
+                            <th>Author</th>
+                            <th>status</th>
+                            <th>Product</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -42,7 +49,7 @@
             "processing": true,
             "serverSide": true,
             "ajax":{
-                "url": "{{ url('backend/notifications/get') }}",
+                "url": "{{ url('backend/notification/get') }}",
                 "dataType": "json",
                 "type": "POST",
                 "data":{ _token: "{{csrf_token()}}"}
@@ -53,7 +60,8 @@
                 { "data": "date" },
                 { "data": "deliveries" },
                 { "data": "author" },
-                { "data": "status" }
+                { "data": "status" },
+                { "data": "provider" }
 
             ],
             "order": [[ 0, "desc" ]]

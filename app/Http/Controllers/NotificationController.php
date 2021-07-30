@@ -35,7 +35,7 @@ class NotificationController extends Controller
          * Store a newly created resource in storage.
          *
          * @param  \Illuminate\Http\Request  $request
-         * @return \Illuminate\Http\Response
+         * @return \Illuminate\Http\RedirectResponse
          */
         public function store(Request $request)
             {
@@ -46,24 +46,18 @@ class NotificationController extends Controller
                     'summary' => 'required'
                 ]);
 
-                $request = $request->all();
+                $stories = Stories::create(["title" => $request->title, "link" => $request->link, "thumbnail" => $request->thumbnail, "summary" => $request->summary, "product_id" => $request->product]);
 
-                $stories = Stories::create([
-                    "title" => $request['title'],
-                    "link" => $request['link'],
-                    "thumbnail" => $request['thumbnail'],
-                    "summary" => $request['summary'],
-                ]);
+                if ($stories)
+                    {
 
-                if ($stories) {
+                        Session::flash('message', 'Notifications Queued!');
 
-                    Session::flash('message', 'Notifications Queued!');
+                        return redirect()->back();
 
-                    return redirect()->back();
+                    }
+                return Session::flash('error', 'Failed check your inputs');
 
-                } else {
-                    return Session::flash('error', 'Failed check your inputs');
-                }
             }
 
         /**
@@ -181,51 +175,39 @@ class NotificationController extends Controller
                         $posts  =   Stories::whereHas("product",function ($subquery) use($search){
                                                     $subquery->where('name','LIKE',"%{$search}%");
                                                 })
-                                            ->orWhere('name','LIKE',"%{$search}%")
+                                            ->orWhere('title','LIKE',"%{$search}%")
                                             ->offset($start)
                                             ->limit($limit)
                                             ->orderBy($order,$dir)
                                             ->get();
 
-                        $totalFiltered = Stories::where("livestream_id",'=',$livestreamid)
-                            ->orWhere(function($query) use($search){
-                                $user =   User::where('name','LIKE',"%{$search}%")
-                                    ->orWhere('email','LIKE',"%{$search}%")
-                                    ->limit(1)
-                                    ->first();
-                                if(!is_null($user))
-                                {
-                                    return $query->where('user_id','=',$user->id);
-                                }
-
-                            })
-                            ->count();
+                        $totalFiltered =Stories::whereHas("product",function ($subquery) use($search){
+                                                        $subquery->where('name','LIKE',"%{$search}%");
+                                                    })
+                                                ->orWhere('title','LIKE',"%{$search}%")
+                                                ->count();
                     }
                 $data = array();
                 if(!empty($posts))
                 {
+                    $pos    =   $start+1;
                     foreach ($posts as $post)
                     {
-                        $userdetails                =    User::where('id',$post->user_id)
-                            ->limit(1)
-                            ->first();
 
-                        $nestedData['name']             =   $userdetails->name;
-                        $nestedData['email']            =   $userdetails->email;
-                        $nestedData['devices']          =   $post->visits;
-                        $nestedData['status']           =   ($post->status == 1)?"Active":"Not Active";
-                        $nestedData['notified']         =   ($post->notified == 1)?"Yes":"No";
+                        $nestedData['pos']              =   $pos;
+                        $nestedData['title']            =   $post->title;
+                        $nestedData['date']             =   $post->created_at;
+                        $nestedData['deliveries']       =   $post->deliveries;
+                        $nestedData['author']           =   $post->user->name;
+                        $nestedData['status']           =   ($post->status == 2)?"sent":(($post->status == 1)?'picked':'pending');
+                        $nestedData['provider']         =   $post->provider->name;
 
                         $data[] = $nestedData;
+                        $pos++;
                     }
                 }
 
-                $json_data = array(
-                    "draw"            => intval($request->input('draw')),
-                    "recordsTotal"    => intval($totalData),
-                    "recordsFiltered" => intval($totalFiltered),
-                    "data"            => $data
-                );
+                $json_data = array("draw" => (int)$request->input('draw'), "recordsTotal" => $totalData, "recordsFiltered" => $totalFiltered, "data" => $data);
                 echo json_encode($json_data);
             }
     }
