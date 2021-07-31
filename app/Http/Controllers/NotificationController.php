@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guest;
+use App\Models\Product;
 use App\Models\Stories;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -100,9 +101,12 @@ class NotificationController extends Controller
          * @param  int  $id
          * @return \Illuminate\Http\Response
          */
-        public function destroy($id)
+        public function subscribers(Request $request)
             {
-                //
+                $subscribers = Guest::offset($request->offset)
+                                    ->limit($request->limit)
+                                    ->get();
+                return $subscribers->toJson();
             }
         public function subscribe(Request $request)
             {
@@ -114,9 +118,11 @@ class NotificationController extends Controller
                 $endpoint   =   $request->endpoint;
                 $token      =   $request->keys['auth'];
                 $key        =   $request->keys['p256dh'];
+                $product_id =   Product::where('domain', 'kenyans.co.ke')->first()->id;
                 //$user = Auth::user();
                 $user = Guest::firstOrCreate([
-                    'endpoint' => $endpoint
+                    'endpoint' => $endpoint,
+                    'product_id' => $product_id
                 ]);
                 $user->updatePushSubscription($endpoint, $key, $token);
 

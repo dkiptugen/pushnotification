@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 //Authentication routes
 Auth::routes(['register' => false]);
+Route::get('/',[\App\Http\Controllers\Auth\LoginController::class,'showLoginForm']);
 
 
 Route::prefix('backend')->middleware(['middleware' => 'auth'])->group( function () {
