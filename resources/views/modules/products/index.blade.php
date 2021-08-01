@@ -1,6 +1,6 @@
 @extends('includes.body')
 @section('content')
-    <div class="w-100">
+    <div class="col-12">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h2>Products</h2>
