@@ -7,7 +7,7 @@ const check = () => {
     }
 }
 const registerServiceWorker = async () => {
-    const swRegistration = await navigator.serviceWorker.register('http://localhost/web-notification/assets/js/ServiceWorker.js',{ scope: '/web-notification/assets/js/' }); //notice the file name
+    const swRegistration = await navigator.serviceWorker.register('https://alert.boxraft.net/assets/js/ServiceWorker.js',{ scope: '/assets/js/' }); //notice the file name
     return swRegistration;
 }
 
