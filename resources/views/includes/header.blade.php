@@ -19,7 +19,7 @@
 @include('includes.sidebar')
 <div class="main">
     <nav class="navbar navbar-expand navbar-light bg-white sticky-top">
-        <a class="sidebar-toggle d-flex mr-3">
+        <a class="sidebar-toggle d-flex mr-3 text-dark">
             <i class="fas fa-bars fa-lg"></i>
         </a>
 
