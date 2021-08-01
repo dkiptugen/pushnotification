@@ -27,6 +27,11 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a href="{{ url('backend/subscribers') }}" class="font-weight-bold sidebar-link">
+                        <i class="align-middle" data-feather="user-check"></i> <span class="align-middle">Subscribers</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="" data-toggle="collapse" class="font-weight-bold sidebar-link collapsed">
                         <i class="align-middle" data-feather="monitor"></i> <span class="align-middle">Pusher Jobs</span>
                     </a>

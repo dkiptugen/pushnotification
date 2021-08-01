@@ -3,7 +3,7 @@
 <div class="col-12">
     <div class="card">
         <div class="card-header">
-
+            <h1>Subscribers</h1>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -12,6 +12,7 @@
                         <tr>
                             <th>Id</th>
                             <th>End Point</th>
+                            <th>Product</th>
                             <th>Status</th>
                             <th>Created At</th>
                             <th>Updated At</th>
@@ -23,6 +24,7 @@
                         <tr>
                             <th>Id</th>
                             <th>End Point</th>
+                            <th>Product</th>
                             <th>Status</th>
                             <th>Created At</th>
                             <th>Updated At</th>

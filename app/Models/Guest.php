@@ -13,7 +13,7 @@ class Guest extends Model
     use HasFactory, Notifiable, HasPushSubscriptions;
 
     protected $fillable = [
-        'endpoint','provider_id'
+        'endpoint','product_id'
     ];
     public function product()
         {

@@ -65,7 +65,7 @@ class PushNotifications extends Notification implements ShouldQueue
                         ->title($title)
                         ->icon($icon)
                         ->body($body)
-                        ->action('Read More', 'view_notification')
+                        ->action('Read More', 'view_notification',$icon)
                         ->image($thumbnail)
                         ->data(['url' => $url]);
 

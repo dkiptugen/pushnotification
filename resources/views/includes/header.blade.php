@@ -26,7 +26,7 @@
 
 
         <div class="navbar-collapse collapse">
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto mr-2">
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">

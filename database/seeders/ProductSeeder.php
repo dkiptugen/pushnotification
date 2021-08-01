@@ -17,9 +17,10 @@ class ProductSeeder extends Seeder
         (new Product)->upsert([
             [
                 'name' => 'Kenyans',
-                'domain' =>  'kenyans.co.ke'
+                'domain' =>  'kenyans.co.ke',
+                'user_id'=>1
             ],
 
-        ], ['name'], ['domain']);
+        ], ['name'], ['domain','user_id']);
     }
 }

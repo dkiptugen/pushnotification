@@ -49,6 +49,7 @@ function initPush() {
         });
 }
 
+
 function subscribeUser() {
 
     navigator.serviceWorker.ready.then(data => console.log(data))

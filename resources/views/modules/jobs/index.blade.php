@@ -1,4 +1,4 @@
-@extends('includes.body');
+@extends('includes.body')
 @section('content')
 
 @endsection
