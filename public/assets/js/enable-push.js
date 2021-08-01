@@ -15,7 +15,7 @@ function initSW() {
     }
 
     //register the service worker
-    navigator.serviceWorker.register('https://alert.boxraft.net/assets/js/sw.js', {
+    navigator.serviceWorker.register('/assets/js/sw.js', {
         scope: '/assets/js',
     }).then(function(registration) {
             console.log('serviceWorker installed!', registration.scope)
