@@ -141,7 +141,7 @@ class ProductsController extends Controller
                     $nestedData['pos']              =   $pos;
                     $nestedData['name']             =   $post->name;
                     $nestedData['domain']           =   $post->domain;
-                    $nestedData['author']           =   $post->user->name;
+                    $nestedData['author']           =   $post->user->name??'';
                     $nestedData['datecreated']      =   $post->created_at->format('d-m-Y');
                     $nestedData['status']           =   ($post->status == 1)?"Active":"inactive";
                     $nestedData['action']           =   "";
