@@ -18,7 +18,7 @@ class CreateStoriesTable extends Migration
             $table->string('title');
             $table->string('link');
             $table->string('thumbnail');
-            $table->string('summary');
+            $table->text('summary')->nullable();
             $table->unsignedBigInteger('product_id');
             $table->bigInteger('deliveries')->default(0);
             $table->tinyInteger('status')->default(0);

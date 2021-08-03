@@ -1,7 +1,11 @@
 @extends('includes.body')
 @section('content')
-    <div class="card collapse" aria-labelledby="add-role"  id="add-role">
-        <div class="card-header">Add Role</div>
+    <div class="card" aria-labelledby="add-role"  id="add-role">
+        <div class="card-header">
+            <h1>
+                Add Role
+            </h1>
+        </div>
         <div class="card-body">
             <form action="{{ url('backend/user/role') }}" method="post" class="form form-horizontal create-form" enctype="multipart/form-data">
                 @csrf
@@ -26,10 +30,8 @@
                     </div>
                 </div>
                 <div class="form-row form-group">
-                    <button type="submit" class="ml-auto mr-2 btn btn-sgblue">Save</button>
-                    <button class="btn btn-rr btn-sm add-button" data-toggle="collapse" data-target="#view-table" aria-expanded="true" aria-controls="view-table">
-                        Close
-                    </button>
+                    <button type="submit" class="ml-auto mr-2 btn btn-dark btn-sm">Save</button>
+
                 </div>
             </form>
 

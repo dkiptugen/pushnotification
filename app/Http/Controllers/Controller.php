@@ -11,7 +11,7 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     public $data;
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests,Meta;
     public function __construct()
         {
             $this->data = Meta::site_def();

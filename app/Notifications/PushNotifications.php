@@ -53,19 +53,19 @@ class PushNotifications extends Notification implements ShouldQueue
 
             //Notification data
 
-            //$id = $this->notificationData['id'];
-            $title      =   $this->notificationData['title'];
-            $thumbnail  =   $this->notificationData['thumbnail'];
-            $url        =   $this->notificationData['link'] ."?utm_source=Pushnotification&utm_medium=notification&utm_campaign=". date("FY");
-            $body       =   $this->notificationData['summary'];
-            $icon       =   $this->notificationData['icon'];
+            //$id = $this->notificationData->id;
+            $title      =   $this->notificationData->title;
+            $thumbnail  =   $this->notificationData->thumbnail;
+            $url        =   $this->notificationData->link ."?utm_source=Pushnotification&utm_medium=notification&utm_campaign=". date("FY");
+            $body       =   $this->notificationData->summary;
+
 
 
             return (new WebPushMessage())
                         ->title($title)
-                        ->icon($icon)
+                        ->icon($thumbnail)
                         ->body($body)
-                        ->action('Read More', 'view_notification',$icon)
+                        ->action('Read More', 'view_notification')
                         ->image($thumbnail)
                         ->data(['url' => $url]);
 

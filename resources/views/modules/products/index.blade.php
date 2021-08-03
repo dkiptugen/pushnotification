@@ -17,6 +17,7 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Domain</th>
+                                <th>Subscribers</th>
                                 <th>Author</th>
                                 <th>Date Created</th>
                                 <th>Status</th>
@@ -28,6 +29,7 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Domain</th>
+                                <th>Subscribers</th>
                                 <th>Author</th>
                                 <th>Date Created</th>
                                 <th>Status</th>
@@ -58,6 +60,7 @@
                 { "data": "pos" },
                 { "data": "name" },
                 { "data": "domain" },
+                { "data": "subscribers" },
                 { "data": "author" },
                 { "data": "datecreated" },
                 { "data": "status" },

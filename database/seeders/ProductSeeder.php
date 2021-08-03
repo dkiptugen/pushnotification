@@ -18,7 +18,8 @@ class ProductSeeder extends Seeder
             [
                 'name' => 'Kenyans',
                 'domain' =>  'kenyans.co.ke',
-                'user_id'=>1
+                'user_id'=>1,
+                'status'=>1
             ],
 
         ], ['name'], ['domain','user_id']);

@@ -51,7 +51,27 @@
 @endsection
 @section('footer')
     <script>
+        $('#logger').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "ajax":{
+                "url": "{{ url('backend/logs/get') }}",
+                "dataType": "json",
+                "type": "POST",
+                "data":{ _token: "{{csrf_token()}}"}
+            },
+            "columns": [
+                { "data": "pos" },
+                { "data": "action" },
+                { "data": "executer" },
+                { "data": "model" },
+                { "data": "affectedid" },
+                { "data": "change" },
+                { "data": "time"}
 
+            ],
+            "order": [[ 0, "desc" ]]
+        });
     </script>
 
 @endsection

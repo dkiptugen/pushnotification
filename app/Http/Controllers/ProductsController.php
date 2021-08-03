@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddProduct;
+use App\Http\Requests\EditProduct;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductsController extends Controller
     {
         /**
          * Display a listing of the resource.
          *
-         * @return \Illuminate\Http\Response
+         * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response|\Illuminate\View\View
          */
         public function index()
             {
@@ -20,7 +23,7 @@ class ProductsController extends Controller
         /**
          * Show the form for creating a new resource.
          *
-         * @return \Illuminate\Http\Response
+         * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response|\Illuminate\View\View
          */
         public function create()
             {
@@ -31,18 +34,31 @@ class ProductsController extends Controller
          * Store a newly created resource in storage.
          *
          * @param  \Illuminate\Http\Request  $request
-         * @return \Illuminate\Http\Response
+         * @return array|\Illuminate\Http\Response
          */
-        public function store(Request $request)
+        public function store(AddProduct $request)
             {
-                //
+                $validateddata  = $request->validated();
+                if($validateddata)
+                    {
+                        $product            =   new Product();
+                        $product->name      =   $request->name;
+                        $product->domain    =   trim(strtolower(str_replace('www.','',$request->domains)));
+                        $product->status    =   1;
+                        $product->user_id   =   Auth::user()->id;
+                        $res                =   $product->save();
+                        if($res)
+                            return self::success('Product',"Added successfully",url('backend/products'));
+                        return self::fail('Product',"Failed to add product",url('backend/products'));
+                    }
+                return self::fail('Product',$validateddata,url('backend/products'));
             }
 
         /**
          * Display the specified resource.
          *
          * @param  int  $id
-         * @return \Illuminate\Http\Response
+         * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response|\Illuminate\View\View
          */
         public function show($id)
             {
@@ -53,10 +69,11 @@ class ProductsController extends Controller
          * Show the form for editing the specified resource.
          *
          * @param  int  $id
-         * @return \Illuminate\Http\Response
+         * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response|\Illuminate\View\View
          */
         public function edit($id)
             {
+
                 $this->data['product']  =   Product::find($id);
                 return view('modules.products.edit',$this->data);
             }
@@ -66,11 +83,25 @@ class ProductsController extends Controller
          *
          * @param  \Illuminate\Http\Request  $request
          * @param  int  $id
-         * @return \Illuminate\Http\Response
+         * @return array
          */
-        public function update(Request $request, $id)
+        public function update(EditProduct $request, $id)
             {
-                //
+                $validateddata  = $request->validated();
+                if($validateddata)
+                    {
+                        $product            =   Product::find($id);
+                        if($product->name == 'System Generated')
+                            $product->user_id   =   Auth::user()->id;
+                        $product->name      =   $request->name;
+                        $product->domain    =   trim(strtolower(str_replace('www.','',$request->domains)));
+                        $product->status    =   1;
+                        $res                =   $product->save();
+                        if($res)
+                            return self::success('Product',"Added successfully",url('backend/products'));
+                        return self::fail('Product',"Failed to add product",url('backend/products'));
+                    }
+                return self::fail('Product',$validateddata,url('backend/products'));
             }
 
         /**
@@ -138,16 +169,17 @@ class ProductsController extends Controller
                 foreach ($posts as $post)
                     {
 
-                    $nestedData['pos']              =   $pos;
-                    $nestedData['name']             =   $post->name;
-                    $nestedData['domain']           =   $post->domain;
-                    $nestedData['author']           =   $post->user->name??'';
-                    $nestedData['datecreated']      =   $post->created_at->format('d-m-Y');
-                    $nestedData['status']           =   ($post->status == 1)?"Active":"inactive";
-                    $nestedData['action']           =   "";
+                        $nestedData['pos']              =   $pos;
+                        $nestedData['name']             =   $post->name;
+                        $nestedData['domain']           =   $post->domain;
+                        $nestedData['author']           =   $post->user->name??'';
+                        $nestedData['subscribers']      =   $post->subscriptions;
+                        $nestedData['datecreated']      =   $post->created_at->format('d-m-Y');
+                        $nestedData['status']           =   ($post->status == 1)?"Active":"inactive";
+                        $nestedData['action']           =   "<a href='".url('backend/products/'.$post->id.'/edit')."' class='text text-dark'><i class='fas fa-edit'></i></a>";
 
-                    $data[] = $nestedData;
-                    $pos++;
+                        $data[] = $nestedData;
+                        $pos++;
                     }
                 }
 

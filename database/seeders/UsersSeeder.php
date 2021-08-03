@@ -17,12 +17,14 @@ class UsersSeeder extends Seeder
     {
         (new User)->upsert([
             [
-                'name' => 'Dennis Kiptoo',
-                'email' =>  'caydee209@gmail.com',
+                'name' => 'System Administrator',
+                'email' =>  'info@kenyans.co.ke',
                 'password' => bcrypt('15442'), // password
                 'email_verified_at' => now()->format('Y-m-d H:i:s'),
                 'status'=>1,
-                'remember_token' => Str::random(10)
+                'remember_token' => Str::random(10),
+
+
             ],
 
         ], ['email'], ['name','password' ,'email_verified_at', 'remember_token']);

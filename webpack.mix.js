@@ -32,5 +32,5 @@ mix.js('resources/js/app.js', 'public/assets/js')
         processCssUrls: false
     })
     .copy('node_modules/@fortawesome/fontawesome-free/webfonts','public/assets/webfonts/')
-    .copy('node_modules/summernote/dist/font','public/assets/webfonts/')
+    .copy('node_modules/summernote/dist/font','public/assets/css/font')
     .copy('node_modules/summernote/dist/plugin','public/assets/plugin/');

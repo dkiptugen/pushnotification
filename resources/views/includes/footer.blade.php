@@ -14,7 +14,7 @@
 </div>
 
 <script src="{{ asset('assets/js/app.js') }}"></script>
-<script src="{{ asset('assets/js/index.js') }}"></script>
+<script src="{{ asset('assets/js/enable-push.js') }}"></script>
 @yield('footer')
 </body>
 

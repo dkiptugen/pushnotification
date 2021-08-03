@@ -7,6 +7,7 @@ use App\Http\Requests\EditRole;
 use App\Models\Permission;
 use App\Models\Permission_Role;
 use App\Models\Role;
+use App\Utils\Sdata;
 use Illuminate\Http\Request;
 
 class RolesController extends Controller
@@ -89,7 +90,7 @@ class RolesController extends Controller
          * Show the form for editing the specified resource.
          *
          * @param  int  $id
-         * @return \Illuminate\Http\Response
+         * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response|\Illuminate\View\View
          */
         public function edit($id)
             {
@@ -188,7 +189,7 @@ class RolesController extends Controller
                                 $nestedData['pos']          =   $x;
                                 $nestedData['name']         =   $post->name;
                                 $nestedData['access']       =   Sdata::getperm($post->id) ;
-                                $nestedData['action']       =   '<a href="#" data-role=\''.$post.'\' data-perm=\''.json_encode($perm).'\' class="edit-role text-muted"><i class="fas fa-edit"></i></a>';
+                                $nestedData['action']       =   '<a href="'.url('backend/user/permissions/'.$post->id).'" class="edit-role text-muted"><i class="fas fa-edit"></i></a>';
                                 $data[]                     =   $nestedData;
                                 $x++;
                             }

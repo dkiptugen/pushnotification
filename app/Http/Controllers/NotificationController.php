@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddNotification;
+use App\Jobs\Dispatcher;
 use App\Models\Guest;
 use App\Models\Product;
 use App\Models\Stories;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 
@@ -29,6 +32,8 @@ class NotificationController extends Controller
          */
         public function create()
             {
+                $this->data['product']  =   Product::where('status',1)
+                                                    ->get();
                 return view('modules.posts.add',$this->data);
             }
 
@@ -36,28 +41,30 @@ class NotificationController extends Controller
          * Store a newly created resource in storage.
          *
          * @param  \Illuminate\Http\Request  $request
-         * @return \Illuminate\Http\RedirectResponse
+         * @return array|\Illuminate\Http\RedirectResponse
          */
-        public function store(Request $request)
+        public function store(AddNotification $request)
             {
-                $this->validate($request, [
-                    'title' => 'required',
-                    'link' => 'required',
-                    'thumbnail' => 'required',
-                    'summary' => 'required'
-                ]);
-
-                $stories = Stories::create(["title" => $request->title, "link" => $request->link, "thumbnail" => $request->thumbnail, "summary" => $request->summary, "product_id" => $request->product]);
-
-                if ($stories)
+                $validateddata = $request->validated();
+                if($validateddata)
                     {
+                        $stories = Stories::create([
+                                                        "title"         =>  $request->title,
+                                                        "link"          =>  $request->link,
+                                                        "thumbnail"     =>  $request->thumbnail,
+                                                        "summary"       =>  $request->summary,
+                                                        "product_id"    =>  $request->product,
+                                                        "user_id"       =>  Auth::user()->id
+                                                   ]);
 
-                        Session::flash('message', 'Notifications Queued!');
-
-                        return redirect()->back();
-
+                        if ($stories)
+                        {
+                            Dispatcher::dispatch($stories);
+                            return self::success('Notification','queued successfully',url('backend/notification'));
+                        }
+                        return self::fail('Notification', 'Failed to queue notification',url('backend/notification'));
                     }
-                return Session::flash('error', 'Failed check your inputs');
+                return self::fail('Notification', $validateddata,url('backend/notification'));
 
             }
 
@@ -110,46 +117,39 @@ class NotificationController extends Controller
             }
         public function subscribe(Request $request)
             {
-                $this->validate($request, [
-                    'endpoint' => 'required',
-                    'keys.auth' => 'required',
-                    'keys.p256dh' => 'required'
-                ]);
+
+                $this->validate($request,   [
+                                                'endpoint' => 'required',
+                                                'keys.auth' => 'required',
+                                                'keys.p256dh' => 'required'
+                                            ]);
                 $endpoint   =   $request->endpoint;
                 $token      =   $request->keys['auth'];
                 $key        =   $request->keys['p256dh'];
-                $product_id =   Product::where('domain', 'kenyans.co.ke')->first()->id;
-                //$user = Auth::user();
-                $user = Guest::firstOrCreate([
-                    'endpoint' => $endpoint,
-                    'product_id' => $product_id
-                ]);
-                $user->updatePushSubscription($endpoint, $key, $token);
-
-
-                return response()->json(['success' => true], 200);
-            }
-        public function send(Request $request)
-            {
-                $url        =   'https://fcm.googleapis.com/fcm/send';
-                $FcmToken   =   User::whereNotNull('device_key')->pluck('device_key')->all();
-
-                $dt         =   [
-                                    "registration_ids"  =>  $FcmToken,
-                                    "notification"      =>  [
-                                                                "title" => $request->title,
-                                                                "body"  => $request->body,
-                                                            ]
-                                ];
-                $data   =   Http::withHeaders(['Authorization:key=' . env('FCM_KEY'), 'Content-Type: application/json'])
-                                ->withOptions(['verify'=>app_path('Resources/cacert.pem'),'http_errors'=>FALSE])
-                                ->post($url,$dt);
-
-                if($data->successful())
+                $product_id =   Product::where('domain', $request->domain)
+                                        ->first()
+                                        ->id;
+                $check  =   Guest::where('endpoint',$request->endpoint)
+                                ->first();
+                if(is_null($check))
                     {
-                        return $data->object();
+                        $user = Guest::firstOrCreate([
+                                                        'endpoint' => $endpoint,
+                                                        'product_id' => $product_id
+                                                    ]);
+
+                        if($user)
+                            {
+                                $product        =   Product::find($product_id);
+                                $product->increment('subscriptions');
+                                $product->save();
+                            }
+                        $user->updatePushSubscription($endpoint, $key, $token);
+                        return response()->json(['success' => true], 200);
                     }
+                return response()->json(['success' => false], 200);
             }
+
         public function get(Request $request)
             {
                 $columns = array(
@@ -202,11 +202,11 @@ class NotificationController extends Controller
 
                         $nestedData['pos']              =   $pos;
                         $nestedData['title']            =   $post->title;
-                        $nestedData['date']             =   $post->created_at;
+                        $nestedData['date']             =   $post->created_at->format('h:ia d-m-Y');
                         $nestedData['deliveries']       =   $post->deliveries;
                         $nestedData['author']           =   $post->user->name;
                         $nestedData['status']           =   ($post->status == 2)?"sent":(($post->status == 1)?'picked':'pending');
-                        $nestedData['provider']         =   $post->provider->name;
+                        $nestedData['product']          =   $post->product->name;
 
                         $data[] = $nestedData;
                         $pos++;

@@ -13,7 +13,7 @@
                             <th>Id</th>
                             <th>End Point</th>
                             <th>Product</th>
-                            <th>Status</th>
+
                             <th>Created At</th>
                             <th>Updated At</th>
                         </tr>
@@ -25,7 +25,7 @@
                             <th>Id</th>
                             <th>End Point</th>
                             <th>Product</th>
-                            <th>Status</th>
+
                             <th>Created At</th>
                             <th>Updated At</th>
                         </tr>
@@ -42,5 +42,25 @@
 
 @endsection
 @section('footer')
+    <script type="application/javascript">
+        $('#subscriber_table').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "ajax":{
+                "url": "{{ url('backend/subscribers/get') }}",
+                "dataType": "json",
+                "type": "POST",
+                "data":{ _token: "{{csrf_token()}}"}
+            },
+            "columns": [
+                { "data": "pos" },
+                { "data": "endpoint" },
+                { "data": "product" },
+                { "data": "created" },
+                { "data": "updated" }
 
+            ],
+            "order": [[ 0, "desc" ]]
+        });
+    </script>
 @endsection

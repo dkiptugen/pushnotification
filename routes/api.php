@@ -17,12 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-//Subscribe a user
-Route::post('/push', [App\Http\Controllers\NotificationController::class, 'subscribe']);
-
-//make a push notification.
-Route::get('/subscribers/fetch',[App\Http\Controllers\NotificationController::class, 'subscribers']);
-
-//Create a dynamic story
-Route::post('/dynamic/push', [App\Http\Controllers\NotificationController::class, 'store']);
+Route::middleware(['domain'])->group(function(){
+    //Subscribe a user
+    Route::post('/push', [App\Http\Controllers\NotificationController::class, 'subscribe']);
+    //make a push notification.
+    Route::get('/subscribers/fetch',[App\Http\Controllers\NotificationController::class, 'subscribers']);
+    //Create a dynamic story
+    Route::middleware(['AppKey',])->post('/dynamic/push', [App\Http\Controllers\NotificationController::class, 'store']);
+});

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Permission;
+use App\Utils\Sdata;
 use Illuminate\Http\Request;
 
 class PermissionsController extends Controller
