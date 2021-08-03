@@ -42,6 +42,7 @@ self.addEventListener('push', function (e) {
         e.waitUntil(self.registration.showNotification(msg.title, {
             body: msg.body,
             icon: msg.icon,
+            image:msg.image,
             actions: msg.actions,
             data: msg.data.url
         }));

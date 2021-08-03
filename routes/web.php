@@ -24,7 +24,6 @@ Route::get('/',[\App\Http\Controllers\Auth\LoginController::class,'showLoginForm
 Route::group([ 'role'=>['admin','audit'],'middleware'=>['auth','domain', 'auth.role'],'prefix'=>'backend'], function () {
 
     Route::get('/',[\App\Http\Controllers\DashboardController::class,'index'])->name('dashboard');
-    //Display stories on the root
     Route::prefix('notification')->group(function(){
         Route::resource('/',\App\Http\Controllers\NotificationController::class,['as'=>'notification']);
         Route::get('/push',[App\Http\Controllers\NotificationController::class, 'push'])->name('push');
@@ -33,6 +32,7 @@ Route::group([ 'role'=>['admin','audit'],'middleware'=>['auth','domain', 'auth.r
 
     Route::prefix('products')->group(function(){
         Route::resource('/',\App\Http\Controllers\ProductsController::class,['as'=>'products']);
+        Route::get('{id}/edit',[\App\Http\Controllers\ProductsController::class,'edit'])->name('products.edit');
         Route::post('/get',[\App\Http\Controllers\ProductsController::class,'get'])->name('get products');
         Route::get('/export',[\App\Http\Controllers\ProductsController::class,'export_view'])->name('export view products');
         Route::post('/export',[\App\Http\Controllers\ProductsController::class,'export'])->name('export products');

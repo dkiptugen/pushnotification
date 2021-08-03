@@ -24,7 +24,6 @@ class UsersSeeder extends Seeder
                 'status'=>1,
                 'remember_token' => Str::random(10),
 
-
             ],
 
         ], ['email'], ['name','password' ,'email_verified_at', 'remember_token']);

@@ -31,17 +31,18 @@
                         <i class="align-middle" data-feather="user-check"></i> <span class="align-middle">Subscribers</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a href="" data-toggle="collapse" class="font-weight-bold sidebar-link collapsed">
-                        <i class="align-middle" data-feather="monitor"></i> <span class="align-middle">Pusher Jobs</span>
-                    </a>
-                    <ul id="auth" class="sidebar-dropdown list-unstyled collapse ">
-                        <li class="sidebar-item"><a class="sidebar-link" href="{{ url('backend/jobs/queued') }}">queued</a></li>
-                        <li class="sidebar-item"><a class="sidebar-link" href="{{ url('backend/jobs/failed') }}">Failed</a></li>
 
-                    </ul>
+                <li class="sidebar-header">
+                    Pusher Jobs
                 </li>
+                <li class="sidebar-item">
 
+                    <a class="sidebar-link font-weight-bold " href="{{ url('backend/jobs/queued') }}"><i class="align-middle" data-feather="wind"></i>Queued</a>
+                </li>
+                <li class="sidebar-item">
+
+                    <a class="sidebar-link font-weight-bold " href="{{ url('backend/jobs/failed') }}"><i class="align-middle" data-feather="monitor"></i>Failed</a>
+                </li>
                 <li class="sidebar-header">
                     Administration
                 </li>

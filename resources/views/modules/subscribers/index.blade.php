@@ -13,7 +13,6 @@
                             <th>Id</th>
                             <th>End Point</th>
                             <th>Product</th>
-
                             <th>Created At</th>
                             <th>Updated At</th>
                         </tr>
@@ -25,7 +24,6 @@
                             <th>Id</th>
                             <th>End Point</th>
                             <th>Product</th>
-
                             <th>Created At</th>
                             <th>Updated At</th>
                         </tr>

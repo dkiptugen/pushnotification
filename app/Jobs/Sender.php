@@ -46,9 +46,14 @@ class Sender implements ShouldQueue
                                                  foreach ($dispatches as $dispatch)
                                                     {
                                                         Notification::send($dispatch->guest, new PushNotifications($response));
+                                                        $response->increment('deliveries');
+                                                        $response->save();
                                                     }
                                                  $dispatches->each->update(['status' => 1]);
+
                                             }, $column = 'id');
+                $response->status = 2;
+                $response->save();
 
                 Log::info($Dispatch);
             }

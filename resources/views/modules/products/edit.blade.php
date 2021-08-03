@@ -8,6 +8,7 @@
             <div class="card-body">
                 <form action="{{ url('backend/products/'.$product->id) }}" method="post" class="form form-horizontal create-form" enctype="multipart/form-data">
                     @csrf
+                    @method('put')
                     <div class="form-group">
                         <label for="name" class="control-label">Name</label>
                         <input type="text" name="name" id="name" class="form-control" value="{{ $product->name }}">

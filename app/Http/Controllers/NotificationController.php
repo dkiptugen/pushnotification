@@ -52,7 +52,7 @@ class NotificationController extends Controller
                                                         "title"         =>  $request->title,
                                                         "link"          =>  $request->link,
                                                         "thumbnail"     =>  $request->thumbnail,
-                                                        "summary"       =>  $request->summary,
+                                                        "summary"       =>  strip_tags($request->summary),
                                                         "product_id"    =>  $request->product,
                                                         "user_id"       =>  Auth::user()->id
                                                    ]);

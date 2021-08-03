@@ -28,6 +28,7 @@ class UserController extends Controller
          */
         public function create()
             {
+                $this->data['role'] =   Role::get();
                 return view('modules.users.add',$this->data);
             }
 
@@ -73,11 +74,13 @@ class UserController extends Controller
          * Show the form for editing the specified resource.
          *
          * @param  int  $id
-         * @return \Illuminate\Http\Response
+         * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response|\Illuminate\View\View
          */
         public function edit($id)
             {
-
+                $this->data['user'] =   User::find($id);
+                $this->data['role'] =   Role::get();
+                return view('modules.users.add',$this->data);
             }
 
         /**
@@ -149,7 +152,7 @@ class UserController extends Controller
                                 $nestedData['email']    =   $post->email;
                                 $nestedData['status']   =   ($post->status == 1)?'Active':"inactive";
                                 $nestedData['role']     =   is_numeric($post->role_id)?Role::where("id",$post->role_id)->first()->name:NULL;
-                                $nestedData['action']   =   '<a href="javascript:;"  class="text-dark mr-3 assign-role" data-user="'.$post->id.'"><i class="fas fa-edit  "></i></a>
+                                $nestedData['action']   =   '<a href="'.url('backend/user/'.$post->id.'/edit').'"  class="text-dark mr-3" ><i class="fas fa-edit  "></i></a>
                                                                             '.$actionbtn;
 
                                 $data[]                 =   $nestedData;
