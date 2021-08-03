@@ -45,17 +45,20 @@ class UserController extends Controller
                 if($validateddata)
                     {
 
-                            $usr    =   User::updateOrCreate(['email' =>  strtolower($request->email)],[ "name" => $request->name , "password" => Hash::make($request->pass) , "status" => 1 ]);
-                            if($usr)
-                                {
-                                    return self::success('User','Added user successfully',url('manage/users'));
-                                }
-
-                            return self::fail('User','Failed to add user');
-
-                        }
-
-                    return self::fail('User',$validateddata);
+                        $user           =   new User();
+                        $user->email    =   strtolower($request->email);
+                        $user->name     =   $request->name;
+                        $user->password =   Hash::make($request->password);
+                        $user->status   =   1;
+                        $user->role_id  =   $request->role;
+                        $usr            =   $user->save();
+                        if($usr)
+                            {
+                            return self::success('User','Added user successfully',url('backend/user'));
+                            }
+                        return self::fail('User','Failed to add user',url('backend/user'));
+                    }
+                return self::fail('User',$validateddata,url('backend/user'));
 
             }
 
@@ -80,7 +83,7 @@ class UserController extends Controller
             {
                 $this->data['user'] =   User::find($id);
                 $this->data['role'] =   Role::get();
-                return view('modules.users.add',$this->data);
+                return view('modules.users.edit',$this->data);
             }
 
         /**
@@ -92,7 +95,24 @@ class UserController extends Controller
          */
         public function update(EditUser $request, $id)
             {
+                $validateddata  =   $request->validated();
+                if($validateddata)
+                    {
 
+                        $user           =   User::find($id);
+                        $user->email    =   strtolower($request->email);
+                        $user->name     =   $request->name;
+                        $user->password =   Hash::make($request->password);
+                        $user->status   =   $request->status??0;
+                        $user->role_id  =   $request->role;
+                        $usr            =   $user->save();
+                        if($usr)
+                            {
+                                return self::success('User','Updated user successfully',url('backend/user'));
+                            }
+                        return self::fail('User','Failed to update user',url('backend/user'));
+                    }
+                return self::fail('User',$validateddata,url('backend/user'));
             }
 
         /**

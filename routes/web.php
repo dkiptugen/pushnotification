@@ -33,6 +33,7 @@ Route::group([ 'role'=>['admin','audit'],'middleware'=>['auth','domain', 'auth.r
     Route::prefix('products')->group(function(){
         Route::resource('/',\App\Http\Controllers\ProductsController::class,['as'=>'products']);
         Route::get('{id}/edit',[\App\Http\Controllers\ProductsController::class,'edit'])->name('products.edit');
+        Route::put('{id}',[\App\Http\Controllers\ProductsController::class,'update'])->name('products.update');
         Route::post('/get',[\App\Http\Controllers\ProductsController::class,'get'])->name('get products');
         Route::get('/export',[\App\Http\Controllers\ProductsController::class,'export_view'])->name('export view products');
         Route::post('/export',[\App\Http\Controllers\ProductsController::class,'export'])->name('export products');
@@ -47,6 +48,8 @@ Route::group([ 'role'=>['admin','audit'],'middleware'=>['auth','domain', 'auth.r
 
     Route::prefix('user')->group(function(){
         Route::resource('/',\App\Http\Controllers\UserController::class,['as'=>'user']);
+        Route::get('/{id}/edit',[\App\Http\Controllers\UserController::class,'edit'])->name('product.edit');
+        Route::put('/{id}',[\App\Http\Controllers\UserController::class,'update'])->name('product.update');
         Route::post('/get',[\App\Http\Controllers\UserController::class,'get'])->name('get users');
         Route::get('/export',[\App\Http\Controllers\UserController::class,'export_view'])->name('export view users');
         Route::post('/export',[\App\Http\Controllers\UserController::class,'export'])->name('export users');

@@ -15,7 +15,7 @@
                     </div>
                     <div class="form-group">
                         <label for="domain" class="control-label">Domain</label>
-                        <input type="text" name="domain" id="domains" class="form-control" value="{{ $product->domain }}">
+                        <input type="text" name="domains" id="domains" class="form-control" value="{{ $product->domain }}">
                     </div>
                     <div class="form-group">
                         <label class="form-label w-100" for="icon">Icon</label>

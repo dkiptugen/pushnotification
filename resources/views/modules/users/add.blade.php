@@ -7,6 +7,7 @@
         </div>
         <div class="card-body">
             <form action="{{ url('backend/user') }}" method="post" class="form form-horizontal create-form">
+                @csrf
                 <div class="form-group form-row">
                     <div class="col col-md-8">
                         <label for="name" class="control-label">Name</label>

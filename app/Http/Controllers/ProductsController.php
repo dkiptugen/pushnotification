@@ -85,6 +85,7 @@ class ProductsController extends Controller
          * @param  int  $id
          * @return array
          */
+
         public function update(EditProduct $request, $id)
             {
                 $validateddata  = $request->validated();
