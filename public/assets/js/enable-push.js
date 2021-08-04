@@ -16,7 +16,7 @@ function initSW() {
 
     //register the service worker
     navigator.serviceWorker.register('/assets/js/sw.js', {
-        scope: '/assets/js/',rel: "serviceworker"
+        scope: '/assets/js/'
 
     }).then(function(registration) {
             console.log('serviceWorker installed!', registration.scope)
@@ -29,9 +29,9 @@ function initSW() {
 
 
 function initPush() {
-   /* if (!navigator.serviceWorker.ready) {
+    if (!navigator.serviceWorker.ready) {
         return;
-    }*/
+    }
 
     new Promise(function (resolve, reject) {
         const permissionResult = Notification.requestPermission(function (result) {
