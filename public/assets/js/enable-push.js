@@ -84,7 +84,7 @@ function subscribeUser() {
                     console.log(error);
                 }
             );
-        }
+        })
         .then((pushSubscription) => {
             console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
             storePushSubscription(pushSubscription);
