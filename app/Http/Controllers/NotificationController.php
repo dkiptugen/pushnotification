@@ -59,10 +59,10 @@ class NotificationController extends Controller
                                                    ]);
 
                         if ($stories)
-                        {
-                            Dispatcher::dispatch($stories);
-                            return self::success('Notification','queued successfully',url('backend/notification'));
-                        }
+                            {
+                                Dispatcher::dispatch($stories);
+                                return self::success('Notification','queued successfully',url('backend/notification'));
+                            }
                         return self::fail('Notification', 'Failed to queue notification',url('backend/notification'));
                     }
                 return self::fail('Notification', $validateddata,url('backend/notification'));
@@ -148,9 +148,14 @@ class NotificationController extends Controller
                         $user->updatePushSubscription($endpoint, $key, $token);
                         return response()->json(['success' => true], 200);
                     }
-                return response()->json(['success' => false], 200);
+                return response()->json(['success' => true], 200);
             }
+        public function unsubscribe(Request $request,$id)
+            {
+                $user = Guest::find($id);
+                $user->deletePushSubscription($request->endpoint);
 
+            }
         public function get(Request $request)
             {
                 $columns = array(
