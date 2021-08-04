@@ -12,7 +12,7 @@ const urlB64ToUint8Array = base64String => {
 }
 
 const saveSubscription = async subscription => {
-    const SERVER_URL = 'http://localhost/web-notification/api/push'
+    const SERVER_URL = 'https://alert.boxraft.net/api/push'
     const response = await fetch(SERVER_URL, {
         method: 'post',
         headers: {
