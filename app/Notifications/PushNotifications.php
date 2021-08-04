@@ -60,7 +60,7 @@ class PushNotifications extends Notification implements ShouldQueue
             $url        =   $this->notificationData->link ."?utm_source=Pushnotification&utm_medium=notification&utm_campaign=". date("FY");
             $body       =   $this->notificationData->summary;
             $icon       =   asset($this->notificationData->product->logo);
-
+            Log::info(json_encode($this->notificationData));
             $data =  (new WebPushMessage())
                         ->title($title)
                         ->icon($icon)
