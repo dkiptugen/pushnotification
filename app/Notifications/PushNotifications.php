@@ -61,14 +61,14 @@ class PushNotifications extends Notification implements ShouldQueue
             $body       =   $this->notificationData->summary;
             $icon       =   asset($this->notificationData->product->logo);
             Log::info(json_encode($this->notificationData));
-            $data =  (new WebPushMessage())
+            return  (new WebPushMessage())
                         ->title($title)
                         ->icon($icon)
                         ->body($body)
                         ->action('Read More', 'view_notification')
                         ->image($thumbnail)
                         ->data(['url' => $url]);
-            dd($data);
+
 
         }
 

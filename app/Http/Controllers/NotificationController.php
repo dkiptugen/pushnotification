@@ -60,7 +60,7 @@ class NotificationController extends Controller
 
                         if ($stories)
                             {
-                                Log::info(json_encode($stories));
+                                //Log::info(json_encode($stories));
                                 Dispatcher::dispatch($stories);
                                 return self::success('Notification','queued successfully',url('backend/notification'));
                             }
