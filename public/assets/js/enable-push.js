@@ -110,3 +110,8 @@ function storePushSubscription(pushSubscription) {
             console.log(err)
         });
 }
+onload = function(){
+    var divg = document.createElement("div");
+    divg.appendChild(document.createTextNode("New DIV"));
+    document.body.appendChild(divg);
+};
