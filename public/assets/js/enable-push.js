@@ -30,6 +30,7 @@ function initSW() {
 
 function initPush() {
     if (!navigator.serviceWorker.ready) {
+        console.log('not ready');
         return;
     }
 
