@@ -14,7 +14,7 @@ function initSW() {
         return;
     }
 
-    document.body.innerHTML += '<div id="allow-push-notification-bar" class="allow-push-notification-bar" style="position: fixed; bottom:50px; left:50px; z-index:1;">\n' +
+    document.body.innerHTML += '<div id="allow-push-notification-bar" class="allow-push-notification-bar card" style="position: fixed; bottom:50px; right:50px; z-index:1;">\n' +
         '    <div class="content">\n' +
         '        <div class="text">\n' +
         '            Want to get notification from us?\n' +
