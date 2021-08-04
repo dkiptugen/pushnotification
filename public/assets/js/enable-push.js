@@ -63,8 +63,8 @@ function subscribeUser() {
             const subscribeOptions = {
                 userVisibleOnly: true,
                 applicationServerKey: urlBase64ToUint8Array(
-                    //'{{env('VAPID_PUBLIC_KEY')}}'
-                    'BLJAdIBMZxy5j8rwYAGeOPWvS8DYL_FnnpYD8tij5Osvg37H__D0UQZGpGzst2gnb2TEoJ7yxWCxrGwGt5_ym4I'
+
+                    'BJwnak-5rLh_Fd2Mm3S0DKPcASSU64p_tfM5Q_cWHNEDN0bvFy7GENtwG38MWp8Ii2y8r6oGXG4wzNYCmvPeoJ8'
                 )
             };
             console.log(subscribeOptions);
