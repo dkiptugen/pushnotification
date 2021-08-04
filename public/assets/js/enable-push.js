@@ -27,7 +27,7 @@ function initSW() {
             console.log(err)
         });
 }
-document.getElementById('allow-push-notification').addEventListener('click', () => {
+document.getElementById('allow-push-notification').onclick(function(){
     Notification.requestPermission().then(function (status) {
         if (status === 'denied') {
             //
