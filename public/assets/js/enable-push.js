@@ -15,7 +15,7 @@ function initSW() {
     }
 
     //register the service worker
-    navigator.serviceWorker.register('/sw.js', {
+    navigator.serviceWorker.register('/assets/js/sw.js', {
         scope: '/assets/js/',rel: "serviceworker"
 
     }).then(function(registration) {
