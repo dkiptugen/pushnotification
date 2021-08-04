@@ -57,10 +57,9 @@ function subscribeUser() {
 
     navigator.serviceWorker.ready.then(data => console.log(data))
 
-    navigator.serviceWorker.ready
-        .then(
+    navigator.serviceWorker.ready.then(
             function (registration){
-            console.log(registration);
+
             const subscribeOptions = {
                 userVisibleOnly: true,
                 applicationServerKey: urlBase64ToUint8Array(
