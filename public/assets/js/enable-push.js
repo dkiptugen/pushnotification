@@ -43,7 +43,7 @@ function initPush() {
     })
         .then((permissionResult) => {
             if (permissionResult !== 'granted') {
-                throw new Error('Permission not granted!');
+                console.log('Permission not granted!');
             }
             subscribeUser();
         });
@@ -52,11 +52,11 @@ function initPush() {
 
 function subscribeUser() {
 
-    navigator.serviceWorker.ready.then(data => console.log(data))
+   // navigator.serviceWorker.ready.then(data => console.log(data))
     navigator.serviceWorker.ready
         .then((registration) => {
             const subscribeOptions = {
-                //userVisibleOnly: true,
+                userVisibleOnly: true,
                 applicationServerKey: urlBase64ToUint8Array(
                     //'{{env('VAPID_PUBLIC_KEY')}}'
                     'BLJAdIBMZxy5j8rwYAGeOPWvS8DYL_FnnpYD8tij5Osvg37H__D0UQZGpGzst2gnb2TEoJ7yxWCxrGwGt5_ym4I'
