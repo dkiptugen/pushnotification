@@ -38,15 +38,19 @@ class Dispatcher implements ShouldQueue
                 $dt = array();
                 Guest::where('product_id',$this->data->product_id)
                     ->chunk(500, function ($subscriptions) use($dt) {
-                        foreach ($subscriptions as $subscription)
+                        if(!is_null($subscriptions))
                             {
-                                $dt[] = ['story_id' =>$this->data->id,'guest_id'=>$subscription->id,'status'=>0 ];
+                                foreach ($subscriptions as $subscription)
+                                    {
+                                        $dt[] = ['story_id' =>$this->data->id,'guest_id'=>$subscription->id,'status'=>0 ];
+                                    }
+
+                                if(!is_null($dt))
+                                    Dispatch::insert($dt);
                             }
 
-                        if(!is_null($dt))
-                            Dispatch::insert($dt);
                     });
-                //Sender::dispatch($this->data->id);
+                Sender::dispatch($this->data->id);
                 $story          =   Stories::find($this->data->id);
                 $story->status  =   1;
                 $story->save();
