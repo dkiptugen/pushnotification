@@ -70,7 +70,7 @@ function subscribeUser() {
             };
             console.log(subscribeOptions);
 
-            return registration.pushManager.subscribe(subscribeOptions).then(
+            registration.pushManager.subscribe(subscribeOptions).then(
                 function(pushSubscription) {
                     console.log(pushSubscription.endpoint);
                     // The push subscription details needed by the application
