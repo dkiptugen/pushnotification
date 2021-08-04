@@ -38,7 +38,7 @@ function initSW() {
             console.log(err)
         });
 }
-document.addEventListener('click', () => {
+document.getElementById('allow-push-notification').addEventListener('click', () => {
     Notification.requestPermission().then(function (status) {
         if (status === 'denied') {
             //
