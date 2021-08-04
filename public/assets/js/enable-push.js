@@ -16,7 +16,7 @@ function initSW() {
 
     document.body.innerHTML += '<div id="allow-push-notification-bar" class="allow-push-notification-bar card shadow" style="position: fixed; bottom:50px; right:50px; z-index:1;">\n' +
         '    <div class="content">\n' +
-        '        <div class="text">\n' +
+        '        <div class="text " style="margin-bottom: 2rem;">\n' +
         '            Want to get notification from us?\n' +
         '        </div>\n' +
         '        <div class="buttons-more" style="text-align: right;">\n' +
