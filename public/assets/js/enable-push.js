@@ -59,7 +59,7 @@ function subscribeUser() {
                 userVisibleOnly: true,
                 applicationServerKey: urlBase64ToUint8Array(
                     //'{{env('VAPID_PUBLIC_KEY')}}'
-                    'BAq2RFav9JTohNsnxY0wmF0aulgwchDfP8-dnFl0ChLJbEqZGEbAXVk_k15Q4wIZTZdkeCU1G5XxeBY3ugrQxKE'
+                    'BLJAdIBMZxy5j8rwYAGeOPWvS8DYL_FnnpYD8tij5Osvg37H__D0UQZGpGzst2gnb2TEoJ7yxWCxrGwGt5_ym4I'
                 )
             };
 
