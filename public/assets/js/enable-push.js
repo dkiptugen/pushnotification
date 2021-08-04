@@ -23,9 +23,6 @@ function initSW() {
         '            <button type="button" class="ok-button button-1" id="allow-push-notification">\n' +
         '                Yes\n' +
         '            </button>\n' +
-        '            <button type="button" class="ok-button button-1 " id="close-push-notification">\n' +
-        '                No\n' +
-        '            </button>\n' +
         '        </div>\n' +
         '    </div>\n' +
         '</div>';
