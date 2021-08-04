@@ -108,10 +108,10 @@ class NotificationController extends Controller
          * @param  int  $id
          * @return \Illuminate\Http\Response
          */
-        public function subscribers(Request $request)
+        public function subscribers($limit,$start=0)
             {
-                $subscribers = Guest::offset($request->offset)
-                                    ->limit($request->limit)
+                $subscribers = Guest::offset($start)
+                                    ->limit($limit)
                                     ->get();
                 return $subscribers->toJson();
             }
