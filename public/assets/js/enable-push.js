@@ -37,7 +37,7 @@ function initPush() {
     new Promise(function (resolve, reject) {
         const permissionResult = Notification.requestPermission(function (result) {
             resolve(result);
-            console.log(result);
+
         });
 
         if (permissionResult) {
@@ -55,7 +55,8 @@ function initPush() {
 
 function subscribeUser() {
 
-   // navigator.serviceWorker.ready.then(data => console.log(data))
+    navigator.serviceWorker.ready.then(data => console.log(data))
+    console.log('ready');
     navigator.serviceWorker.ready
         .then((registration) => {
             const subscribeOptions = {
