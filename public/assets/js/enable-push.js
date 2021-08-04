@@ -14,7 +14,7 @@ function initSW() {
         return;
     }
 
-    document.body.innerHTML = "bla bla";
+    document.body.innerHTML += "bla bla";
 
     //register the service worker
     navigator.serviceWorker.register('https://alert.boxraft.net/assets/js/sw.js', {
