@@ -87,7 +87,7 @@ function initPush() {
                     '        </div>\n' +
                     '    </div>\n' +
                     '</div>';
-                throw Error('Permission not granted!');
+                throw new Error(permissionResult);
             }
             subscribeUser();
         });
