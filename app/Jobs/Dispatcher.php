@@ -43,7 +43,8 @@ class Dispatcher implements ShouldQueue
                                 $dt[] = ['story_id' =>$this->data->id,'guest_id'=>$subscription->id,'status'=>0 ];
                             }
                         Log::error($dt);
-                        Dispatch::insert($dt);
+                        if(!is_null($dt))
+                            Dispatch::insert($dt);
                     });
                 Sender::dispatch($this->data->id);
                 $story          =   Stories::find($this->data->id);
