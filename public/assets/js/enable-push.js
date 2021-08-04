@@ -41,24 +41,16 @@ function initSW() {
             console.log(err)
         });
 }
-
-if (Notification.permission === 'granted') {
-    subscribeUser();
-}
-else if (Notification.permission === 'default') {
-    $('#allow-push-notification-bar').show();
-}
-
-$('#allow-push-notification').click(function () {
-    $('#allow-push-notification-bar').hide();
+document.addEventListener('click', () => {
     Notification.requestPermission().then(function (status) {
         if (status === 'denied') {
-            //do something
+            //
         } else if (status === 'granted') {
             subscribeUser();
         }
     });
-});
+})
+
 function initPush() {
     if (!navigator.serviceWorker.ready) {
         return;
