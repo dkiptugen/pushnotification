@@ -14,8 +14,6 @@ function initSW() {
         return;
     }
 
-
-
     //register the service worker
     navigator.serviceWorker.register('https://alert.boxraft.net/assets/js/sw.js', {
         scope: '/assets/js/sw.js',
@@ -27,43 +25,13 @@ function initSW() {
             console.log(err)
         });
 }
-document.getElementById('allow-push-notification').onclick(function(){
-    const options = {
-        userVisibleOnly: true,
-        applicationServerKey: urlBase64ToUint8Array(
-            //'{{env('VAPID_PUBLIC_KEY')}}'
-            'BLJAdIBMZxy5j8rwYAGeOPWvS8DYL_FnnpYD8tij5Osvg37H__D0UQZGpGzst2gnb2TEoJ7yxWCxrGwGt5_ym4I'
-        )
-    };
-    serviceWorkerRegistration.pushManager.subscribe(options)
-        .then(function(pushSubscription) {
-            console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
-            storePushSubscription(pushSubscription);
-        });
 
-})
+
 function initPush() {
     if (!navigator.serviceWorker.ready) {
         return;
     }
 
-    if (Notification.permission === 'granted') {
-        //do something
-    }
-    else if (Notification.permission === 'default') {
-        document.body.innerHTML += '<div id="allow-push-notification-bar" class="allow-push-notification-bar card shadow" style="position: fixed; bottom:50px; right:50px; z-index:1;">\n' +
-            '    <div class="content">\n' +
-            '        <div class="text " style="margin-bottom: 2rem;">\n' +
-            '            Want to get notification from us?\n' +
-            '        </div>\n' +
-            '        <div class="buttons-more" style="text-align: right;">\n' +
-            '            <button type="button" class="ok-button button-1" id="allow-push-notification">\n' +
-            '                Yes\n' +
-            '            </button>\n' +
-            '        </div>\n' +
-            '    </div>\n' +
-            '</div>';
-    }
     new Promise(function (resolve, reject) {
         const permissionResult = Notification.requestPermission(function (result) {
             resolve(result);
@@ -75,19 +43,7 @@ function initPush() {
     })
         .then((permissionResult) => {
             if (permissionResult !== 'granted') {
-                document.body.innerHTML += '<div id="allow-push-notification-bar" class="allow-push-notification-bar card shadow" style="position: fixed; bottom:50px; right:50px; z-index:1;">\n' +
-                    '    <div class="content">\n' +
-                    '        <div class="text " style="margin-bottom: 2rem;">\n' +
-                    '            Want to get notification from us?\n' +
-                    '        </div>\n' +
-                    '        <div class="buttons-more" style="text-align: right;">\n' +
-                    '            <button type="button" class="ok-button button-1" id="allow-push-notification">\n' +
-                    '                Yes\n' +
-                    '            </button>\n' +
-                    '        </div>\n' +
-                    '    </div>\n' +
-                    '</div>';
-                throw new Error(permissionResult);
+                throw new Error('Permission not granted!');
             }
             subscribeUser();
         });
@@ -109,12 +65,6 @@ function subscribeUser() {
             console.log(subscribeOptions);
 
             return registration.pushManager.subscribe(subscribeOptions);
-        }, function(error) {
-            // During development it often helps to log errors to the
-            // console. In a production environment it might make sense to
-            // also report information about errors back to the
-            // application server.
-            console.log(error);
         })
         .then((pushSubscription) => {
             console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
@@ -151,17 +101,9 @@ function storePushSubscription(pushSubscription) {
         }
     })
         .then((res) => {
-            if (!res.ok) {
-                throw new Error('Bad status code from server.');
-            }
-
             return res.json();
         })
         .then((res) => {
-            if (!(res.data && res.data.success)) {
-                throw new Error('Bad response from server.');
-            }
-
             console.log(res)
         })
         .catch((err) => {
