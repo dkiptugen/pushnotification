@@ -42,7 +42,7 @@ class Dispatcher implements ShouldQueue
                             }
                         Dispatch::insert($dt);
                     });
-                Sender::dispatch($this->data->id);
+                //Sender::dispatch($this->data->id);
                 $story          =   Stories::find($this->data->id);
                 $story->status  =   1;
                 $story->save();
