@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
+use Illuminate\Support\Facades\Log;
 use NotificationChannels\WebPush\WebPushMessage;
 use NotificationChannels\WebPush\WebPushChannel;
 
@@ -60,7 +61,7 @@ class PushNotifications extends Notification implements ShouldQueue
             $body       =   $this->notificationData->summary;
             $icon       =   asset($this->notificationData->product->logo);
 
-
+            Log::info(json_encode($this->notificationData));
 
             return (new WebPushMessage())
                         ->title($title)
