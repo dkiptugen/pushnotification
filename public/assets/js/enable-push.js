@@ -29,9 +29,9 @@ function initSW() {
 
 
 function initPush() {
-    if (!navigator.serviceWorker.ready) {
+   /* if (!navigator.serviceWorker.ready) {
         return;
-    }
+    }*/
 
     new Promise(function (resolve, reject) {
         const permissionResult = Notification.requestPermission(function (result) {
