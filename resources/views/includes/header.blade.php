@@ -13,6 +13,7 @@
     <link href="{{ asset('assets/css/app.css')}}" rel="stylesheet">
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" />
     <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/mix-manifest.json">
     @yield('header')
 </head>
 
