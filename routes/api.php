@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 //Route::middleware(['domain'])->group(function(){
     //Subscribe a user
-    Route::post('/push', [App\Http\Controllers\NotificationController::class, 'subscribe']);
+    Route::post('/subscribe', [App\Http\Controllers\NotificationController::class, 'subscribe']);
     //make a push notification.
     Route::get('/subscribers/fetch',[App\Http\Controllers\NotificationController::class, 'subscribers']);
     //Create a dynamic story

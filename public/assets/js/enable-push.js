@@ -91,7 +91,7 @@ function storePushSubscription(pushSubscription) {
     //const token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
 
 
-    fetch('https://alert.boxraft.net/api/push', {
+    fetch('https://alert.boxraft.net/api/subscribe', {
         method: 'POST',
         body: JSON.stringify(pushSubscription),
         headers: {
