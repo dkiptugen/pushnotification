@@ -14,18 +14,7 @@ function initSW() {
         return;
     }
 
-    document.body.innerHTML += '<div id="allow-push-notification-bar" class="allow-push-notification-bar card shadow" style="position: fixed; bottom:50px; right:50px; z-index:1;">\n' +
-        '    <div class="content">\n' +
-        '        <div class="text " style="margin-bottom: 2rem;">\n' +
-        '            Want to get notification from us?\n' +
-        '        </div>\n' +
-        '        <div class="buttons-more" style="text-align: right;">\n' +
-        '            <button type="button" class="ok-button button-1" id="allow-push-notification">\n' +
-        '                Yes\n' +
-        '            </button>\n' +
-        '        </div>\n' +
-        '    </div>\n' +
-        '</div>';
+
 
     //register the service worker
     navigator.serviceWorker.register('https://alert.boxraft.net/assets/js/sw.js', {
@@ -47,7 +36,23 @@ document.getElementById('allow-push-notification').addEventListener('click', () 
         }
     });
 })
-
+if (Notification.permission === 'granted') {
+    //do something
+}
+else if (Notification.permission === 'default') {
+    document.body.innerHTML += '<div id="allow-push-notification-bar" class="allow-push-notification-bar card shadow" style="position: fixed; bottom:50px; right:50px; z-index:1;">\n' +
+        '    <div class="content">\n' +
+        '        <div class="text " style="margin-bottom: 2rem;">\n' +
+        '            Want to get notification from us?\n' +
+        '        </div>\n' +
+        '        <div class="buttons-more" style="text-align: right;">\n' +
+        '            <button type="button" class="ok-button button-1" id="allow-push-notification">\n' +
+        '                Yes\n' +
+        '            </button>\n' +
+        '        </div>\n' +
+        '    </div>\n' +
+        '</div>';
+}
 function initPush() {
     if (!navigator.serviceWorker.ready) {
         return;
