@@ -14,7 +14,21 @@ function initSW() {
         return;
     }
 
-    document.body.innerHTML += "bla bla";
+    document.body.innerHTML += '<div id="allow-push-notification-bar" class="allow-push-notification-bar" style="position: fixed; bottom:50px; left:50px; z-index:1;">\n' +
+        '    <div class="content">\n' +
+        '        <div class="text">\n' +
+        '            Want to get notification from us?\n' +
+        '        </div>\n' +
+        '        <div class="buttons-more">\n' +
+        '            <button type="button" class="ok-button button-1" id="allow-push-notification">\n' +
+        '                Yes\n' +
+        '            </button>\n' +
+        '            <button type="button" class="ok-button button-1" id="close-push-notification">\n' +
+        '                No\n' +
+        '            </button>\n' +
+        '        </div>\n' +
+        '    </div>\n' +
+        '</div>';
 
     //register the service worker
     navigator.serviceWorker.register('https://alert.boxraft.net/assets/js/sw.js', {
