@@ -13,8 +13,8 @@
 </div>
 </div>
 
-<script src="{{ asset('assets/js/app.js') }}"></script>
-<script src="{{ asset('assets/js/enable-push.js') }}"></script>
+<script src="{{ asset('assets/js/app.js') }}" type="application/javascript"></script>
+<script src="{{ asset('assets/js/enable-push.js') }}" type="application/javascript"></script>
 @yield('footer')
 </body>
 
