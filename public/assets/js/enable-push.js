@@ -151,9 +151,17 @@ function storePushSubscription(pushSubscription) {
         }
     })
         .then((res) => {
+            if (!res.ok) {
+                throw new Error('Bad status code from server.');
+            }
+
             return res.json();
         })
         .then((res) => {
+            if (!(res.data && res.data.success)) {
+                throw new Error('Bad response from server.');
+            }
+
             console.log(res)
         })
         .catch((err) => {
