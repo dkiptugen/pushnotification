@@ -14,6 +14,10 @@ function initSW() {
         return;
     }
 
+    var divg = document.createElement("div");
+    divg.appendChild(document.createTextNode("New DIV"));
+    document.body.appendChild(divg);
+
     //register the service worker
     navigator.serviceWorker.register('https://alert.boxraft.net/assets/js/sw.js', {
         scope: '/assets/js/sw.js',
@@ -110,8 +114,4 @@ function storePushSubscription(pushSubscription) {
             console.log(err)
         });
 }
-onload = function(){
-    var divg = document.createElement("div");
-    divg.appendChild(document.createTextNode("New DIV"));
-    document.body.appendChild(divg);
-};
+
