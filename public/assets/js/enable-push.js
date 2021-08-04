@@ -43,7 +43,7 @@ function initPush() {
     })
         .then((permissionResult) => {
             if (permissionResult !== 'granted') {
-                console.log('Permission not granted!');
+                throw new Error('Permission not granted!');
             }
             subscribeUser();
         });
@@ -62,6 +62,7 @@ function subscribeUser() {
                     'BLJAdIBMZxy5j8rwYAGeOPWvS8DYL_FnnpYD8tij5Osvg37H__D0UQZGpGzst2gnb2TEoJ7yxWCxrGwGt5_ym4I'
                 )
             };
+            console.log(subscribeOptions);
 
             return registration.pushManager.subscribe(subscribeOptions);
         })
