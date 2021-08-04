@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class NotificationController extends Controller
@@ -117,7 +118,7 @@ class NotificationController extends Controller
             }
         public function subscribe(Request $request)
             {
-
+                Log::error('Re :',$request->all());
                 $this->validate($request,   [
                                                 'endpoint' => 'required',
                                                 'keys.auth' => 'required',
