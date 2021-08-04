@@ -33,7 +33,7 @@ function initPush() {
         console.log('not ready');
         return;
     }
-
+    console.log('passed');
     new Promise(function (resolve, reject) {
         const permissionResult = Notification.requestPermission(function (result) {
             resolve(result);
