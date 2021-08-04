@@ -27,7 +27,7 @@ class PushNotifications extends Notification implements ShouldQueue
     public $notificationData;
     public function __construct($response)
     {
-        $this->notificationData = (object)$response;
+        $this->notificationData = $response;
     }
 
 
