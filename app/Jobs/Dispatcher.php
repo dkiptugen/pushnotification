@@ -11,6 +11,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class Dispatcher implements ShouldQueue
     {
@@ -34,13 +35,14 @@ class Dispatcher implements ShouldQueue
          */
         public function handle()
             {
-                dd($this->data);
+                $dt = array();
                 Guest::where('product_id',$this->data->product_id)
-                    ->chunk(500, function ($subscriptions) {
+                    ->chunk(500, function ($subscriptions) use($dt) {
                         foreach ($subscriptions as $subscription)
                             {
                                 $dt[] = ['story_id' =>$this->data->id,'guest_id'=>$subscription->id,'status'=>0 ];
                             }
+                        Log::error($dt);
                         Dispatch::insert($dt);
                     });
                 Sender::dispatch($this->data->id);
