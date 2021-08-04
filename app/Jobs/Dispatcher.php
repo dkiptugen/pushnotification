@@ -34,6 +34,7 @@ class Dispatcher implements ShouldQueue
          */
         public function handle()
             {
+                dd($this->data);
                 Guest::where('product_id',$this->data->product_id)
                     ->chunk(500, function ($subscriptions) {
                         foreach ($subscriptions as $subscription)
@@ -42,7 +43,7 @@ class Dispatcher implements ShouldQueue
                             }
                         Dispatch::insert($dt);
                     });
-                //Sender::dispatch($this->data->id);
+                Sender::dispatch($this->data->id);
                 $story          =   Stories::find($this->data->id);
                 $story->status  =   1;
                 $story->save();
