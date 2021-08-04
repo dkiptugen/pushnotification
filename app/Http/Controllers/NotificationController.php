@@ -60,6 +60,7 @@ class NotificationController extends Controller
 
                         if ($stories)
                             {
+                                dd($stories);
                                 Dispatcher::dispatch($stories);
                                 return self::success('Notification','queued successfully',url('backend/notification'));
                             }
