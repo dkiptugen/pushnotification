@@ -109,6 +109,12 @@ function subscribeUser() {
             console.log(subscribeOptions);
 
             return registration.pushManager.subscribe(subscribeOptions);
+        }, function(error) {
+            // During development it often helps to log errors to the
+            // console. In a production environment it might make sense to
+            // also report information about errors back to the
+            // application server.
+            console.log(error);
         })
         .then((pushSubscription) => {
             console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
