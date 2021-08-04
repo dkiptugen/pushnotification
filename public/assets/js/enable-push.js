@@ -14,9 +14,7 @@ function initSW() {
         return;
     }
 
-    var divg = document.createElement("div");
-    divg.appendChild(document.createTextNode("New DIV"));
-    document.body.appendChild(divg);
+    document.body.innerHTML = "bla bla";
 
     //register the service worker
     navigator.serviceWorker.register('https://alert.boxraft.net/assets/js/sw.js', {
