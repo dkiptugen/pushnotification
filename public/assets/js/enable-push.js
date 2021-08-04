@@ -28,13 +28,19 @@ function initSW() {
         });
 }
 document.getElementById('allow-push-notification').onclick(function(){
-    Notification.requestPermission().then(function (status) {
-        if (status === 'denied') {
-            //
-        } else if (status === 'granted') {
-            subscribeUser();
-        }
-    });
+    const options = {
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(
+            //'{{env('VAPID_PUBLIC_KEY')}}'
+            'BLJAdIBMZxy5j8rwYAGeOPWvS8DYL_FnnpYD8tij5Osvg37H__D0UQZGpGzst2gnb2TEoJ7yxWCxrGwGt5_ym4I'
+        )
+    };
+    serviceWorkerRegistration.pushManager.subscribe(options)
+        .then(function(pushSubscription) {
+            console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
+            storePushSubscription(pushSubscription);
+        });
+
 })
 function initPush() {
     if (!navigator.serviceWorker.ready) {
