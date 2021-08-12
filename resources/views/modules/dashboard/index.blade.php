@@ -18,14 +18,20 @@
                             <h3 class="mb-2">Subscribers</h3>
                             <p class="text-muted"></p>
                             <div class="mb-0">
-                                {{ $value['subscriptions'] }}
+                                <strong class="text-muted font-23">
+                                    {{ $value['subscriptions'] }}
+                                </strong>
+
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col text-right">
                             <h3 class="mb-2">Notifications</h3>
                             <p class="text-muted"></p>
                             <div class="mb-0">
-                                {{ $value['notifications'] }}
+                                <strong class="text-muted font-23">
+                                    {{ $value['notifications'] }}
+                                </strong>
+
                             </div>
                         </div>
                     </div>
