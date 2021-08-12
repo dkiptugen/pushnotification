@@ -25,7 +25,8 @@ class EditProduct extends FormRequest
             {
                 return [
                             'name'      =>  ['required'],
-                            'domains'   =>  ['required']
+                            'domains'   =>  ['required'],
+                            'image'     =>  ['nullable','image','mimes:jpeg,png,jpg,gif,svg','max:2048']
                         ];
             }
     }

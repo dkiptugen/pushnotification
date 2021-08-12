@@ -61,7 +61,7 @@ class NotificationController extends Controller
                         if ($stories)
                             {
                                 //Log::info(json_encode($stories));
-                                //Dispatcher::dispatch($stories);
+                                Dispatcher::dispatch($stories);
 
                                 return self::success('Notification','queued successfully',url('backend/notification'));
                             }
@@ -120,7 +120,7 @@ class NotificationController extends Controller
             }
         public function subscribe(Request $request)
             {
-                Log::error('Re :',$request->all());
+                //og::error('Re :',$request->all());
                 $this->validate($request,   [
                                                 'endpoint' => 'required',
                                                 'keys.auth' => 'required',

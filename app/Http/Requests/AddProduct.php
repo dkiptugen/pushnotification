@@ -25,7 +25,9 @@ class AddProduct extends FormRequest
             {
                 return  [
                             'name'      =>  ['required','unique:products,name'],
-                            'domains'   =>  ['required','unique:products,domain']
-                        ];
+                            'domains'   =>  ['required','unique:products,domain'],
+                            'image'     =>  ['nullable','image','mimes:jpeg,png,jpg,gif,svg','max:2048']
+
+                ];
             }
     }

@@ -18,8 +18,11 @@ use Illuminate\Support\Facades\Route;
 
 //Authentication routes
 Auth::routes(['register' => false]);
+Route::prefix('prime')->group(static function(){
+    Route::get('/',[\App\Http\Controllers\PrimeController::class,'index']);
+    Route::get('/subscription',[\App\Http\Controllers\PrimeController::class,'subscription_page']);
+});
 Route::get('/',[\App\Http\Controllers\Auth\LoginController::class,'showLoginForm']);
-
 
 Route::group([ 'role'=>['admin','audit'],'middleware'=>['auth','domain', 'auth.role'],'prefix'=>'backend'], function () {
 

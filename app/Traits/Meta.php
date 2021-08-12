@@ -36,4 +36,5 @@ trait Meta
                             'url'       =>  $redirecturl
                         ];
             }
+
     }
