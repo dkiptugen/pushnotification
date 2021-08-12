@@ -47,9 +47,9 @@ class ProductsController extends Controller
                             {
                                 $file               =   $request->file('image') ;
                                 $fileName           =   time().'.'.$file->getClientOriginalName() ;
-                                $destinationPath    =   public_path().'/assets/img' ;
+                                $destinationPath    =   public_path().'/uploads' ;
                                 $file->move($destinationPath,$fileName);
-                                $product->logo      =   'assets/img/'.$fileName;
+                                $product->logo      =   'uploads/'.$fileName;
                             }
 
 
@@ -110,9 +110,9 @@ class ProductsController extends Controller
                             {
                                 $file               =   $request->file('image') ;
                                 $fileName           =   time().'.'.$file->getClientOriginalName() ;
-                                $destinationPath    =   public_path().'/assets/img' ;
+                                $destinationPath    =   public_path().'/uploads' ;
                                 $file->move($destinationPath,$fileName);
-                                $product->logo      =   'assets/img/'.$fileName;
+                                $product->logo      =   'uploads/'.$fileName;
                             }
 
                         $product->name      =   $request->name;
