@@ -13,7 +13,7 @@
                     <h1>{{ $key }}</h1>
                 </div>
                 <div class="card-body py-4">
-                    <div class="row">
+                    <div class="row flex-column">
                         <div class="col">
                             <h3 class="mb-2">Subscribers</h3>
                             <p class="text-muted"></p>
@@ -24,7 +24,7 @@
 
                             </div>
                         </div>
-                        <div class="col text-right">
+                        <div class="col">
                             <h3 class="mb-2">Notifications</h3>
                             <p class="text-muted"></p>
                             <div class="mb-0">
