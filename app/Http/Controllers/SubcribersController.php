@@ -69,7 +69,7 @@ class SubcribersController extends Controller
                         {
 
                             $nestedData['pos']              =   $pos;
-                            $nestedData['endpoint']         =   substr($post->endpoint,0,50);
+                            $nestedData['endpoint']         =   substr($post->endpoint,0,150);
                             $nestedData['product']          =   $post->product->name;
                             $nestedData['status']           =   ($post->status == 1)?"Active":"Inactive";
                             $nestedData['created']          =   $post->created_at->format('h:ia d-m-Y');
