@@ -44,7 +44,7 @@ class ProductsController extends Controller
                         $product            =   new Product();
                         if($request->name == 'System Generated')
                             {
-                                $imageName = time().'.'.$request->image->extension();
+                                $imageName = time().'.'.$request->image->getClientOriginalExtension();
                                 if($request->image->move(public_path('assets/img'), $imageName))
                                     $product->logo  =   'assets/img/'.$imageName;
                             }
@@ -102,7 +102,7 @@ class ProductsController extends Controller
                             $product->user_id   =   Auth::user()->id;
                         else
                             {
-                                $imageName = time().'.'.$request->image->extension();
+                                $imageName = time().'.'.$request->image->getClientOriginalExtension();
                                 if($request->image->move(public_path('assets/img'), $imageName))
                                     $product->logo  =   'assets/img/'.$imageName;
                             }
