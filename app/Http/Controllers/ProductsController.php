@@ -7,6 +7,7 @@ use App\Http\Requests\EditProduct;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class ProductsController extends Controller
     {
@@ -49,6 +50,7 @@ class ProductsController extends Controller
                                 $fileName           =   time().'.'.$file->getClientOriginalName() ;
                                 $destinationPath    =   public_path().'/uploads' ;
                                 $file->move($destinationPath,$fileName);
+                                Log::info($fileName);
                                 $product->logo      =   'uploads/'.$fileName;
                             }
 
@@ -113,11 +115,11 @@ class ProductsController extends Controller
                                 $destinationPath    =   public_path().'/uploads' ;
                                 $file->move($destinationPath,$fileName);
                                 $product->logo      =   'uploads/'.$fileName;
+                                Log::info($fileName);
                             }
 
                         $product->name      =   $request->name;
                         $product->domain    =   trim(strtolower(str_replace('www.','',$request->domains)));
-
                         $product->status    =   1;
                         $res                =   $product->save();
                         if($res)
