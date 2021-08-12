@@ -18,7 +18,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label w-100" for="icon">Icon</label>
-                    <input type="file" id="icon" name="icon">
+                    <input type="file" id="icon" name="image">
                     <small class="form-text text-muted">Required size is 512PX x 512PX</small>
                 </div>
 
