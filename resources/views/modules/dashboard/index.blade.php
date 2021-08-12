@@ -19,7 +19,7 @@
                             <p class="text-muted"></p>
                             <div class="mb-0">
                                 <strong class="text-muted font-23">
-                                    {{ $value['subscriptions'] }}
+                                    {{ number_format($value['subscriptions']) }}
                                 </strong>
 
                             </div>
@@ -29,7 +29,7 @@
                             <p class="text-muted"></p>
                             <div class="mb-0">
                                 <strong class="text-muted font-23">
-                                    {{ $value['notifications'] }}
+                                    {{ number_format($value['notifications']) }}
                                 </strong>
 
                             </div>
