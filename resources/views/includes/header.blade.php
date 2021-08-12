@@ -10,7 +10,7 @@
 
     <title>{{ ucfirst($name) }} : {{ $title }}</title>
 
-    <link href="{{ asset('assets/css/css.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/css/app.css')}}" rel="stylesheet">
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" />
 
     @yield('header')
