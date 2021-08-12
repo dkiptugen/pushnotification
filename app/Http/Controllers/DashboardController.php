@@ -15,20 +15,20 @@ class DashboardController extends Controller
                     {
                         if($request->has('startdate'))
                             {
-                                $this->data['product'][$value->domain]['subscriptions']     =   Guest::where('product_id',$value->id)
+                                $this->data['product'][$value->name]['subscriptions']     =   Guest::where('product_id',$value->id)
                                                                                                         ->whereDate('created_at','>=',$request->startdate)
                                                                                                         ->whereDate('created_at','<=',$request->enddate)
                                                                                                         ->count();
-                                $this->data['product'][$value->domain]['notifications']     =   Stories::where('product_id',$value->id)
+                                $this->data['product'][$value->name]['notifications']     =   Stories::where('product_id',$value->id)
                                                                                                         ->whereDate('created_at','>=',$request->startdate)
                                                                                                         ->whereDate('created_at','<=',$request->enddate)
                                                                                                         ->count();
                             }
                         else
                             {
-                                $this->data['product'][$value->domain]['subscriptions']     =   Guest::where('product_id',$value->id)
+                                $this->data['product'][$value->name]['subscriptions']     =   Guest::where('product_id',$value->id)
                                                                                                         ->count();
-                                $this->data['product'][$value->domain]['notifications']     =   Stories::where('product_id',$value->id)
+                                $this->data['product'][$value->name]['notifications']     =   Stories::where('product_id',$value->id)
                                                                                                         ->count();
                             }
                     }
