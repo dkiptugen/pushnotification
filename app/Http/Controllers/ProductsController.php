@@ -42,12 +42,17 @@ class ProductsController extends Controller
                 if($validateddata)
                     {
                         $product            =   new Product();
-                        if($request->name == 'System Generated')
+
+                        if($request->hasFile('image'))
                             {
-                                $imageName = time().'.'.$request->image->getClientOriginalExtension();
-                                if($request->image->move(public_path('assets/img'), $imageName))
-                                    $product->logo  =   'assets/img/'.$imageName;
+                                $file               =   $request->file('image') ;
+                                $fileName           =   time().'.'.$file->getClientOriginalName() ;
+                                $destinationPath    =   public_path().'/assets/img' ;
+                                $file->move($destinationPath,$fileName);
+                                $product->logo      =   'assets/img/'.$fileName;
                             }
+
+
                         $product->name      =   $request->name;
                         $product->domain    =   trim(strtolower(str_replace('www.','',$request->domains)));
                         $product->status    =   1;
@@ -100,12 +105,16 @@ class ProductsController extends Controller
                         $product            =   Product::find($id);
                         if($product->name == 'System Generated')
                             $product->user_id   =   Auth::user()->id;
-                        else
+
+                        if($request->hasFile('image'))
                             {
-                                $imageName = time().'.'.$request->image->getClientOriginalExtension();
-                                if($request->image->move(public_path('assets/img'), $imageName))
-                                    $product->logo  =   'assets/img/'.$imageName;
+                                $file               =   $request->file('image') ;
+                                $fileName           =   time().'.'.$file->getClientOriginalName() ;
+                                $destinationPath    =   public_path().'/assets/img' ;
+                                $file->move($destinationPath,$fileName);
+                                $product->logo      =   'assets/img/'.$fileName;
                             }
+
                         $product->name      =   $request->name;
                         $product->domain    =   trim(strtolower(str_replace('www.','',$request->domains)));
 
