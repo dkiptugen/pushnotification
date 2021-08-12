@@ -15,7 +15,7 @@
                 <div class="card-body py-4">
                     <div class="row flex-column">
                         <div class="col">
-                            <h3 class="mb-2">Subscribers</h3>
+                            <h3 class="mb-2 font-16 fw-400">Subscribers</h3>
                             <p class="text-muted"></p>
                             <div class="mb-0">
                                 <strong class="text-muted font-23">
@@ -25,7 +25,7 @@
                             </div>
                         </div>
                         <div class="col mt-3">
-                            <h3 class="mb-2">Notifications</h3>
+                            <h3 class="mb-2 font-16 fw-400">Notifications</h3>
                             <p class="text-muted"></p>
                             <div class="mb-0">
                                 <strong class="text-muted font-23">
