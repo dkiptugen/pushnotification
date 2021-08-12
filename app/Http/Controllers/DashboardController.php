@@ -22,7 +22,6 @@ class DashboardController extends Controller
                                 $this->data['product'][$value->domain]['notifications']     =   Stories::where('product_id',$value->id)
                                                                                                         ->whereDate('created_at','>=',$request->startdate)
                                                                                                         ->whereDate('created_at','<=',$request->enddate)
-                                                                                                        ->where('status',1)
                                                                                                         ->count();
                             }
                         else
@@ -30,7 +29,6 @@ class DashboardController extends Controller
                                 $this->data['product'][$value->domain]['subscriptions']     =   Guest::where('product_id',$value->id)
                                                                                                         ->count();
                                 $this->data['product'][$value->domain]['notifications']     =   Stories::where('product_id',$value->id)
-                                                                                                        ->where('status',1)
                                                                                                         ->count();
                             }
                     }
