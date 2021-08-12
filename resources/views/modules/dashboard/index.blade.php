@@ -24,7 +24,7 @@
 
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col mt-3">
                             <h3 class="mb-2">Notifications</h3>
                             <p class="text-muted"></p>
                             <div class="mb-0">
