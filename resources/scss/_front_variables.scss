@@ -63,30 +63,29 @@ $light:         $gray-100;
 $dark:          $gray-600;
 
 $theme-colors: (
-"primary": $primary,
-"secondary": $secondary,
-"success": $success,
-"info": $info,
-"warning": $warning,
-"danger": $danger,
-"light": $light,
-"dark": $dark
+    "primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "info": $info,
+    "warning": $warning,
+    "danger": $danger,
+    "light": $light,
+    "dark": $dark,
+    "black":$black,
+    "facebook": #3b5998,
+    "twitter": #1da1f2,
+    "google": #dc4e41,
+    "youtube": #f00,
+    "vimeo": #1ab7ea,
+    "dribbble": #ea4c89,
+    "github": #181717,
+    "instagram": #e4405f,
+    "pinterest": #bd081c,
+    "flickr": #0063dc,
+    "bitbucket": #0052cc
 );
 
-// Social colors
-$social-colors: (
-"facebook": #3b5998,
-"twitter": #1da1f2,
-"google": #dc4e41,
-"youtube": #f00,
-"vimeo": #1ab7ea,
-"dribbble": #ea4c89,
-"github": #181717,
-"instagram": #e4405f,
-"pinterest": #bd081c,
-"flickr": #0063dc,
-"bitbucket": #0052cc
-);
+
 
 // Body
 $body-bg: #FCFCFC;

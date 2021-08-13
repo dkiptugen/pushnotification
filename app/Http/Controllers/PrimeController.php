@@ -28,6 +28,6 @@ class PrimeController extends Controller
             }
         public function subscription_page(Request $request)
             {
-
+                return view('frontend.modules.subscribe',$this->data);
             }
     }

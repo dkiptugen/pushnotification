@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 //Authentication routes
 Auth::routes(['register' => false]);
 Route::prefix('prime')->group(static function(){
+//    domain('www.kenyans.co.ke')->
     Route::get('/',[\App\Http\Controllers\PrimeController::class,'index']);
     Route::get('/subscription',[\App\Http\Controllers\PrimeController::class,'subscription_page']);
 });
