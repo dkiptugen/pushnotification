@@ -22,6 +22,7 @@ Route::prefix('prime')->group(static function(){
 //    domain('www.kenyans.co.ke')->
     Route::get('/',[\App\Http\Controllers\PrimeController::class,'index']);
     Route::get('/subscription',[\App\Http\Controllers\PrimeController::class,'subscription_page']);
+    Route::get('/time',[\App\Http\Controllers\PrimeController::class,'time']);
 });
 Route::get('/',[\App\Http\Controllers\Auth\LoginController::class,'showLoginForm']);
 

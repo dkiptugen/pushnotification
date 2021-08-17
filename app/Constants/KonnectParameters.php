@@ -9,5 +9,6 @@ class KonnectParameters
         public const loginUrl       =   "https://konnect.devhouse.tech/api/v1/auth/login";
         public const graphql        =   'https://konnect.devhouse.tech/graphql';
         public const smscallback    =   'prime/sms/dlr';
+        public const service_id     =   1;
 
     }

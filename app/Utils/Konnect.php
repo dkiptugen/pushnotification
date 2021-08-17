@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Http;
 
 class Konnect
     {
-        public function login()
+        public static function login()
             {
                 $data   =   Http::withHeaders(['Content-Type'=>'application/json','accept'=>'application/json'])
                                 ->withOptions(['verify'=>app_path('/Resources/cacert.pem'),''])
@@ -18,7 +18,7 @@ class Konnect
                 if($data->successful())
                     return $data->object();
             }
-        public function charge(Request $request)
+        public static function charge(Request $request)
             {
                 $query = <<<GQL
                                 mutation {
@@ -38,11 +38,33 @@ class Konnect
                     return $response->json();
 
             }
-        public function checkPayment()
+        public static function checkPayment(Request $request)
             {
 
+                $query      =   <<<GQL
+                                      query{
+                                          subscriber(id:$request->id){
+                                            id
+                                            phone_number_id
+                                            service_id status,
+                                            first_name
+                                            service{id name}
+                                            last_name
+                                            phone_number
+                                            updated_at
+                                            created_at
+                                            }
+                                        }
+                                GQL;
+
+                $response = Http::withHeaders(['Content-Type' => 'application/json','Authorization'=>'Basic '.base64_encode(KonnectParameters::login_id.':'.KonnectParameters::pass)])
+                                    ->withOptions(['debug' => true,'verify'=>app_path('Resources/cacert.pem')])
+                                    ->post(KonnectParameters::graphql, ['query' => $query]);
+
+                if($response->successful())
+                    return $response->json();
             }
-        public function sendsms(Request $request)
+        public static function sendsms(Request $request)
             {
                 $callback   =   KonnectParameters::smscallback;
                 $query      =   <<<GQL
@@ -63,7 +85,7 @@ class Konnect
                     return $response->json();
 
             }
-        public function subscribe(Request $request)
+        public static function subscribe(Request $request)
             {
 
                 $query = <<<GQL
@@ -84,7 +106,7 @@ class Konnect
                     return $response->json();
 
             }
-        public function unsubscribe(Request $request)
+        public static function unsubscribe(Request $request)
             {
 
                 $query = <<<GQL
