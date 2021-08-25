@@ -26,7 +26,7 @@ Route::prefix('prime')->group(static function(){
 });
 Route::get('/',[\App\Http\Controllers\Auth\LoginController::class,'showLoginForm']);
 
-Route::group([ 'role'=>['admin','audit'],'middleware'=>['auth','domain', 'auth.role'],'prefix'=>'backend'], function () {
+Route::group([ 'domain'=>'localhost','role'=>['admin','audit'],'middleware'=>['auth','domain', 'auth.role'],'prefix'=>'backend'], function () {
 
     Route::get('/',[\App\Http\Controllers\DashboardController::class,'index'])->name('dashboard');
     Route::prefix('notification')->group(function(){
