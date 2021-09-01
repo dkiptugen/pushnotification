@@ -6,7 +6,7 @@
             <div class="card" id="view-table" aria-labelledby="view-table" >
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h1>Roles</h1>
-                    <a class="btn btn-outline-dark btn-sm"  href="{{ url('backend/user/roles/create') }}" >
+                    <a class="btn btn-outline-dark btn-sm"  href="{{ route('user.roles.create',$user->id??0) }}" >
                         <i class="align-middle" data-feather="plus"></i> Add Role
                     </a>
 
@@ -52,7 +52,7 @@
             "processing": true,
             "serverSide": true,
             "ajax":{
-                "url": "{{ url('backend/user/roles/get') }}",
+                "url": "{{ route('user.roles.datatable',$user->id??0) }}",
                 "dataType": "json",
                 "type": "POST",
                 "data":{ _token: "{{csrf_token()}}"}

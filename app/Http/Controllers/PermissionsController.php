@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Permission;
+use App\Models\User;
 use App\Utils\Sdata;
 use Illuminate\Http\Request;
 
@@ -13,8 +14,9 @@ class PermissionsController extends Controller
          *
          * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response|\Illuminate\View\View|string
          */
-        public function index()
+        public function index($userid)
             {
+                $this->data['user'] =   User::find($userid);
                 return view('modules.permissions.index',$this->data);
             }
 
@@ -23,8 +25,9 @@ class PermissionsController extends Controller
          *
          * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response|\Illuminate\View\View|string
          */
-        public function create()
+        public function create($userid)
             {
+                $this->data['user'] =   User::find($userid);
                 return view('modules.permissions.add',$this->data);
             }
 
@@ -34,9 +37,9 @@ class PermissionsController extends Controller
          * @param  \Illuminate\Http\Request  $request
          * @return \Illuminate\Http\Response
          */
-        public function store(Request $request)
+        public function store(Request $request,$userid)
             {
-                //
+                $user   =  User::find($userid);
             }
 
         /**
@@ -46,8 +49,10 @@ class PermissionsController extends Controller
          *
          * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response|\Illuminate\View\View|string
          */
-        public function show($id)
+        public function show($userid,$id)
             {
+                $this->data['user'] =   User::find($userid);
+                $this->data['perm'] =   Permission::find($id);
                 return view('modules.permissions.view',$this->data);
             }
 
@@ -58,7 +63,7 @@ class PermissionsController extends Controller
          *
          * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response|\Illuminate\View\View|string
          */
-        public function edit($id)
+        public function edit($userid,$id)
             {
                 return view('modules.permissions.edit',$this->data);
             }
@@ -70,10 +75,10 @@ class PermissionsController extends Controller
          * @param  int  $id
          * @return \Illuminate\Http\Response
          */
-        public function update(Request $request, $id)
-        {
-            //
-        }
+        public function update(Request $request,$userid, $id)
+            {
+                $this->data['user'] =   User::find($userid);
+            }
 
         /**
          * Remove the specified resource from storage.
@@ -81,14 +86,20 @@ class PermissionsController extends Controller
          * @param  int  $id
          * @return \Illuminate\Http\Response
          */
-        public function destroy($id)
-        {
-            //
-        }
-        public function get(Request $request)
+        public function destroy($userid,$id)
             {
+                $this->data['user'] =   User::find($userid);
+            }
+        public function get(Request $request,$userid)
+            {
+
                 $columns        =   array( 0 => 'id' , 1 => 'name' , 2 => 'action' );
                 $totalData      =   Permission::whereNotNull("name")
+                                                ->when($userid != '0', function ($q) use($userid){
+                                                        return $q->whereHas('permission', function ($query) use($userid){
+                                                            $query->where('user_id',$userid);
+                                                        });
+                                                    })
                                                 ->count();
                 $totalFiltered  =   $totalData;
                 $limit          =   $request->input('length');
@@ -98,6 +109,12 @@ class PermissionsController extends Controller
                 if(empty($request->input('search.value')))
                     {
                         $posts = Permission::whereNotNull("name")
+                                            ->when($userid != '0', function ($q) use($userid){
+                                                    return $q->whereHas('permission', function ($query) use($userid){
+                                                        $query->where('user_id',$userid);
+                                                    });
+                                                })
+
                                             ->offset($start)
                                             ->limit($limit)
                                             ->orderBy($order,$dir)
@@ -109,6 +126,11 @@ class PermissionsController extends Controller
 
 
                         $posts          =   Permission::whereNotNull("name")
+                                                    ->when($userid != '0', function ($q) use($userid){
+                                                            return $q->whereHas('permission', function ($query) use($userid){
+                                                                $query->where('user_id',$userid);
+                                                            });
+                                                        })
                                                     ->where('name','like',"%{$search}%")
                                                     ->offset($start)
                                                     ->limit($limit)
@@ -116,6 +138,11 @@ class PermissionsController extends Controller
                                                     ->get();
 
                         $totalFiltered  =  Permission::whereNotNull("name")
+                                                    ->when($userid != '0', function ($q) use($userid){
+                                                            return $q->whereHas('permission', function ($query) use($userid){
+                                                                $query->where('user_id',$userid);
+                                                            });
+                                                        })
                                                     ->where('name','like',"%{$search}%")
                                                     ->count();
                     }

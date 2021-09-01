@@ -17,7 +17,7 @@ class RolesController extends Controller
          *
          * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response|\Illuminate\View\View|string
          */
-        public function index()
+        public function index($userid)
             {
                 return view('modules.roles.index',$this->data);
             }
@@ -27,7 +27,7 @@ class RolesController extends Controller
          *
          * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response|\Illuminate\View\View|string
          */
-        public function create()
+        public function create($userid)
             {
                 $this->data['perm'] =   Permission::whereNotNull("name")->orderBy('name','asc')->get();
                 return view('modules.roles.add',$this->data);
@@ -40,7 +40,7 @@ class RolesController extends Controller
          *
          * @return array|\Illuminate\Http\Response
          */
-        public function store(AddRole $request)
+        public function store(AddRole $request,$userid)
             {
                 $validateddata = $request->validated();
                 if($validateddata)
@@ -80,7 +80,7 @@ class RolesController extends Controller
          *
          * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response|\Illuminate\View\View|string
          */
-        public function show($id)
+        public function show($userid,$id)
             {
                 $this->data['role'] = Role::find($id);
                 return view('modules.roles.view',$this->data);
@@ -92,7 +92,7 @@ class RolesController extends Controller
          * @param  int  $id
          * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response|\Illuminate\View\View
          */
-        public function edit($id)
+        public function edit($userid,$id)
             {
                 $this->data['role'] =   Role::find($id);
                 $this->data['perm'] =   Permission::whereNotNull("name")->orderBy('name','asc')->get();
@@ -107,7 +107,7 @@ class RolesController extends Controller
          *
          * @return array|\Illuminate\Http\Response
          */
-        public function update(EditRole $request, $id)
+        public function update(EditRole $request,$userid, $id)
             {
 
                 $validateddata = $request->validated();
@@ -144,11 +144,11 @@ class RolesController extends Controller
          * @param  int  $id
          * @return \Illuminate\Http\Response
          */
-        public function destroy($id)
+        public function destroy($userid,$id)
             {
                 //
             }
-        public function get(Request $request)
+        public function get(Request $request,$userid)
             {
                 $columns        =   array( 0 => 'id' , 1 => 'name' );
                 $totalData      =   Role::count();

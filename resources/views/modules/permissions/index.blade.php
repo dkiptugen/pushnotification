@@ -4,7 +4,7 @@
         <div class="card">
             <div class="card-header d-flex align-items-center justify-content-between">
                     <h2>Permissions</h2>
-                    <a class="btn btn-outline-dark btn-sm " href="{{ url('backend/user/permissions/create') }}">
+                    <a class="btn btn-outline-dark btn-sm " href="{{ route('user.permissions.create',$user->id??0) }}">
                         <i class="align-middle" data-feather="plus"></i> Add Permission
                     </a>
 
@@ -48,7 +48,7 @@
             "processing": true,
             "serverSide": true,
             "ajax":{
-                "url": "{{ url('backend/user/permissions/get') }}",
+                "url": "{{ route('user.permissions.datatable',$user->id??0) }}",
                 "dataType": "json",
                 "type": "POST",
                 "data":{ _token: "{{csrf_token()}}"}

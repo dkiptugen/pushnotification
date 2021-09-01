@@ -53,12 +53,12 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link font-weight-bold" href="{{ url('backend/user/roles') }}">
+                    <a class="sidebar-link font-weight-bold" href="{{ route('user.roles.index',0) }}">
                         <i class="align-middle fas fa-tasks"></i> <span class="align-middle">Roles</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link font-weight-bold" href="{{ url('backend/user/permissions') }}">
+                    <a class="sidebar-link font-weight-bold" href="{{ route('user.permissions.index',0) }}">
                         <i class="align-middle fas fa-door-open"></i> <span class="align-middle">Permissions</span>
                     </a>
                 </li>
