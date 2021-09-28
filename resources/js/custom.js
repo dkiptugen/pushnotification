@@ -125,8 +125,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     });
     $('input[name="datesingle"]').daterangepicker({
+        timePicker: true,
+        opens: 'left',
         singleDatePicker: true,
-        showDropdowns: true
+        showDropdowns: true,
+        strictMode: true,
+        minDateTime: moment.now()
     });
     var start = moment().subtract(29, 'days');
     var end = moment();

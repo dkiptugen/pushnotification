@@ -6,7 +6,7 @@
                 <h1>Edit Product</h1>
             </div>
             <div class="card-body">
-                <form action="{{ url('backend/products/'.$product->id) }}" method="post" class="form form-horizontal create-form"  enctype="multipart/form-data">
+                <form action="{{ route('product.update',$product->id) }}" method="post" class="form form-horizontal create-form"  enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <div class="form-group">

@@ -28,24 +28,21 @@ Route::get('/',[\App\Http\Controllers\Auth\LoginController::class,'showLoginForm
 // 'domain'=>'localhost',
 Route::group([ 'role'=>['admin','audit'],'middleware'=>['auth','domain', 'auth.role'],'prefix'=>'backend'], function () {
 
-    Route::resource('content',\App\Http\Controllers\ContentController::class);
-    Route::post('/content/get',[\App\Http\Controllers\ContentController::class,'get'])->name('content.datatable');
-
     Route::get('/',[\App\Http\Controllers\DashboardController::class,'index'])->name('dashboard');
 
-    Route::resource('notification',\App\Http\Controllers\NotificationController::class);
-    Route::get('/notification/push',[App\Http\Controllers\NotificationController::class, 'push'])->name('notification.push');
-    Route::post('/notification/get',[App\Http\Controllers\NotificationController::class, 'get'])->name('notification.datatable');
+    Route::resource('product.notification',\App\Http\Controllers\NotificationController::class);
+    Route::get('/product/{product}/notification/push',[App\Http\Controllers\NotificationController::class, 'push'])->name('product.notification.push');
+    Route::post('/product/{product}/notification/get',[App\Http\Controllers\NotificationController::class, 'get'])->name('product.notification.datatable');
 
-    Route::resource('products',\App\Http\Controllers\ProductsController::class);
-    Route::post('/products/get',[\App\Http\Controllers\ProductsController::class,'get'])->name('products.datatable');
-    Route::get('/products/export',[\App\Http\Controllers\ProductsController::class,'export_view'])->name('products.export_view');
-    Route::post('/products/export',[\App\Http\Controllers\ProductsController::class,'export'])->name('products.export');
+    Route::resource('product',\App\Http\Controllers\ProductsController::class);
+    Route::post('/products/get',[\App\Http\Controllers\ProductsController::class,'get'])->name('product.datatable');
+    Route::get('/products/export',[\App\Http\Controllers\ProductsController::class,'export_view'])->name('product.export_view');
+    Route::post('/products/export',[\App\Http\Controllers\ProductsController::class,'export'])->name('product.export');
 
-    Route::resource('subscribers',\App\Http\Controllers\SubcribersController::class);
-    Route::post('/subscribers/get',[\App\Http\Controllers\SubcribersController::class,'get'])->name('subscribers.datatable');
-    Route::get('/subscribers/export',[\App\Http\Controllers\SubcribersController::class,'export_view'])->name('subscribers.export_view');
-    Route::post('/subscribers/export',[\App\Http\Controllers\SubcribersController::class,'export'])->name('subscribers.export');
+    Route::resource('product.subscribers',\App\Http\Controllers\SubcribersController::class);
+    Route::post('/product/{product}/subscribers/get',[\App\Http\Controllers\SubcribersController::class,'get'])->name('product.subscribers.datatable');
+    Route::get('/product/{product}/subscribers/export',[\App\Http\Controllers\SubcribersController::class,'export_view'])->name('product.subscribers.export_view');
+    Route::post('/product/{product}/subscribers/export',[\App\Http\Controllers\SubcribersController::class,'export'])->name('product.subscribers.export');
 
     Route::resource('user',\App\Http\Controllers\UserController::class);
     Route::post('/user/get',[\App\Http\Controllers\UserController::class,'get'])->name('user.datatable');
@@ -74,4 +71,10 @@ Route::group([ 'role'=>['admin','audit'],'middleware'=>['auth','domain', 'auth.r
         Route::post('/queued/get',[\App\Http\Controllers\JobsController::class,'get_queued'])->name('jobs.queued_datatable');
     });
 
+    Route::prefix('prime')->group(function(){
+        Route::resource('content', \App\Http\Controllers\ContentController::class);
+        Route::post('content/get',[\App\Http\Controllers\ContentController::class,'get'])->name('content.datatable');
+
+
+    });
 });

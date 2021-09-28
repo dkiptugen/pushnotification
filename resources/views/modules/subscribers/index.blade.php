@@ -45,7 +45,7 @@
             "processing": true,
             "serverSide": true,
             "ajax":{
-                "url": "{{ url('backend/subscribers/get') }}",
+                "url": "{{ route('product.subscribers.datatable',$product->id??0) }}",
                 "dataType": "json",
                 "type": "POST",
                 "data":{ _token: "{{csrf_token()}}"}

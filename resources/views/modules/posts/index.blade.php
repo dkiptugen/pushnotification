@@ -2,9 +2,9 @@
 @section('content')
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h3>Notifications</h3>
+            <h3 class="d-flex"><div class="text-danger text-uppercase"> {{ $product->domain }} - </div> Notifications</h3>
             <div class="actionbtn">
-                <a href="{{ url('backend/notification/create') }}" class="btn btn-sm btn-outline-dark"><i class="fas fa-plus mr-1"></i>Add Notification</a>
+                <a href="{{ route('product.notification.create',$product->id) }}" class="btn btn-sm btn-outline-dark"><i class="fas fa-plus mr-1"></i>Add Notification</a>
             </div>
         </div>
         <div class="card-body">
@@ -49,7 +49,7 @@
             "processing": true,
             "serverSide": true,
             "ajax":{
-                "url": "{{ url('backend/notification/get') }}",
+                "url": "{{ route('product.notification.datatable',$product->id) }}",
                 "dataType": "json",
                 "type": "POST",
                 "data":{ _token: "{{csrf_token()}}"}

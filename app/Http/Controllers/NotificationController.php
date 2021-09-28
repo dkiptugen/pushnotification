@@ -21,8 +21,9 @@ class NotificationController extends Controller
          *
          * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response|\Illuminate\View\View
          */
-        public function index()
+        public function index($productid)
             {
+                $this->data['product']  =   Product::find($productid);
                 return view('modules.posts.index',$this->data);
             }
 
@@ -31,10 +32,9 @@ class NotificationController extends Controller
          *
          * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response|\Illuminate\View\View
          */
-        public function create()
+        public function create($productid)
             {
-                $this->data['product']  =   Product::where('status',1)
-                                                    ->get();
+                $this->data['product']  =   Product::find($productid);
                 return view('modules.posts.add',$this->data);
             }
 
@@ -44,7 +44,7 @@ class NotificationController extends Controller
          * @param  \Illuminate\Http\Request  $request
          * @return array|\Illuminate\Http\RedirectResponse
          */
-        public function store(AddNotification $request)
+        public function store($productid,AddNotification $request)
             {
                 $validateddata = $request->validated();
                 if($validateddata)
@@ -54,7 +54,7 @@ class NotificationController extends Controller
                                                         "link"          =>  $request->link,
                                                         "thumbnail"     =>  $request->thumbnail,
                                                         "summary"       =>  strip_tags($request->summary),
-                                                        "product_id"    =>  $request->product,
+                                                        "product_id"    =>  $productid,
                                                         "user_id"       =>  Auth::user()->id
                                                    ]);
 
@@ -63,11 +63,11 @@ class NotificationController extends Controller
                                 //Log::info(json_encode($stories));
                                 Dispatcher::dispatch($stories);
 
-                                return self::success('Notification','queued successfully',url('backend/notification'));
+                                return self::success('Notification','queued successfully',route('product.notification.index',$productid));
                             }
-                        return self::fail('Notification', 'Failed to queue notification',url('backend/notification'));
+                        return self::fail('Notification', 'Failed to queue notification',route('product.notification.index',$productid));
                     }
-                return self::fail('Notification', $validateddata,url('backend/notification'));
+                return self::fail('Notification', $validateddata,route('product.notification.index',$productid));
 
             }
 
@@ -120,20 +120,22 @@ class NotificationController extends Controller
             }
         public function subscribe(Request $request)
             {
-                //og::error('Re :',$request->all());
+                //Log::error('Re :',$request->all());
                 $this->validate($request,   [
                                                 'endpoint' => 'required',
                                                 'keys.auth' => 'required',
                                                 'keys.p256dh' => 'required'
                                             ]);
+
                 $endpoint   =   $request->endpoint;
                 $token      =   $request->keys['auth'];
                 $key        =   $request->keys['p256dh'];
                 $product_id =   Product::where('domain', $request->domain)
                                         ->first()
                                         ->id;
+
                 $check  =   Guest::where('endpoint',$request->endpoint)
-                                ->first();
+                    ->first();
                 if(is_null($check))
                     {
                         $user = Guest::firstOrCreate([
@@ -151,6 +153,7 @@ class NotificationController extends Controller
                         return response()->json(['success' => true], 200);
                     }
                 return response()->json(['success' => true], 200);
+
             }
         public function unsubscribe(Request $request,$id)
             {
@@ -158,7 +161,7 @@ class NotificationController extends Controller
                 $user->deletePushSubscription($request->endpoint);
 
             }
-        public function get(Request $request)
+        public function get($id,Request $request)
             {
                 $columns = array(
                                     0   =>  'id',
@@ -169,7 +172,8 @@ class NotificationController extends Controller
 
                                 );
 
-                $totalData      =   Stories::count();
+                $totalData      =   Stories::where('product_id',$id)
+                                            ->count();
                 $totalFiltered  =   $totalData;
                 $limit          =   $request->input('length');
                 $start          =   $request->input('start');
@@ -177,7 +181,8 @@ class NotificationController extends Controller
                 $dir            =   $request->input('order.0.dir');
                 if(empty($request->input('search.value')))
                     {
-                        $posts = Stories::offset($start)
+                        $posts = Stories::where('product_id',$id)
+                                        ->offset($start)
                                         ->limit($limit)
                                         ->orderBy($order,$dir)
                                         ->get();
@@ -186,16 +191,18 @@ class NotificationController extends Controller
                     {
                         $search =   $request->input('search.value');
 
-                        $posts  =   Stories::whereHas("product",function ($subquery) use($search){
-                                                    $subquery->where('name','LIKE',"%{$search}%");
-                                                })
+                        $posts  =   Stories::where('product_id',$id)
+                                            ->whereHas("product",function ($subquery) use($search){
+                                                                    $subquery->where('name','LIKE',"%{$search}%");
+                                                                })
                                             ->orWhere('title','LIKE',"%{$search}%")
                                             ->offset($start)
                                             ->limit($limit)
                                             ->orderBy($order,$dir)
                                             ->get();
 
-                        $totalFiltered =Stories::whereHas("product",function ($subquery) use($search){
+                        $totalFiltered =Stories::where('product_id',$id)
+                                                ->whereHas("product",function ($subquery) use($search){
                                                         $subquery->where('name','LIKE',"%{$search}%");
                                                     })
                                                 ->orWhere('title','LIKE',"%{$search}%")

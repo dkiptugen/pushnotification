@@ -5,8 +5,8 @@
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h2>Products</h2>
                 <div class="actionbtn">
-                    <a href="{{ url('backend/products/create') }}" class="btn btn-sm btn-outline-dark"><i class="fas fa-plus"></i> Add Product</a>
-                    <a href="{{ url('backend/products/export') }}" class="btn btn-sm btn-outline-dark"><i class="fas fa-file-export"></i> Export</a>
+                    <a href="{{ route('product.create') }}" class="btn btn-sm btn-outline-dark"><i class="fas fa-plus"></i> Add Product</a>
+                    <a href="{{ route('product.export') }}" class="btn btn-sm btn-outline-dark"><i class="fas fa-file-export"></i> Export</a>
                 </div>
             </div>
             <div class="card-body">
@@ -51,7 +51,7 @@
             "processing": true,
             "serverSide": true,
             "ajax":{
-                "url": "{{ url('backend/products/get') }}",
+                "url": "{{ route('product.datatable') }}",
                 "dataType": "json",
                 "type": "POST",
                 "data":{ _token: "{{csrf_token()}}"}

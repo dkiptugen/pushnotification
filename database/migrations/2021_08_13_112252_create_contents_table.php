@@ -15,6 +15,13 @@ class CreateContentsTable extends Migration
     {
         Schema::create('contents', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->longText('content');
+            $table->text('thumburl');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('sms_id');
+            $table->unsignedBigInteger('approver')->default(0);
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }
