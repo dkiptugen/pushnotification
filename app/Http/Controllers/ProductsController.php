@@ -61,10 +61,10 @@ class ProductsController extends Controller
                         $product->user_id   =   Auth::user()->id;
                         $res                =   $product->save();
                         if($res)
-                            return self::success('Product',"Added successfully",url('backend/products'));
-                        return self::fail('Product',"Failed to add product",url('backend/products'));
+                            return self::success('Product',"Added successfully",route('product.index'));
+                        return self::fail('Product',"Failed to add product",route('product.index'));
                     }
-                return self::fail('Product',$validateddata,url('backend/products'));
+                return self::fail('Product',$validateddata,route('product.index'));
             }
 
         /**
@@ -123,10 +123,10 @@ class ProductsController extends Controller
                         $product->status    =   1;
                         $res                =   $product->save();
                         if($res)
-                            return self::success('Product',"Added successfully",url('backend/products'));
-                        return self::fail('Product',"Failed to add product",url('backend/products'));
+                            return self::success('Product',"Added successfully",route('product.index'));
+                        return self::fail('Product',"Failed to add product",route('product.index'));
                     }
-                return self::fail('Product',$validateddata,url('backend/products'));
+                return self::fail('Product',$validateddata,route('product.index'));
             }
 
         /**
