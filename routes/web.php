@@ -72,9 +72,11 @@ Route::group([ 'role'=>['admin','audit'],'middleware'=>['auth','domain', 'auth.r
     });
 
     Route::prefix('prime')->group(function(){
-        Route::resource('content', \App\Http\Controllers\ContentController::class);
-        Route::post('content/get',[\App\Http\Controllers\ContentController::class,'get'])->name('content.datatable');
-
-
+        Route::resource('prime-content', \App\Http\Controllers\Prime\ContentController::class);
+        Route::post('content/get',[\App\Http\Controllers\Prime\ContentController::class,'get'])->name('prime-content.datatable');
+        Route::resource('prime-subscribers',\App\Http\Controllers\Prime\SubscriptionController::class);
+        Route::post('content/get',[\App\Http\Controllers\Prime\SubscriptionController::class,'get'])->name('prime-subscribers.datatable');
+        Route::resource('prime-transactions',\App\Http\Controllers\Prime\TransactionController::class);
+        Route::post('content/get',[\App\Http\Controllers\Prime\TransactionController::class,'get'])->name('prime-transactions.datatable');
     });
 });

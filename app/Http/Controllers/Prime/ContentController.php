@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Prime;
 
 use App\Http\Requests\AddContent;
 use App\Models\Content;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ContentController extends Controller
     {

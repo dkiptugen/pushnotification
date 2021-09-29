@@ -3,7 +3,7 @@
 <div class="col-12">
     <div class="card">
         <div class="card-header">
-            <h1>Subscribers</h1>
+            <h1 class="d-flex"><div class="text-danger text-uppercase"> {{ $product->domain }} &nbsp; </div>Subscribers</h1>
         </div>
         <div class="card-body">
             <div class="table-responsive">

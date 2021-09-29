@@ -2,7 +2,7 @@
 @section('content')
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h3 class="d-flex"><div class="text-danger text-uppercase"> {{ $product->domain }} - </div> Notifications</h3>
+            <h3 class="d-flex"><div class="text-danger text-uppercase"> {{ $product->domain }} &nbsp; </div> Notifications</h3>
             <div class="actionbtn">
                 <a href="{{ route('product.notification.create',$product->id) }}" class="btn btn-sm btn-outline-dark"><i class="fas fa-plus mr-1"></i>Add Notification</a>
             </div>

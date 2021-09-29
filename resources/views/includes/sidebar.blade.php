@@ -35,9 +35,16 @@
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="{{ route('product.subscribers.index',0) }}" class="font-weight-bold sidebar-link">
+                    <a href="#subscription" data-toggle="collapse" class="font-weight-bold sidebar-link collapsed">
                         <i class="align-middle" data-feather="user-check"></i> <span class="align-middle">Subscribers</span>
                     </a>
+                    <ul id="subscription" class="sidebar-dropdown list-unstyled collapse ">
+                        @foreach(\App\Models\Product::where('status',1)->get() as $value)
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="{{ route('product.subscribers.index',$value->id) }}">{{ $value->domain }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
                 </li>
 
                 <li class="sidebar-header">
@@ -54,17 +61,17 @@
                     Prime
                 </li>
                 <li class="sidebar-item">
-                    <a href="{{ url('backend/subscribers') }}" class="font-weight-bold sidebar-link">
+                    <a href="{{ route('prime-subscribers.index') }}" class="font-weight-bold sidebar-link">
                         <i class="align-middle" data-feather="user-check"></i> <span class="align-middle">Subscriber</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="{{ url('backend/subscribers') }}" class="font-weight-bold sidebar-link">
+                    <a href="{{ route('prime-transactions.index') }}" class="font-weight-bold sidebar-link">
                         <i class="align-middle" data-feather="user-check"></i> <span class="align-middle">Transactions</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="{{ route('content.index') }}" class="font-weight-bold sidebar-link">
+                    <a href="{{ route('prime-content.index') }}" class="font-weight-bold sidebar-link">
                         <i class="align-middle" data-feather="user-check"></i> <span class="align-middle">Content</span>
                     </a>
                 </li>
