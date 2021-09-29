@@ -6,7 +6,7 @@
             <h1>Add Product</h1>
         </div>
         <div class="card-body">
-            <form action="{{ route('product.create') }}" method="post" class="form form-horizontal create-form" enctype="multipart/form-data">
+            <form action="{{ route('product.store') }}" method="post" class="form form-horizontal create-form" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="name" class="control-label">Name</label>
