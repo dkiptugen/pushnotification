@@ -133,7 +133,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
         minDateTime: moment.now()
     });
     $('#time').datetimepicker({
-        datepicker:false,
         format:'LT'
     });
     var start = moment().subtract(29, 'days');
