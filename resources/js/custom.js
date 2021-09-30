@@ -132,6 +132,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
         strictMode: true,
         minDateTime: moment.now()
     });
+    $('#time').daterangepicker({
+        timePicker: true,
+        opens: 'left',
+        singleDatePicker: false
+    });
     var start = moment().subtract(29, 'days');
     var end = moment();
 
