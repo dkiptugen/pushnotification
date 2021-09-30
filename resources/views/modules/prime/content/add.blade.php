@@ -6,7 +6,7 @@
                 <h1>Add Content</h1>
             </div>
             <div class="card-body">
-                <form action="{{ route('content.store') }}" method="post" class="form form-horizontal">
+                <form action="{{ route('prime-content.store') }}" method="post" class="form form-horizontal">
                     @csrf
                     <div class="form-group form-row">
                         <div class="col col-md-8">

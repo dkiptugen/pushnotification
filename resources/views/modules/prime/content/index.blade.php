@@ -59,7 +59,6 @@
                 { "data": "author" },
                 { "data": "status" },
                 { "data": "action" }
-
             ],
             "order": [[ 0, "desc" ]]
         });

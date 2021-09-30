@@ -6,7 +6,7 @@
                 <h1>Edit Content</h1>
             </div>
             <div class="card-body">
-                <form action="{{ route('content.update',$content->id) }}" method="post" class="form form-horizontal">
+                <form action="{{ route('prime-content.update',$content->id) }}" method="post" class="form form-horizontal">
                     @csrf
                     @method('put')
                     <div class="form-group form-row">
