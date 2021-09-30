@@ -134,8 +134,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     });
     $('#time').daterangepicker({
         timePicker: true,
-        opens: 'left',
-        singleDatePicker: false
+        datepicker:false,
+        format:'H:i'
     });
     var start = moment().subtract(29, 'days');
     var end = moment();
