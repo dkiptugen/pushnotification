@@ -203,8 +203,7 @@ class ProductsController extends Controller
                                 $nestedData['datecreated']      =   $post->created_at->format('d-m-Y');
                                 $nestedData['status']           =   ($post->status == 1)?"Active":"inactive";
                                 $nestedData['action']           =   "<a href='".route('product.edit',$post->id)."' class='text text-dark'><i class='fas fa-edit'></i></a>";
-
-                                $data[] = $nestedData;
+                                $data[]                         =   $nestedData;
                                 $pos++;
                             }
                     }
