@@ -127,8 +127,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $('.date').daterangepicker({
         opens: 'left',
         singleDatePicker: true,
-        showDropdowns: true,
-        minDateTime: moment.now()
+        showDropdowns: true
+
     });
     $('#time').datetimepicker({
         format:'LT'
