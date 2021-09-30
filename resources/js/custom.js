@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $('input[name="daterange"]').daterangepicker({
         opens: 'left'
     });
-    $('input[name="datetimes"]').daterangepicker({
+    $('.datetime').daterangepicker({
         timePicker: true,
         opens: 'left',
         startDate: moment().startOf('hour'),
@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         showDropdowns: true,
         startDate: moment().startOf('hour')
     });
-    $('#time').datetimepicker({
+    $('.time').datetimepicker({
         format:'LT'
     });
     var start = moment().subtract(29, 'days');
