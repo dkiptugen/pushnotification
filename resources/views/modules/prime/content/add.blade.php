@@ -17,6 +17,10 @@
                             <label for="publishdate" class="control-label">Publish Date</label>
                             <input type="text" name="datesingle" id="publishdate" class="form-control">
                         </div>
+                        <div class="col col-md">
+                            <label for="publishdate" class="control-label">Publish Time</label>
+                            <input type="text" name="time" id="publishdate" class="form-control">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="content" class="control-label">Content</label>
