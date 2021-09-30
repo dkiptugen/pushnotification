@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         minDateTime: moment.now()
     });
     $('#time').daterangepicker({
-        timePicker: true,
+
         datepicker:false,
         format:'H:i'
     });
