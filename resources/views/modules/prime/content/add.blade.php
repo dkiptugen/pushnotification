@@ -15,7 +15,12 @@
                         </div>
                         <div class="col col-md">
                             <label for="publishdate" class="control-label">Publish Date</label>
-                            <input type="text" name="datesingle" id="publishdate" class="form-control">
+                            <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+                                <input type="text" name="datesingle" id="publishdate" class="form-control">
+                                <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
                         </div>
                         <div class="col col-md">
                             <label for="publishdate" class="control-label">Time</label>
