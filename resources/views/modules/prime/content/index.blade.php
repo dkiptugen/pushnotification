@@ -5,7 +5,7 @@
         <div class="card-header d-flex justify-content-between align-items-center">
             <h1>Content</h1>
             <div class="active-btn">
-                <a href="{{ route('content.create') }}" class="btn btn-sm btn-outline-dark">
+                <a href="{{ route('prime-content.create') }}" class="btn btn-sm btn-outline-dark">
                     <i class="fas fa-plus"></i>
                     Content
                 </a>
