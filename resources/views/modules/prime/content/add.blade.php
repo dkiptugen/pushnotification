@@ -22,7 +22,7 @@
                             <div class="input-group date" id="time" data-target-input="nearest">
                                 <input type="text" class="form-control datetimepicker-input" data-target="#time">
                                 <div class="input-group-append" data-target="#time" data-toggle="datetimepicker">
-                                    <div class="input-group-text"><i class="fas fa-clock-o"></i></div>
+                                    <div class="input-group-text"><i class="fas fa-clock"></i></div>
                                 </div>
                             </div>
                         </div>
