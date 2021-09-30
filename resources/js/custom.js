@@ -128,7 +128,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
         opens: 'left',
         singleDatePicker: true,
         showDropdowns: true,
-        strictMode: true,
         minDateTime: moment.now()
     });
     $('#time').datetimepicker({
