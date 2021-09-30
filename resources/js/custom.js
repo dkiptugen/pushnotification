@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     });
     $('#time').datetimepicker({
         datepicker:false,
-        format:'H:i'
+        format:'LT'
     });
     var start = moment().subtract(29, 'days');
     var end = moment();

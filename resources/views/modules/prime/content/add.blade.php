@@ -19,8 +19,8 @@
                         </div>
                         <div class="col col-md">
                             <label for="publishdate" class="control-label">Time</label>
-                            <div class="input-group date" id="time" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" data-target="#time">
+                            <div class="input-group date" data-target-input="nearest">
+                                <input type="text" class="form-control datetimepicker-input" id="time">
                                 <div class="input-group-append" data-target="#time" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fas fa-clock"></i></div>
                                 </div>
