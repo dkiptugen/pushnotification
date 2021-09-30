@@ -132,8 +132,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         strictMode: true,
         minDateTime: moment.now()
     });
-    $('#time').daterangepicker({
-
+    $('#time').datetimepicker({
         datepicker:false,
         format:'H:i'
     });
