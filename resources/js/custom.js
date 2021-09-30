@@ -124,8 +124,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             format: 'M/DD hh:mm A'
         }
     });
-    $('input[name="datesingle"]').daterangepicker({
-        timePicker: true,
+    $('.date').daterangepicker({
         opens: 'left',
         singleDatePicker: true,
         showDropdowns: true,
