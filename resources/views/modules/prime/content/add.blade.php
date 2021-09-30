@@ -19,7 +19,7 @@
                         </div>
                         <div class="col col-md">
                             <label for="publishdate" class="control-label">Time</label>
-                            <input type="text" name="time" id="publishdate" class="form-control">
+                            <input type="text" name="time" id="time" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
