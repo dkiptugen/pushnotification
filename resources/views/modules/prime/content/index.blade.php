@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-condensed" id="">
+            <table class="table table-condensed" id="content-table">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -30,7 +30,7 @@
                         <th>Moderator</th>
                         <th>Author</th>
                         <th>Status</th>
-                        <th>Active</th>
+                        <th>Action</th>
                     </tr>
                 </tfoot>
             </table>
@@ -42,5 +42,26 @@
 
 @endsection
 @section('footer')
+    <script type="application/javascript">
+        $('#content-table').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "ajax":{
+                "url": "{{ route('product-content.datatable',$product->id) }}",
+                "dataType": "json",
+                "type": "POST",
+                "data":{ _token: "{{csrf_token()}}"}
+            },
+            "columns": [
+                { "data": "pos" },
+                { "data": "title" },
+                { "data": "moderator" },
+                { "data": "author" },
+                { "data": "status" },
+                { "data": "action" }
 
+            ],
+            "order": [[ 0, "desc" ]]
+        });
+    </script>
 @endsection
