@@ -103,8 +103,8 @@ $(document).ready(function(){
         var len =   $(this).val().length;
         console.log(len);
         if (e.which == 8) {
-            /*text = $(this).val().substring(0, len-1);
-            $(this).val(text);*/
+            text = $(this).val().substring(0, len-1);
+            $(this).val(text);
             $(this).removeAttr('readonly');
 
         }
