@@ -108,7 +108,7 @@ $(document).ready(function(){
             console.log('found');
         }
 
-        if(len < 160)
+        if(len <= 160)
             {
                 $('.msg-error').html((160-len)+" Charaters remaining");
             }
