@@ -47,7 +47,7 @@
             "processing": true,
             "serverSide": true,
             "ajax":{
-                "url": "{{ route('product-content.datatable',$product->id) }}",
+                "url": "{{ route('product-content.datatable') }}",
                 "dataType": "json",
                 "type": "POST",
                 "data":{ _token: "{{csrf_token()}}"}
