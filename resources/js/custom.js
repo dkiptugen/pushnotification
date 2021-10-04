@@ -100,7 +100,7 @@ $(document).ready(function(){
 
     });
     $('.message').keydown(function(e){
-        e.preventDefault();
+        //e.preventDefault();
         var len =   $(this).val().length;
         //console.log(len);
 
