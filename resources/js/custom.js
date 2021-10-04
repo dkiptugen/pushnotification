@@ -101,7 +101,6 @@ $(document).ready(function(){
     });
     $(document).on('keyup','.message',function(){
         var len =   $(this).val().length;
-
         if(len <= 160)
             {
                 $('.msg-error').html((160-len)+" Charaters remaining");
@@ -111,9 +110,9 @@ $(document).ready(function(){
                 $(this).attr('readonly','true');
             }
     });
-    $('.message').find('[disabled]',function (){
+    if($('.message').find('[disabled]')){
        console.log('found');
-    });
+    }
 
 });
 document.addEventListener("DOMContentLoaded", function(event) {
