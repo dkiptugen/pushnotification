@@ -9,7 +9,7 @@
                 <form action="{{ route('prime-content.store') }}" method="post" class="form form-horizontal">
                     @csrf
                     <div class="form-group form-row">
-                        <div class="col col-md-8">
+                        <div class="col col-md-9">
                             <label for="title" class="control-label">Title</label>
                             <input type="text" name="title" id="title" class="form-control">
                         </div>
