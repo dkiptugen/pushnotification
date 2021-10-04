@@ -99,6 +99,18 @@ $(document).ready(function(){
         });
 
     });
+    $(document).on('keyup','.message',function(){
+        var len =   $(this).val().length;
+
+        if(len <= 160)
+            {
+                $('.msg-error').html((160-len)+" Charaters remaining");
+            }
+        else
+            {
+                $(this).addClass('readonly');
+            }
+    });
 
 });
 document.addEventListener("DOMContentLoaded", function(event) {
