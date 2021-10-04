@@ -104,12 +104,12 @@ $(document).ready(function(){
         var len =   $(this).val().length;
         //console.log(len);
 
-        if (e.which == 8) {
-            text = $(this).val().substring(0, len-1);
-            //$(this).val(text);
-            $(this).removeAttr('readonly');
-
-        }
+        if (e.which == 8)
+            {
+                text = $(this).val().substring(0, len-1);
+                $(this).val(text);
+                $(this).removeAttr('readonly');
+            }
         if(len < 160)
             {
                 $('.msg-error').html((160-len)+" Charaters remaining");
