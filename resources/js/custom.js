@@ -113,15 +113,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
     })
     // Daterangepicker
     $('input[name="daterange"]').daterangepicker({
-        opens: 'left'
+        opens: 'left',
+        startDate: moment().startOf('hour'),
+        endDate: moment().startOf('hour').add(32, 'hour')
     });
     $('.datetime').daterangepicker({
         timePicker: true,
         opens: 'left',
-        startDate: moment().startOf('hour'),
-        endDate: moment().startOf('hour').add(32, 'hour'),
+        singleDatePicker: true,
+        showDropdowns: true,
+
         locale: {
-            format: 'M/DD hh:mm A'
+            format: 'YYYY-MM-DD hh:mm A'
         }
     });
     $('.date').daterangepicker({
