@@ -72,7 +72,7 @@
                 </li>
                 <li class="sidebar-item">
                     <a href="{{ route('prime-content.index') }}" class="font-weight-bold sidebar-link">
-                        <i class="align-middle fas fa-file-text" ></i> <span class="align-middle">Content</span>
+                        <i class="align-middle fas fa-book" ></i> <span class="align-middle">Content</span>
                     </a>
                 </li>
                 <li class="sidebar-header">
