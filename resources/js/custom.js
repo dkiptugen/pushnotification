@@ -111,6 +111,9 @@ $(document).ready(function(){
                 $(this).attr('readonly','true');
             }
     });
+    $('.message').find('[disabled]').ready(function (){
+       console.log('found');
+    });
 
 });
 document.addEventListener("DOMContentLoaded", function(event) {
