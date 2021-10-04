@@ -9,7 +9,7 @@
                 <form action="{{ route('prime-content.store') }}" method="post" class="form form-horizontal">
                     @csrf
                     <div class="form-group form-row">
-                        <div class="col col-md-9">
+                        <div class="col col-md-8">
                             <label for="title" class="control-label">Title</label>
                             <input type="text" name="title" id="title" class="form-control">
                         </div>
@@ -17,7 +17,10 @@
                             <label for="publishdate" class="control-label">Publish Date</label>
                             <input type="text" name="publishdate" class="form-control datetime">
                         </div>
-
+                        <div class="col col-md">
+                            <label for="publishdate" class="control-label">Send Time</label>
+                            <input type="text" name="sendtime" class="form-control datetime">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="content" class="control-label">Content</label>
