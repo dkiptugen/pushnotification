@@ -25,7 +25,7 @@
                     </div>
                     <div class="form-group">
                         <label for="sms" class="control-label">Sms</label>
-                        <textarea name="sms" id="sms" rows="6" class="form-control message"></textarea>
+                        <textarea name="sms" id="sms" rows="3" class="form-control message"></textarea>
                         <span class="msg-error"></span>
                     </div>
                     <div class="form-group">
