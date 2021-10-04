@@ -101,7 +101,7 @@ $(document).ready(function(){
     });
     $('.message').keydown(function(e){
         var len =   $(this).val().length;
-
+        console.log(len);
 
         if(len < 160)
             {
