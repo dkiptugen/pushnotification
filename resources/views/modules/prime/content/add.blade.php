@@ -26,7 +26,7 @@
                     <div class="form-group">
                         <label for="sms" class="control-label">Sms</label>
                         <textarea name="sms" id="sms" rows="6" class="form-control message"></textarea>
-                        <span class="message-error"></span>
+                        <span class="msg-error"></span>
                     </div>
                     <div class="form-group">
                         <label for="similar" class="control-label">Similar Kenyans Link</label>
