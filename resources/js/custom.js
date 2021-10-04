@@ -110,7 +110,7 @@ $(document).ready(function(){
                 $(this).attr('readonly','true');
             }
     });
-    if($('.message').find('[disabled]')){
+    if($('.message').find('[disabled="true"]')){
        console.log('found');
     }
 
