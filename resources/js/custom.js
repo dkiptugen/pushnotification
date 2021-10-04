@@ -111,7 +111,7 @@ $(document).ready(function(){
                 $(this).attr('readonly','true');
             }
     });
-    $('.message').find('[disabled]').ready(function (){
+    $('.message').find('[disabled]',function (){
        console.log('found');
     });
 
