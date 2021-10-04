@@ -100,11 +100,14 @@ $(document).ready(function(){
 
     });
     $('.message').keydown(function(e){
+        var len =   $(this).val().length;
         if (e.which == 8) {
-
+            text = $(this).val().substring(0, len-1);
+            $(this).val(text);
+            $(this).removeAttr('readonly');
             console.log('found');
         }
-        var len =   $(this).val().length;
+
         if(len < 160)
             {
                 $('.msg-error').html((160-len)+" Charaters remaining");
