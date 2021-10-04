@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         opens: 'left',
         singleDatePicker: true,
         showDropdowns: true,
-
+        startDate: moment(),
         locale: {
             format: 'YYYY-MM-DD hh:mm A'
         }
