@@ -112,8 +112,8 @@ $(document).ready(function(){
                 $(this).attr('readonly','true');
             }
         if (e.which == 8) {
-            text = $(this).val().substring(0, len-1);
-            $(this).val(text);
+            /*text = $(this).val().substring(0, len-1);
+            $(this).val(text);*/
             $(this).removeAttr('readonly');
             console.log('found');
         }
