@@ -99,9 +99,13 @@ $(document).ready(function(){
         });
 
     });
-    $(document).on('keyup','.message',function(){
+    $('.message').keydown(function(e){
+        if (e.which == 8) {
+
+            console.log('found');
+        }
         var len =   $(this).val().length;
-        if(len <= 160)
+        if(len < 160)
             {
                 $('.msg-error').html((160-len)+" Charaters remaining");
             }
@@ -109,10 +113,9 @@ $(document).ready(function(){
             {
                 $(this).attr('readonly','true');
             }
+
     });
-    if($('.message').find('[disabled="true"]')){
-       console.log('found');
-    }
+
 
 });
 document.addEventListener("DOMContentLoaded", function(event) {
