@@ -100,8 +100,10 @@ $(document).ready(function(){
 
     });
     $('.message').keydown(function(e){
+        e.preventDefault();
         var len =   $(this).val().length;
-        console.log(len);
+        //console.log(len);
+
         if (e.which == 8) {
             text = $(this).val().substring(0, len-1);
             $(this).val(text);
