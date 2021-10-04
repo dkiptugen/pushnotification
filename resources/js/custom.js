@@ -106,7 +106,7 @@ $(document).ready(function(){
 
         if (e.which == 8) {
             text = $(this).val().substring(0, len-1);
-            $(this).val(text);
+            //$(this).val(text);
             $(this).removeAttr('readonly');
 
         }
