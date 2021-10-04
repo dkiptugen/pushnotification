@@ -108,7 +108,7 @@ $(document).ready(function(){
             }
         else
             {
-                $(this).addClass('readonly');
+                $(this).attr('readonly','true');
             }
     });
 
