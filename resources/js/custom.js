@@ -103,7 +103,7 @@ $(document).ready(function(){
         var len =   $(this).val().length;
 
 
-        if(len <= 160)
+        if(len < 160)
             {
                 $('.msg-error').html((160-len)+" Charaters remaining");
             }
