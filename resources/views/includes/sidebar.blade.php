@@ -62,17 +62,17 @@
                 </li>
                 <li class="sidebar-item">
                     <a href="{{ route('prime-subscribers.index') }}" class="font-weight-bold sidebar-link">
-                        <i class="align-middle" data-feather="user-check"></i> <span class="align-middle">Subscriber</span>
+                        <i class="align-middle fas fa-users" ></i> <span class="align-middle">Subscriber</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a href="{{ route('prime-transactions.index') }}" class="font-weight-bold sidebar-link">
-                        <i class="align-middle" data-feather="user-check"></i> <span class="align-middle">Transactions</span>
+                        <i class="align-middle fas fa-cash-register" ></i> <span class="align-middle">Transactions</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a href="{{ route('prime-content.index') }}" class="font-weight-bold sidebar-link">
-                        <i class="align-middle" data-feather="user-check"></i> <span class="align-middle">Content</span>
+                        <i class="align-middle fas fa-file-text" ></i> <span class="align-middle">Content</span>
                     </a>
                 </li>
                 <li class="sidebar-header">
