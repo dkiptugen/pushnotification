@@ -17,18 +17,24 @@
                     <tr>
                         <th>#</th>
                         <th>Title</th>
+                        <th>Sms</th>
                         <th>Moderator</th>
                         <th>Author</th>
+                        <th>Send Time</th>
+                        <th>Deliveries</th>
                         <th>Status</th>
-                        <th>Active</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th>#</th>
                         <th>Title</th>
+                        <th>Sms</th>
                         <th>Moderator</th>
                         <th>Author</th>
+                        <th>Send Time</th>
+                        <th>Deliveries</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -55,9 +61,12 @@
             "columns": [
                 { "data": "pos" },
                 { "data": "title" },
+                { "data": "message" },
                 { "data": "moderator" },
                 { "data": "author" },
                 { "data": "status" },
+                { "data": "sendtime" },
+                { "data": "deliveries" },
                 { "data": "action" }
             ],
             "order": [[ 0, "desc" ]]

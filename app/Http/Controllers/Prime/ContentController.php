@@ -111,8 +111,8 @@ class ContentController extends Controller
 
         public function get(Request $request)
             {
-                $columns        =   array( 0 => 'id' , 1 => 'attempts' , 2 => 'queue' , 3 => 'payload' , 4 => 'role',5=>'reserved_at',6=>'available_at',7=>'created_at' );
-                $totalData      =   Job::count();
+                $columns        =   array( 0 => 'id' , 1 => 'message', 2 => 'publishdate', 3 => 'senddate');
+                $totalData      =   Content::count();
                 $totalFiltered  =   $totalData;
                 $limit          =   $request->input('length');
                 $start          =   $request->input('start');
@@ -120,31 +120,27 @@ class ContentController extends Controller
                 $dir            =   $request->input('order.0.dir');
 
                 if( empty(  $request->input('search.value') )  )
-                {
-                    $posts = Job::offset($start)
-                        ->limit($limit)
-                        ->orderBy($order,$dir)
-                        ->get();
-                }
+                    {
+                        $posts  =   Content::offset($start)
+                                            ->limit($limit)
+                                            ->orderBy($order,$dir)
+                                            ->get();
+                    }
                 else
-                {
+                    {
 
-                    $search         =   $request->input('search.value');
-                    $posts          =   Job::where('attempts','LIKE',"%{$search}%")
-                        ->orWhere('queue', 'LIKE',"%{$search}%")
-                        ->orWhere('payload', 'LIKE',"%{$search}%")
-                        ->orWhere('role', 'LIKE',"%{$search}%")
-                        ->offset($start)
-                        ->limit($limit)
-                        ->orderBy($order,$dir)
-                        ->get();
+                        $search         =   $request->input('search.value');
+                        $posts          =   Content::where('message','LIKE',"%{$search}%")
+                                                ->orWhere('publishdate', 'LIKE',"%{$search}%")
+                                                ->offset($start)
+                                                ->limit($limit)
+                                                ->orderBy($order,$dir)
+                                                ->get();
 
-                    $totalFiltered  =   Job::where('attempts','LIKE',"%{$search}%")
-                        ->orWhere('queue', 'LIKE',"%{$search}%")
-                        ->orWhere('payload', 'LIKE',"%{$search}%")
-                        ->orWhere('role', 'LIKE',"%{$search}%")
-                        ->count();
-                }
+                        $totalFiltered  =   Content::where('message','LIKE',"%{$search}%")
+                                                ->orWhere('publishdate', 'LIKE',"%{$search}%")
+                                                ->count();
+                    }
 
                 $data = array();
                 if(!empty($posts))
