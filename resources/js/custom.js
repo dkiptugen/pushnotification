@@ -1,4 +1,54 @@
 $(document).ready(function(){
+    $(document).on('click','.chact',function(s){
+        s.preventDefault();
+        var link    =   $(this).attr('href');
+        var data    =   $(this).data('data');
+        $.ajax({
+            url: link,
+            type: 'DELETE',
+            data:data ,
+            success: function(Mess) {
+                if (Mess.status == true) {
+
+                    toastr.success(Mess.msg, Mess.header, {
+                        timeOut: 1000,
+                        closeButton: true,
+                        progressBar: true,
+                        newestOnTop: true,
+                        onHidden: function () {
+                            window.location = Mess.url;
+                        }
+                    });
+
+
+                } else {
+                    toastr.error(Mess.msg, Mess.header, {
+                        timeOut: 1000,
+                        closeButton: true,
+                        progressBar: true,
+                        newestOnTop: true,
+                        onHidden: function () {
+
+                            window.location = Mess.url;
+                        }
+                    });
+                }
+            },
+            error: function(request,msg,error) {
+
+                toastr.error(error, 'error', {
+                    timeOut: 1000,
+                    closeButton: true,
+                    progressBar: true,
+                    newestOnTop: true,
+                    onHidden: function () {
+                        window.location.reload();
+                    }
+                });
+            }
+        });
+
+    });
     if($('.editor').length)
         {
             $('.editor').summernote({
