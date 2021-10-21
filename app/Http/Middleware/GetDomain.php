@@ -34,7 +34,6 @@ class GetDomain
             if(is_null($domain))
                 {
                     $domain     = 'kenyans.co.ke';
-
                 }
             $request->request->add(['domain'=>$domain]);
             return $next($request);

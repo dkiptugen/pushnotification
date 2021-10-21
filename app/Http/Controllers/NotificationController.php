@@ -120,7 +120,7 @@ class NotificationController extends Controller
             }
         public function subscribe(Request $request)
             {
-                //Log::error('Re :',$request->all());
+                Log::error('Re :',$request->all());
                 $this->validate($request,   [
                                                 'endpoint' => 'required',
                                                 'keys.auth' => 'required',
