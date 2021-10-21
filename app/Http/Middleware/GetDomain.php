@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\Product;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class GetDomain
 {
@@ -17,6 +18,7 @@ class GetDomain
      */
     public function handle(Request $request, Closure $next)
         {
+            Log::error($request->server->get('SERVER_NAME'));
             $domain     =   strtolower(str_replace('www.','',$request->server->get('SERVER_NAME')));
             $product    =   Product::where('domain','like','%'.$domain.'%')
                                     ->first();
