@@ -18,8 +18,8 @@ class GetDomain
      */
     public function handle(Request $request, Closure $next)
         {
-            Log::error( parse_url($request->headers->get('origin'),  PHP_URL_HOST));
-            $domain     =   strtolower(str_replace('www.','',$request->server->get('SERVER_NAME')));
+            //Log::error( parse_url($request->headers->get('origin'),  PHP_URL_HOST));
+            $domain     =   strtolower(str_replace('www.','',parse_url($request->headers->get('origin'),  PHP_URL_HOST)));
             $product    =   Product::where('domain','like','%'.$domain.'%')
                                     ->first();
             if(is_null($product))
