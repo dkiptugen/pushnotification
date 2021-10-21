@@ -18,7 +18,7 @@ class GetDomain
      */
     public function handle(Request $request, Closure $next)
         {
-            Log::error($request->getHost());
+            Log::error( parse_url($request->headers->get('origin'),  PHP_URL_HOST));
             $domain     =   strtolower(str_replace('www.','',$request->server->get('SERVER_NAME')));
             $product    =   Product::where('domain','like','%'.$domain.'%')
                                     ->first();
