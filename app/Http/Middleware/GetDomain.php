@@ -18,7 +18,7 @@ class GetDomain
      */
     public function handle(Request $request, Closure $next)
         {
-            Log::error($request->server->get('SERVER_NAME'));
+            Log::error('heheh',$request->all());
             $domain     =   strtolower(str_replace('www.','',$request->server->get('SERVER_NAME')));
             $product    =   Product::where('domain','like','%'.$domain.'%')
                                     ->first();
