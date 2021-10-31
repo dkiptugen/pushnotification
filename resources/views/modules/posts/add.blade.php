@@ -6,7 +6,7 @@
             <h3 class="d-flex"><div class="text-danger  text-uppercase"> {{ $product->domain }} &nbsp; </div>  Add Notification</h3>
         </div>
         <div class="card-body">
-            <form action="{{ route('product.notification.store',$product->id) }}" class="create-forms form form-horizontal" method="POST">
+            <form action="{{ route('product.notification.store',$product->id) }}" class="create-form form form-horizontal" method="POST">
                 @csrf
                 <div class="form-group form-row">
                     <label for="FormControlStoryTitle">Story Title</label>
@@ -33,7 +33,7 @@
                     </div>
                     <div class="col-12 col-md">
                         <label for="publishdate" class="control-label">Publishdate</label>
-                        <input type="text" name="publishdate" id="publishdate" class="form-control dt">
+                        <input type="text" name="publishdate" id="publishdate" class="form-control datetime">
                     </div>
                 </div>
                 <div class="form-group form-row">
