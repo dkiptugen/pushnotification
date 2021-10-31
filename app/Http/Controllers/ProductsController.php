@@ -8,6 +8,8 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ProductsController extends Controller
     {
@@ -46,12 +48,11 @@ class ProductsController extends Controller
 
                         if($request->hasFile('image'))
                             {
-                                $file               =   $request->file('image') ;
-                                $fileName           =   time().'.'.$file->getClientOriginalName() ;
-                                $destinationPath    =   public_path().'/uploads' ;
-                                $file->move($destinationPath,$fileName);
-                                Log::info($fileName);
-                                $product->logo      =   'uploads/'.$fileName;
+                                $file = $request->file('image');
+                                $ext = $file->extension();
+                                $filename = $file->storeAs('/logos', Str::slug(strtolower($request->name)).'-'.time().'.' . $ext,['disk' => 'product_logo']);
+                                Log::error($filename);
+                                $product->logo      = '/uploads/'.$filename;
                             }
 
 
@@ -107,16 +108,19 @@ class ProductsController extends Controller
                         $product            =   Product::find($id);
                         if($product->name == 'System Generated')
                             $product->user_id   =   Auth::user()->id;
-
                         if($request->hasFile('image'))
                             {
-                                $file               =   $request->file('image') ;
-                                $fileName           =   time().'.'.$file->getClientOriginalName() ;
-                                $destinationPath    =   public_path().'/uploads' ;
-                                $file->move($destinationPath,$fileName);
-                                $product->logo      =   'uploads/'.$fileName;
-                                Log::info($fileName);
-                            }
+
+                                $file = $request->file('image');
+                                $ext = $file->extension();
+                                $filename = $file->storeAs('/logos', Str::slug(strtolower($request->name)).'-'.time().'.' . $ext,['disk' => 'product_logo']);
+                                Log::error($filename);
+                                if(Storage::disk('uploads')->exists($product->logo))
+                                    {
+                                        Storage::disk('uploads')->delete($product->logo);
+                                    }
+                                $product->logo      = '/uploads/'.$filename;
+                           }
 
                         $product->name      =   $request->name;
                         $product->domain    =   trim(strtolower(str_replace('www.','',$request->domains)));

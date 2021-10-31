@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Stories;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -49,10 +50,13 @@ class NotificationController extends Controller
                 $validateddata = $request->validated();
                 if($validateddata)
                     {
+
                         $stories = Stories::create([
                                                         "title"         =>  $request->title,
                                                         "link"          =>  $request->link,
                                                         "thumbnail"     =>  $request->thumbnail,
+                                                        "ttl"           =>  ($request->ttl * 3600 * 24),
+                                                        "publishdate"   =>  Carbon::parse($request->publishdate)->format('Y-m-d H:i:s'),
                                                         "summary"       =>  strip_tags($request->summary),
                                                         "product_id"    =>  $productid,
                                                         "user_id"       =>  Auth::user()->id
@@ -61,7 +65,20 @@ class NotificationController extends Controller
                         if ($stories)
                             {
                                 //Log::info(json_encode($stories));
-                                Dispatcher::dispatch($stories);
+                                $to     =   Carbon::createFromFormat('Y-m-d H:ia', $request->publishdate);
+
+                                $from   =   Carbon::now();
+                                $time   =   $to->diffInMinutes($from,false);
+                                //dd($time);
+                                if($time >= 1)
+                                    {
+                                        Dispatcher::dispatch($stories)->delay($time);
+                                    }
+                                else
+                                    {
+                                        Dispatcher::dispatch($stories);
+                                    }
+
 
                                 return self::success('Notification','queued successfully',route('product.notification.index',$productid));
                             }

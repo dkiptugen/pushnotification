@@ -112,12 +112,15 @@ $(document).ready(function(){
         }
     $(document).on('submit','.create-form',function(e){
         e.preventDefault();
-        var frm = $(this);
+        var frm         = $(this);
+        var formData    = new FormData(frm[0]);
         $.ajax({
             type:'POST',
             url:frm.attr('action'),
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            data:$(this).serialize(),
+            data:formData,
+            processData: false,
+            contentType: false,
             success:function(Mess){
                 if(Mess.status === true)
                     {
@@ -204,6 +207,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
         singleDatePicker: true,
         showDropdowns: true,
         startDate: moment().startOf('hour')
+    });
+    $('.dt').datetimepicker({
+        autoSize: true,
+        changeYear: true,
+        changeMonth: true,
+        buttonImageOnly: true,
+
     });
     $('.time').datetimepicker({
         format:'LT'

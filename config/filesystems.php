@@ -53,7 +53,11 @@ return [
         ],
         'uploads' => [
             'driver' => 'local',
-            'root'   => public_path() . '/assets/img',
+            'root'   => public_path(),
+        ],
+        'product_logo' => [
+            'driver' => 'local',
+            'root'   => public_path().'/uploads',
         ],
 
     ],

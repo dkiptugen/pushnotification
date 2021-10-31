@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="{{ $description }}">
     <meta name="author" content="{{ $author }}">
-
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ff0000">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black">
     <title>{{ ucfirst($name) }} : {{ $title }}</title>
-
     <link href="{{ asset('assets/css/app.css')}}" rel="stylesheet">
-    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" />
-
+    <link rel="shortcut icon" href="{{ asset('favicon.png') }}" type="image/png" />
+   {{-- <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" />--}}
     @yield('header')
 </head>
 

@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class AddNotification extends FormRequest
     {
@@ -21,13 +23,20 @@ class AddNotification extends FormRequest
          *
          * @return array
          */
-        public function rules()
+        public function rules(Request $request)
             {
                 return [
-                            'title' => 'required',
-                            'link' => 'required',
-                            'thumbnail' => 'required',
-                            'summary' => 'required'
+                            'title'         =>  ['required',Rule::unique('stories')->where(function ($query) use ($request) {
+
+                                return $query
+                                    ->whereProductId($request->product_id)
+                                    ->whereTitle($request->title);
+                            })],
+                            'link'          =>  'required',
+                            'thumbnail'     =>  'required',
+                            'summary'       =>  'nullable',
+                            'ttl'           =>  'nullable',
+                            'publishdate'   =>  'nullable'
                         ];
             }
     }

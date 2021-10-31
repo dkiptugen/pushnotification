@@ -19,7 +19,6 @@ self.addEventListener('notificationclick', function(event) {
             self.clients.openWindow(event.notification.data);
         if (response === 'view_notification')
             {
-
                 self.clients.openWindow(event.notification.data)
             }
 
@@ -43,6 +42,7 @@ self.addEventListener('push', function (e) {
             body: msg.body,
             icon: msg.icon,
             image:msg.image,
+            ttl:msg.ttl,
             actions: msg.actions,
             data: msg.data.url
         }));

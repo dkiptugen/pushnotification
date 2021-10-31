@@ -25,9 +25,11 @@ class PushNotifications extends Notification implements ShouldQueue
      */
 
     public $notificationData;
-    public function __construct($response)
+    public $guest;
+    public function __construct($response,$guest)
     {
-        $this->notificationData = $response;
+        $this->notificationData =   $response;
+        $this->guest            =   $guest;
     }
 
 
@@ -59,15 +61,32 @@ class PushNotifications extends Notification implements ShouldQueue
             $thumbnail  =   $this->notificationData->thumbnail;
             $url        =   $this->notificationData->link ."?utm_source=Pushnotification&utm_medium=notification&utm_campaign=". date("FY");
             $body       =   $this->notificationData->summary;
-            $icon       =   asset($this->notificationData->product->logo);
+            $icon       =   url($this->notificationData->product->logo);
+            $ttl        =   $this->notificationData->ttl??(3600*24*30);
             Log::info(json_encode($this->notificationData));
-            return  (new WebPushMessage())
+            if (preg_match("/\bmozilla\b/i",$this->guest))
+                {
+                    return  (new WebPushMessage())
                         ->title($title)
-                        ->icon($icon)
-                        ->body($body)
+                        ->icon($thumbnail)
+                        ->body(strip_tags($body))
+                        ->options(['TTL'=>$ttl,'via'=>$this->notificationData->product->domain])
                         ->action('Read More', 'view_notification')
                         ->image($thumbnail)
                         ->data(['url' => $url]);
+                }
+            else
+                {
+                    return  (new WebPushMessage())
+                        ->title($title)
+                        ->icon($icon)
+                        ->body(strip_tags($body))
+                        ->options(['TTL'=>$ttl,'via'=>$this->notificationData->product->domain])
+                        ->action('Read More', 'view_notification')
+                        ->image($thumbnail)
+                        ->data(['url' => $url]);
+                }
+
 
 
         }

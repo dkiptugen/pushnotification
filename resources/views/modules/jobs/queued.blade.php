@@ -57,7 +57,7 @@
             },
             "columns": [
                 { "data": "id" },
-                { "data": "attempt" },
+                { "data": "attempts" },
                 { "data": "queue" },
                 { "data": "payload" },
                 { "data": "reserved_at" },
