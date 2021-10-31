@@ -41,7 +41,7 @@ class Sender implements ShouldQueue
                 $response   =   Stories::find($this->msgid);
                 $Dispatch   =   Dispatch::where('story_id',$this->msgid)
                                         ->where('status',0)
-                                        ->chunkById(500, function ($dispatches) use($response)
+                                        ->chunkById(1500, function ($dispatches) use($response)
                                             {
                                                  foreach ($dispatches as $dispatch)
                                                     {
