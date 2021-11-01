@@ -26,15 +26,15 @@
                         <input type="text" name="telegram_access_token" id="telegram_access_token" class="form-control" value="{{ $product->telegram_access_token }}">
                     </div>
                     <div class="form-group form-row">
-                        <div class="col-2">
-                            <img src="{{ url($product->logo) }}" alt="" class="img-fluid">
+                        <div class="col-1">
+                            <img src="{{ url($product->logo) }}" alt="" class="img-fluid img-rounded border">
                         </div>
                         <div class="col">
                             <label class="form-label w-100" for="icon">Icon</label>
                             <input type="file" id="icon" name="image">
                             <small class="form-text text-muted">Required size is 512PX x 512PX</small>
                         </div>
-                        
+
                     </div>
                     <div class="form-group form-row">
                         <button type="submit" class="btn btn-dark ml-auto">Edit Product</button>
