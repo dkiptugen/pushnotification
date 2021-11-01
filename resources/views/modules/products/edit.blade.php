@@ -27,7 +27,7 @@
                     </div>
                     <div class="form-group form-row">
                         <div class="col-1">
-                            <img src="{{ url($product->logo) }}" alt="" class="img-fluid img-rounded border">
+                            <img src="{{ url($product->logo) }}" alt="" class="img-fluid img-rounded border rounded">
                         </div>
                         <div class="col">
                             <label class="form-label w-100" for="icon">Icon</label>
