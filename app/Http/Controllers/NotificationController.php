@@ -8,6 +8,7 @@ use App\Models\Guest;
 use App\Models\Product;
 use App\Models\Stories;
 use App\Models\User;
+use App\Utils\TelegramPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -64,6 +65,17 @@ class NotificationController extends Controller
 
                         if ($stories)
                             {
+                                if(!is_null($stories->product->telegram_channel))
+                                    {
+                                        $telegram   =   new TelegramPost([  'title'                 =>  $stories->title,
+                                                                            'telegram_access_token' =>  $stories->product->telegram_access_token,
+                                                                            'telegram_channel'      =>  $stories->product->telegram_channel,
+                                                                            'image'                 =>  $stories->thumbnail,
+                                                                            'url'                   =>  $stories->link,
+                                                                            'content'               =>  $stories->summary
+                                                                        ]);
+                                        $telegram->post_data();
+                                    }
                                 //Log::info(json_encode($stories));
                                 $to     =   Carbon::createFromFormat('Y-m-d H:ia', $request->publishdate);
 

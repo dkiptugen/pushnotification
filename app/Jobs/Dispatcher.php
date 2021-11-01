@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Models\Dispatch;
 use App\Models\Guest;
 use App\Models\Stories;
+use App\Utils\TelegramPost;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -36,6 +37,7 @@ class Dispatcher implements ShouldQueue
         public function handle()
             {
                 Log::info($this->data->product_id);
+
                 Guest::where('product_id',$this->data->product_id)
                     ->chunk(1500, function ($subscriptions) {
                         if(!is_null($subscriptions))
@@ -54,5 +56,6 @@ class Dispatcher implements ShouldQueue
                 $story          =   Stories::find($this->data->id);
                 $story->status  =   1;
                 $story->save();
+
             }
     }

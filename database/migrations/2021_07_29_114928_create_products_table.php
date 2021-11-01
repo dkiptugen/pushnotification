@@ -19,6 +19,8 @@ class CreateProductsTable extends Migration
             $table->string('domain');
             $table->bigInteger('subscriptions')->default(0);
             $table->text('logo')->default('assets/img/logo.jpg');
+            $table->string('telegram_channel',100);
+            $table->longText('telegram_access_token')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();

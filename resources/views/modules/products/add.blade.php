@@ -17,6 +17,14 @@
                     <input type="text" name="domains" id="domain" class="form-control">
                 </div>
                 <div class="form-group">
+                    <label for="telegram_channel" class="control-label">Telegram Channel</label>
+                    <input type="text" name="telegram_channel" id="telegram_channel" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="telegram_access_token" class="control-label">Telegram Access Token</label>
+                    <input type="text" name="telegram_access_token" id="telegram_access_token" class="form-control">
+                </div>
+                <div class="form-group">
                     <label class="form-label w-100" for="icon">Icon</label>
                     <input type="file" id="icon" name="image">
                     <small class="form-text text-muted">Required size is 512PX x 512PX</small>

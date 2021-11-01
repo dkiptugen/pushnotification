@@ -56,11 +56,13 @@ class ProductsController extends Controller
                             }
 
 
-                        $product->name      =   $request->name;
-                        $product->domain    =   trim(strtolower(str_replace('www.','',$request->domains)));
-                        $product->status    =   1;
-                        $product->user_id   =   Auth::user()->id;
-                        $res                =   $product->save();
+                        $product->name                      =   $request->name;
+                        $product->domain                    =   trim(strtolower(str_replace('www.','',$request->domains)));
+                        $product->status                    =   1;
+                        $product->telegram_channel          =   $request->telegram_channel;
+                        $product->telegram_access_token     =   $request->telegram_access_token;
+                        $product->user_id                   =   Auth::user()->id;
+                        $res                                =   $product->save();
                         if($res)
                             return self::success('Product',"Added successfully",route('product.index'));
                         return self::fail('Product',"Failed to add product",route('product.index'));
@@ -122,10 +124,12 @@ class ProductsController extends Controller
                                 $product->logo      = '/uploads/'.$filename;
                            }
 
-                        $product->name      =   $request->name;
-                        $product->domain    =   trim(strtolower(str_replace('www.','',$request->domains)));
-                        $product->status    =   1;
-                        $res                =   $product->save();
+                        $product->name                      =   $request->name;
+                        $product->domain                    =   trim(strtolower(str_replace('www.','',$request->domains)));
+                        $product->status                    =   1;
+                        $product->telegram_channel          =   $request->telegram_channel;
+                        $product->telegram_access_token     =   $request->telegram_access_token;
+                        $res                                =   $product->save();
                         if($res)
                             return self::success('Product',"Added successfully",route('product.index'));
                         return self::fail('Product',"Failed to add product",route('product.index'));
