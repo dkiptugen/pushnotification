@@ -29,8 +29,8 @@ class AddNotification extends FormRequest
                             'title'         =>  ['required',Rule::unique('stories')->where(function ($query) use ($request) {
 
                                 return $query
-                                    ->whereProductId($request->product_id)
-                                    ->whereTitle($request->title);
+                                    ->where('product_id',$request->product_id)
+                                    ->where('title',$request->title);
                             })],
                             'link'          =>  'required',
                             'thumbnail'     =>  'required',
