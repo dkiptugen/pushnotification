@@ -85,7 +85,7 @@ class NotificationController extends Controller
                                 //dd($time);
                                 if($time >= 1)
                                     {
-                                        Dispatcher::dispatch($stories)->delay($time);
+                                        Dispatcher::dispatch($stories)->delay($time*60);
                                     }
                                 else
                                     {
