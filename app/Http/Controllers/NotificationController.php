@@ -248,7 +248,7 @@ class NotificationController extends Controller
                                 $nestedData['deliveries']       =   $post->deliveries;
                                 $nestedData['clicks']           =   $post->clicks;
                                 $nestedData['publishdate']      =   $post->publishdate;
-                                $nestedData['onschedule']       =   $this->pd($post->publishdate)?'Yes':'No';
+                                $nestedData['onschedule']       =   $this->pd($post->publishdate)?'No':'Yes';
                                 $nestedData['author']           =   $post->user->name;
                                 $nestedData['status']           =   ($post->status == 2)?"sent":(($post->status == 1)?'picked':'pending');
                                 $nestedData['product']          =   $post->product->name;
