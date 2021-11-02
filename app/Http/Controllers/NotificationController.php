@@ -66,7 +66,7 @@ class NotificationController extends Controller
                         if ($stories)
                             {
 
-                                $to     =   Carbon::createFromFormat('Y-m-d H:i a', $request->publishdate);
+                                $to     =   Carbon::createFromFormat('Y-m-d h:i a', $request->publishdate);
                                 $from   =   Carbon::now();
                                 $time   =   $to->diffInMinutes($from);
                                 Log::info($time);
@@ -182,7 +182,7 @@ class NotificationController extends Controller
         public function pd($publishdate)
             {
 
-                $otherDate  =   Carbon::parse($publishdate);
+                $otherDate  =   Carbon::createFromFormat('Y-m-d H:i:s', $publishdate);
                 $nowDate    =   Carbon::now();
                 $result     =   $nowDate->gt($otherDate);
                 return $result;
