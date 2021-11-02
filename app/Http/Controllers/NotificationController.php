@@ -80,7 +80,7 @@ class NotificationController extends Controller
                                 $to     =   Carbon::createFromFormat('Y-m-d H:ia', $request->publishdate);
 
                                 $from   =   Carbon::now();
-                                $time   =   $to->diffInMinutes($from,false);
+                                $time   =   $to->diffInMinutes($from);
                                 Log::info($time);
                                 //dd($time);
                                 if($time >= 1)
