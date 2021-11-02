@@ -81,14 +81,15 @@ class NotificationController extends Controller
 
                                 $from   =   Carbon::now();
                                 $time   =   $to->diffInMinutes($from,false);
+                                Log::info($time);
                                 //dd($time);
                                 if($time >= 1)
                                     {
-                                        Dispatcher::dispatch($stories)->delay($time);
+                                        //Dispatcher::dispatch($stories)->delay($time);
                                     }
                                 else
                                     {
-                                        Dispatcher::dispatch($stories);
+                                        //Dispatcher::dispatch($stories);
                                     }
 
 
