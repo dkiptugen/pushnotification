@@ -182,7 +182,7 @@ class NotificationController extends Controller
         public function pd($publishdate)
             {
 
-                $otherDate  =   Carbon::createFromFormat('Y-m-d H:i:s', $publishdate);
+                $otherDate  =   Carbon::create($publishdate);
                 $nowDate    =   Carbon::now();
                 $result     =   $nowDate->gt($otherDate);
                 return $result;
