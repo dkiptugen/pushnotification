@@ -77,7 +77,7 @@ class NotificationController extends Controller
                                         $telegram->post_data();
                                     }
                                 //Log::info(json_encode($stories));
-                                $to     =   Carbon::createFromFormat('Y-m-d H:ia', $request->publishdate);
+                                $to     =   Carbon::createFromFormat('Y-m-d H:i a', $request->publishdate);
 
                                 $from   =   Carbon::now();
                                 $time   =   $to->diffInMinutes($from);
@@ -85,11 +85,11 @@ class NotificationController extends Controller
                                 //dd($time);
                                 if($time >= 1)
                                     {
-                                        //Dispatcher::dispatch($stories)->delay($time);
+                                        Dispatcher::dispatch($stories)->delay($time);
                                     }
                                 else
                                     {
-                                        //Dispatcher::dispatch($stories);
+                                        Dispatcher::dispatch($stories);
                                     }
 
 
