@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -44,22 +45,34 @@ class PushNotifications extends Notification implements ShouldQueue
     {
         return [WebPushChannel::class];
     }
-
+    public function generate(string $name) : string
+        {
+            $words = explode(' ', $name);
+            if (count($words) >= 2)
+                {
+                    return strtoupper(substr($words[0], 0, 1) . substr(end($words), 0, 1));
+                }
+            preg_match_all('#([A-Z]+)#', $name, $capitals);
+            if (count($capitals[1]) >= 2)
+                {
+                    return substr(implode('', $capitals[1]), 0, 2);
+                }
+            return strtoupper(substr($name, 0, 2));
+        }
     /**
      * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
      * @return MailMessage|WebPushMessage
      */
+
     public function toWebPush($notifiable, $notification)
         {
-
-            //Notification data
-
-            //$id = $this->notificationData->id;
+            $user       =   User::find($this->notificationData->user_id);
+            $initial    =   $this->generate($user->name);
             $title      =   $this->notificationData->title;
             $thumbnail  =   $this->notificationData->thumbnail;
-            $url        =   $this->notificationData->link ."?utm_source=Pushnotification&utm_medium=notification&utm_campaign=". date("FY");
+            $url        =   $this->notificationData->link ."?utm_source=".$initial."&utm_medium=BoxAlert&utm_campaign=".$this->notificationData->title;
             $body       =   $this->notificationData->summary;
             $icon       =   url($this->notificationData->product->logo);
             $ttl        =   $this->notificationData->ttl??(3600*24*30);

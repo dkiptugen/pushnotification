@@ -16,6 +16,9 @@
                             <th>title</th>
                             <th>Date</th>
                             <th>Deliveries</th>
+                            <th>Clicks</th>
+                            <th>Publishdate</th>
+                            <th>On Schedule</th>
                             <th>Author</th>
                             <th>status</th>
                             <th>Product</th>
@@ -30,6 +33,9 @@
                             <th>title</th>
                             <th>Date</th>
                             <th>Deliveries</th>
+                            <th>Clicks</th>
+                            <th>Publishdate</th>
+                            <th>On Schedule</th>
                             <th>Author</th>
                             <th>status</th>
                             <th>Product</th>
@@ -59,6 +65,9 @@
                 { "data": "title" },
                 { "data": "date" },
                 { "data": "deliveries" },
+                { "data": "clicks" },
+                { "data": "publishdate" },
+                { "data": "onschedule" },
                 { "data": "author" },
                 { "data": "status" },
                 { "data": "product" }

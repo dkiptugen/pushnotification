@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AddNotification;
 use App\Jobs\Dispatcher;
+use App\Jobs\TelegramPush;
 use App\Models\Guest;
 use App\Models\Product;
 use App\Models\Stories;
 use App\Models\User;
-use App\Utils\TelegramPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -65,20 +65,8 @@ class NotificationController extends Controller
 
                         if ($stories)
                             {
-                                if(!is_null($stories->product->telegram_channel))
-                                    {
-                                        $telegram   =   new TelegramPost([  'title'                 =>  $stories->title,
-                                                                            'telegram_access_token' =>  $stories->product->telegram_access_token,
-                                                                            'telegram_channel'      =>  $stories->product->telegram_channel,
-                                                                            'image'                 =>  $stories->thumbnail,
-                                                                            'url'                   =>  $stories->link,
-                                                                            'content'               =>  $stories->summary
-                                                                        ]);
-                                        $telegram->post_data();
-                                    }
-                                //Log::info(json_encode($stories));
-                                $to     =   Carbon::createFromFormat('Y-m-d H:i a', $request->publishdate);
 
+                                $to     =   Carbon::createFromFormat('Y-m-d H:i a', $request->publishdate);
                                 $from   =   Carbon::now();
                                 $time   =   $to->diffInMinutes($from);
                                 Log::info($time);
@@ -86,13 +74,13 @@ class NotificationController extends Controller
                                 if($time >= 1)
                                     {
                                         Dispatcher::dispatch($stories)->delay($time*60);
+                                        TelegramPush::dispatch($stories)->delay($time*60);
                                     }
                                 else
                                     {
                                         Dispatcher::dispatch($stories);
+                                        TelegramPush::dispatch($stories);
                                     }
-
-
                                 return self::success('Notification','queued successfully',route('product.notification.index',$productid));
                             }
                         return self::fail('Notification', 'Failed to queue notification',route('product.notification.index',$productid));
@@ -191,6 +179,15 @@ class NotificationController extends Controller
                 $user->deletePushSubscription($request->endpoint);
 
             }
+        public function pd($publishdate)
+            {
+
+                $otherDate  =   Carbon::parse($publishdate);
+                $nowDate    =   Carbon::now();
+                $result     =   $nowDate->gt($otherDate);
+                return $result;
+
+            }
         public function get($id,Request $request)
             {
                 $columns = array(
@@ -240,23 +237,26 @@ class NotificationController extends Controller
                     }
                 $data = array();
                 if(!empty($posts))
-                {
-                    $pos    =   $start+1;
-                    foreach ($posts as $post)
                     {
+                        $pos    =   $start+1;
+                        foreach ($posts as $post)
+                            {
 
-                        $nestedData['pos']              =   $pos;
-                        $nestedData['title']            =   $post->title;
-                        $nestedData['date']             =   $post->created_at->format('h:ia d-m-Y');
-                        $nestedData['deliveries']       =   $post->deliveries;
-                        $nestedData['author']           =   $post->user->name;
-                        $nestedData['status']           =   ($post->status == 2)?"sent":(($post->status == 1)?'picked':'pending');
-                        $nestedData['product']          =   $post->product->name;
+                                $nestedData['pos']              =   $pos;
+                                $nestedData['title']            =   $post->title;
+                                $nestedData['date']             =   $post->created_at->format('h:ia d-m-Y');
+                                $nestedData['deliveries']       =   $post->deliveries;
+                                $nestedData['clicks']           =   $post->clicks;
+                                $nestedData['publishdate']      =   $post->publishdate;
+                                $nestedData['onschedule']       =   $this->pd($post->publishdate)?'Yes':'No';
+                                $nestedData['author']           =   $post->user->name;
+                                $nestedData['status']           =   ($post->status == 2)?"sent":(($post->status == 1)?'picked':'pending');
+                                $nestedData['product']          =   $post->product->name;
 
-                        $data[] = $nestedData;
-                        $pos++;
+                                $data[] = $nestedData;
+                                $pos++;
+                            }
                     }
-                }
 
                 $json_data = array("draw" => (int)$request->input('draw'), "recordsTotal" => $totalData, "recordsFiltered" => $totalFiltered, "data" => $data);
                 echo json_encode($json_data);
