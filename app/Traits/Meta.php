@@ -9,11 +9,11 @@ trait Meta
         public static function site_def() :array
             {
                 return  [
-                            'name'          =>  'Pusher',
-                            'title'         =>  '',
-                            'description'   =>  '',
-                            'keywords'      =>  '',
-                            'author'        =>  '',
+                            'name'          =>  'BoxAlert',
+                            'title'         =>  'BoxAlert',
+                            'description'   =>  'The biggest push notification platform',
+                            'keywords'      =>  'Web push, alert, telegram',
+                            'author'        =>  'Dennis',
                             'logo'          =>  'assets/img/logo.png'
                         ];
             }
