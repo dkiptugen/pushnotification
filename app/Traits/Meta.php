@@ -13,7 +13,7 @@ trait Meta
                             'title'         =>  'BoxAlert',
                             'description'   =>  'The biggest push notification platform',
                             'keywords'      =>  'Web push, alert, telegram',
-                            'author'        =>  'Dennis',
+                            'author'        =>  'Dennis Kiptugen',
                             'logo'          =>  'assets/img/logo.png'
                         ];
             }
