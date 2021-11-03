@@ -57,7 +57,7 @@ class NotificationController extends Controller
                                                         "link"          =>  $request->link,
                                                         "thumbnail"     =>  $request->thumbnail,
                                                         "ttl"           =>  ($request->ttl * 3600 * 24),
-                                                        "publishdate"   =>  Carbon::parse($request->publishdate)->format('Y-m-d H:i:s'),
+                                                        "publishdate"   =>  Carbon::createFromFormat('Y-m-d h:i a', $request->publishdate)->format('Y-m-d H:i:s'),
                                                         "summary"       =>  strip_tags($request->summary),
                                                         "product_id"    =>  $productid,
                                                         "user_id"       =>  Auth::user()->id
