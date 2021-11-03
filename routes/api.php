@@ -25,4 +25,6 @@ Route::group(['middleware'=>['domain']],function(){
     Route::get('/subscribers/fetch',[App\Http\Controllers\NotificationController::class, 'subscribers']);
     //Create a dynamic story
     Route::middleware(['AppKey'])->post('/dynamic/push', [App\Http\Controllers\NotificationController::class, 'store']);
+    //monitor clicks
+    Route::post('/click', [App\Http\Controllers\NotificationController::class, 'click']);
 });

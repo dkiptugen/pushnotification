@@ -19,7 +19,25 @@ self.addEventListener('notificationclick', function(event) {
             self.clients.openWindow(event.notification.data);
         if (response === 'view_notification')
             {
-                self.clients.openWindow(event.notification.data)
+
+                fetch('https://alert.boxraft.net/api/click', {
+                    method: 'POST',
+                    body: JSON.parse('{"id":"'+event.notification.id+'"}'),
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then((res) => {
+                        return res.json();
+                    })
+                    .then((res) => {
+                        console.log(res)
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    });
+                self.clients.openWindow(event.notification.data);
             }
 
     }));
@@ -28,7 +46,7 @@ self.addEventListener('notificationclick', function(event) {
 
 
 self.addEventListener('push', function (e) {
-    console.log("push called")
+    //console.log("push called")
 
     if (!(self.Notification && self.Notification.permission === 'granted')) {
         //notifications aren't supported or permission not granted!
@@ -37,7 +55,7 @@ self.addEventListener('push', function (e) {
 
     if (e.data) {
         var msg = e.data.json();
-        console.log(msg)
+        //console.log(msg)
         e.waitUntil(self.registration.showNotification(msg.title, {
             body: msg.body,
             icon: msg.icon,

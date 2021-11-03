@@ -69,7 +69,7 @@ class NotificationController extends Controller
                                 $to     =   Carbon::createFromFormat('Y-m-d h:i a', $request->publishdate);
                                 $from   =   Carbon::now();
                                 $time   =   $to->diffInMinutes($from);
-                                Log::info('TIME : '.Carbon::createFromFormat('Y-m-d h:i a', $request->publishdate)->format('Y-m-d H:i:s'));
+                                //Log::info('TIME : '.Carbon::createFromFormat('Y-m-d h:i a', $request->publishdate)->format('Y-m-d H:i:s'));
                                 //dd($time);
                                 if($time >= 1)
                                     {
@@ -178,6 +178,12 @@ class NotificationController extends Controller
                 $user = Guest::find($id);
                 $user->deletePushSubscription($request->endpoint);
 
+            }
+        public function click(Request $request)
+            {
+                $story      =   Stories::find($request->id);
+                $story->increment('clicks');
+                $story->save();
             }
         public function pd($publishdate)
             {

@@ -72,7 +72,8 @@ class PushNotifications extends Notification implements ShouldQueue
             $initial    =   $this->generate($user->name);
             $title      =   $this->notificationData->title;
             $thumbnail  =   $this->notificationData->thumbnail;
-            $url        =   $this->notificationData->link ."?utm_source=".$initial."&utm_medium=BoxAlert&utm_campaign=".$this->notificationData->title;
+            $pos        =   strpos($this->notificationData->link, "?");
+            $url        =   substr($this->notificationData->link, 0, $pos)."?utm_source=".$initial."&utm_medium=BoxAlert&utm_campaign=".$this->notificationData->title;
             $body       =   $this->notificationData->summary;
             $icon       =   url($this->notificationData->product->logo);
             $ttl        =   $this->notificationData->ttl??(3600*24*30);
@@ -83,7 +84,7 @@ class PushNotifications extends Notification implements ShouldQueue
                         ->title($title)
                         ->icon($thumbnail)
                         ->body(strip_tags($body))
-                        ->options(['TTL'=>$ttl,'via'=>$this->notificationData->product->domain])
+                        ->options(['TTL'=>$ttl,'via'=>$this->notificationData->product->domain,'id'=>$this->notificationData->id])
                         ->action('Read More', 'view_notification')
                         ->image($thumbnail)
                         ->data(['url' => $url]);
@@ -94,7 +95,7 @@ class PushNotifications extends Notification implements ShouldQueue
                         ->title($title)
                         ->icon($icon)
                         ->body(strip_tags($body))
-                        ->options(['TTL'=>$ttl,'via'=>$this->notificationData->product->domain])
+                        ->options(['TTL'=>$ttl,'via'=>$this->notificationData->product->domain,'id'=>$this->notificationData->id])
                         ->action('Read More', 'view_notification')
                         ->image($thumbnail)
                         ->data(['url' => $url]);
