@@ -127,7 +127,7 @@ class NotificationController extends Controller
                 $stories    =   Stories::find($notification);
                 if(!is_null($stories))
                     {
-                        $to     =   Carbon::createFromFormat('Y-m-d h:i a', $stories->publishdate);
+                        $to     =   Carbon::parse($stories->publishdate);
                         $from   =   Carbon::now();
                         $time   =   $to->diffInMinutes($from);
                         //Log::info('TIME : '.Carbon::createFromFormat('Y-m-d h:i a', $request->publishdate)->format('Y-m-d H:i:s'));
