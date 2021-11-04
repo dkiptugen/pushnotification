@@ -142,7 +142,7 @@ class NotificationController extends Controller
                             }
                         else
                             {
-                                Dispatcher::dispatch($stories);
+                                $d  = Dispatcher::dispatch($stories);
                                 $tp = TelegramPush::dispatch($stories);
                                 Log::info(json_encode($tp));
                             }
