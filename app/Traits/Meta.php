@@ -2,7 +2,7 @@
 
 
 namespace App\Traits;
-use \Illuminate\Contracts\Bus\Dispatcher;
+use Illuminate\Contracts\Bus\Dispatcher;
 
 trait Meta
     {
