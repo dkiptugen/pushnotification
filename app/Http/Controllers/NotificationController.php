@@ -73,8 +73,8 @@ class NotificationController extends Controller
                                 //dd($time);
                                 if($this->pd($stories->publishdate))
                                     {
-                                        Dispatcher::dispatch($stories)->delay($time*60)->onQueue($stories->id);
-                                        TelegramPush::dispatch($stories)->delay($time*60)->onQueue($stories->id);
+                                        Dispatcher::dispatch($stories)->delay($time*60);
+                                        TelegramPush::dispatch($stories)->delay($time*60);
                                     }
                                 else
                                     {
@@ -137,13 +137,14 @@ class NotificationController extends Controller
                         //dd($time);
                         if($this->pd($stories->publishdate))
                             {
-                                Dispatcher::dispatch($stories)->delay($time*60)->onQueue($notification);
-                                TelegramPush::dispatch($stories)->delay($time*60)->onQueue($notification);
+                                Dispatcher::dispatch($stories)->delay($time*60);
+                                TelegramPush::dispatch($stories)->delay($time*60);
                             }
                         else
                             {
-                                Dispatcher::dispatch($stories)->onQueue($notification);
-                                TelegramPush::dispatch($stories)->onQueue($notification);
+                                Dispatcher::dispatch($stories);
+                                $tp = TelegramPush::dispatch($stories);
+                                Log::info(json_encode($tp));
                             }
                         return self::success('Notification','requeued successfully',route('product.notification.index',$stories->product_id));
                     }
