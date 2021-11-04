@@ -71,15 +71,15 @@ class NotificationController extends Controller
                                 $time   =   $to->diffInMinutes($from);
                                 //Log::info('TIME : '.Carbon::createFromFormat('Y-m-d h:i a', $request->publishdate)->format('Y-m-d H:i:s'));
                                 //dd($time);
-                                if($time >= 1)
+                                if($this->pd($stories->publishdate))
                                     {
-                                        Dispatcher::dispatch($stories)->delay($time*60);
-                                        TelegramPush::dispatch($stories)->delay($time*60);
+                                        Dispatcher::dispatch($stories)->delay($time*60)->onQueue($stories->id);
+                                        TelegramPush::dispatch($stories)->delay($time*60)->onQueue($stories->id);
                                     }
                                 else
                                     {
-                                        Dispatcher::dispatch($stories);
-                                        TelegramPush::dispatch($stories);
+                                        Dispatcher::dispatch($stories)->onQueue($stories->id);
+                                        TelegramPush::dispatch($stories)->onQueue($stories->id);
                                     }
                                 return self::success('Notification','queued successfully',route('product.notification.index',$productid));
                             }
@@ -137,13 +137,13 @@ class NotificationController extends Controller
                         //dd($time);
                         if($this->pd($stories->publishdate))
                             {
-                                Dispatcher::dispatch($stories)->delay($time*60);
-                                TelegramPush::dispatch($stories)->delay($time*60);
+                                Dispatcher::dispatch($stories)->delay($time*60)->onQueue($notification);
+                                TelegramPush::dispatch($stories)->delay($time*60)->onQueue($notification);
                             }
                         else
                             {
-                                Dispatcher::dispatch($stories);
-                                TelegramPush::dispatch($stories);
+                                Dispatcher::dispatch($stories)->onQueue($notification);
+                                TelegramPush::dispatch($stories)->onQueue($notification);
                             }
                         return self::success('Notification','requeued successfully',route('product.notification.index',$stories->product_id));
                     }
