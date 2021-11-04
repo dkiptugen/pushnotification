@@ -126,7 +126,7 @@ class NotificationController extends Controller
             {
 
 
-                Log::debug($product);
+                //Log::debug($product);
                 $stories    =   Stories::find($notification);
                 if(!is_null($stories))
                     {
@@ -137,8 +137,9 @@ class NotificationController extends Controller
                         //dd($time);
                         if($this->pd($stories->publishdate))
                             {
-                                Dispatcher::dispatch($stories)->delay($time*60);
-                                TelegramPush::dispatch($stories)->delay($time*60);
+                                $d  =Dispatcher::dispatch($stories)->delay($time*60);
+                                $tp =TelegramPush::dispatch($stories)->delay($time*60);
+                                Log::info(json_encode($tp));
                             }
                         else
                             {
