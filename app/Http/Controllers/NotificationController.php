@@ -104,11 +104,13 @@ class NotificationController extends Controller
          * Show the form for editing the specified resource.
          *
          * @param  int  $id
-         * @return \Illuminate\Http\Response
+         * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response|\Illuminate\View\View
          */
-        public function edit($id)
+        public function edit($productid,$id)
             {
-                //
+                $this->data['product']  =   Product::find($productid);
+                $this->data['stories']  =   Stories::find('id');
+                return view('modules.posts.edit',$this->data);
             }
 
         /**
@@ -290,7 +292,8 @@ class NotificationController extends Controller
                                 $nestedData['status']           =   ($post->status == 2)?"sent":(($post->status == 1)?'picked':'pending');
                                 $nestedData['product']          =   $post->product->name;
                                 $nestedData['action']           =   "<a href='".route('product.notification.edit',[$post->product_id,$post->id])."' class='text text-dark mr-2'><i class='fas fa-edit'></i></a>
-                                                                    <a href='".route('product.notification.redo',[$post->product_id,$post->id])."' class='text text-dark'><i class='fas fa-redo-alt'></i></a>";
+                                                                    <a href='".route('product.notification.redo',[$post->product_id,$post->id])."' class='text text-dark'><i class='fas fa-redo-alt'></i></a>
+                                                                    <a href='".route('product.notification.delete',[$post->product_id,$post->id])."' class='text text-dark'><i class='fas fa-close'></i></a>";
                                 $data[] = $nestedData;
                                 $pos++;
                             }
