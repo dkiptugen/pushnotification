@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use app\Constants\KonnectParameters;
-use App\Http\Controllers\Api\Subscription;
+
 use App\Http\Requests\AddSubscription;
-use App\Models\Article;
+
 use App\Models\Charge;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;

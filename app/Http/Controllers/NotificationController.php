@@ -9,6 +9,7 @@ use App\Models\Guest;
 use App\Models\Product;
 use App\Models\Stories;
 use App\Models\User;
+use App\Traits\Meta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -73,14 +74,17 @@ class NotificationController extends Controller
                                 //dd($time);
                                 if(!$this->pd($stories->publishdate))
                                     {
-                                        Dispatcher::dispatch($stories)->delay($time*60);
-                                        TelegramPush::dispatch($stories)->delay($time*60);
+                                        $TD     =   Dispatcher::dispatch($stories)->delay($time*60);
+                                        $TT     =   TelegramPush::dispatch($stories)->delay($time*60);
                                     }
                                 else
                                     {
-                                        Dispatcher::dispatch($stories)->onQueue($stories->id);
-                                        TelegramPush::dispatch($stories)->onQueue($stories->id);
+                                        $TD     =   Dispatcher::dispatch($stories)->onQueue($stories->id);
+                                        $TT     =   TelegramPush::dispatch($stories)->onQueue($stories->id);
                                     }
+                                $stories->telegram_job_id   =   Meta::custom_dispatch($TT);
+                                $stories->dispatch_job_id   =   Meta::custom_dispatch($TD);
+                                $stories->save();
                                 return self::success('Notification','queued successfully',route('product.notification.index',$productid));
                             }
                         return self::fail('Notification', 'Failed to queue notification',route('product.notification.index',$productid));
@@ -138,16 +142,20 @@ class NotificationController extends Controller
 
                         if(!$this->pd($stories->publishdate))
                             {
-                                Dispatcher::dispatch($stories)->delay($time*60);
-                                TelegramPush::dispatch($stories)->delay($time*60);
+                                $TD     =   Dispatcher::dispatch($stories)->delay($time*60);
+                                $TT     =   TelegramPush::dispatch($stories)->delay($time*60);
 
                             }
                         else
                             {
-                                Dispatcher::dispatch($stories);
-                                TelegramPush::dispatch($stories);
+                                $TD     =   Dispatcher::dispatch($stories);
+                                $TT     =   TelegramPush::dispatch($stories);
 
                             }
+                        $stories->telegram_job_id   =   Meta::custom_dispatch($TT);
+                        $stories->dispatch_job_id   =   Meta::custom_dispatch($TD);
+                        $stories->save();
+
                         return self::success('Notification','requeued successfully',route('product.notification.index',$stories->product_id));
                     }
                 return self::fail('Notification', 'Failed to requeue notification, story not found',route('product.notification.index',$stories->product_id));

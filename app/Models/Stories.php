@@ -9,7 +9,7 @@ class Stories extends Model
     {
         use HasFactory;
 
-        protected $fillable = ['title', 'link', 'thumbnail', 'summary','product_id','user_id','publishdate','ttl','clicks'];
+        protected $fillable = ['title', 'link', 'thumbnail', 'summary','product_id','user_id','publishdate','ttl','clicks','telegram_job_id','dispatch_job_id'];
         public function product()
             {
                 return $this->belongsTo(Product::class);

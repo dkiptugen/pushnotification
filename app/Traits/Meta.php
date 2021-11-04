@@ -2,7 +2,7 @@
 
 
 namespace App\Traits;
-
+use \Illuminate\Contracts\Bus\Dispatcher;
 
 trait Meta
     {
@@ -17,7 +17,7 @@ trait Meta
                             'logo'          =>  'assets/img/logo.png'
                         ];
             }
-    public static function success($title,$message,$redirecturl="") : array
+        public static function success($title,$message,$redirecturl="") : array
             {
                 return  [
                             'status'    =>  TRUE,
@@ -35,6 +35,11 @@ trait Meta
                             'header'    =>  $title,
                             'url'       =>  $redirecturl
                         ];
+            }
+
+        public static  function custom_dispatch($job): int
+            {
+                return app(Dispatcher::class)->dispatch($job);
             }
 
     }
