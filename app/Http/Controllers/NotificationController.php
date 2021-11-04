@@ -71,7 +71,7 @@ class NotificationController extends Controller
                                 $time   =   $to->diffInMinutes($from);
                                 //Log::info('TIME : '.Carbon::createFromFormat('Y-m-d h:i a', $request->publishdate)->format('Y-m-d H:i:s'));
                                 //dd($time);
-                                if($this->pd($stories->publishdate))
+                                if(!$this->pd($stories->publishdate))
                                     {
                                         Dispatcher::dispatch($stories)->delay($time*60);
                                         TelegramPush::dispatch($stories)->delay($time*60);
@@ -133,9 +133,9 @@ class NotificationController extends Controller
                         $to     =   Carbon::parse($stories->publishdate);
                         $from   =   Carbon::now();
                         $time   =   $to->diffInMinutes($from);
-                        Log::info('TIME : '.$this->pd($stories->publishdate));
+                        //Log::info('TIME : '.$this->pd($stories->publishdate));
                         //dd($time);
-                        if($this->pd($stories->publishdate))
+                        if(!$this->pd($stories->publishdate))
                             {
                                 $d  =Dispatcher::dispatch($stories)->delay($time*60);
                                 $tp =TelegramPush::dispatch($stories)->delay($time*60);
