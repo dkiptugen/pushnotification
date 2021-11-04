@@ -82,9 +82,9 @@ class NotificationController extends Controller
                                         $TD     =   Dispatcher::dispatch($stories)->onQueue($stories->id);
                                         $TT     =   TelegramPush::dispatch($stories)->onQueue($stories->id);
                                     }
-                                $stories->telegram_job_id   =   $TT;
+                              /*  $stories->telegram_job_id   =   $TT;
                                 $stories->dispatch_job_id   =   $TD;
-                                $stories->save();
+                                $stories->save();*/
                                 return self::success('Notification','queued successfully',route('product.notification.index',$productid));
                             }
                         return self::fail('Notification', 'Failed to queue notification',route('product.notification.index',$productid));
@@ -152,9 +152,9 @@ class NotificationController extends Controller
                                 $TT     =   TelegramPush::dispatch($stories);
 
                             }
-                        $stories->telegram_job_id   =   $TT;
+                     /*   $stories->telegram_job_id   =   $TT;
                         $stories->dispatch_job_id   =   $TD;
-                        $stories->save();
+                        $stories->save();*/
 
                         return self::success('Notification','requeued successfully',route('product.notification.index',$stories->product_id));
                     }
