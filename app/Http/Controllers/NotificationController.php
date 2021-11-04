@@ -293,7 +293,7 @@ class NotificationController extends Controller
                                 $nestedData['product']          =   $post->product->name;
                                 $nestedData['action']           =   "<a href='".route('product.notification.edit',[$post->product_id,$post->id])."' class='text text-dark mr-2'><i class='fas fa-edit'></i></a>
                                                                     <a href='".route('product.notification.redo',[$post->product_id,$post->id])."' class='text text-dark'><i class='fas fa-redo-alt'></i></a>
-                                                                    <a href='".route('product.notification.destroy',[$post->product_id,$post->id])."' class='text text-dark'><i class='fas fa-close'></i></a>";
+                                                                    <a href='".route('product.notification.destroy',[$post->product_id,$post->id])."' class='text text-dark'><i class='fas fa-trash-alt'></i></a>";
                                 $data[] = $nestedData;
                                 $pos++;
                             }
