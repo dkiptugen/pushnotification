@@ -22,6 +22,7 @@
                             <th>Author</th>
                             <th>status</th>
                             <th>Product</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,6 +40,7 @@
                             <th>Author</th>
                             <th>status</th>
                             <th>Product</th>
+                            <th>Action</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -70,8 +72,8 @@
                 { "data": "onschedule" },
                 { "data": "author" },
                 { "data": "status" },
-                { "data": "product" }
-
+                { "data": "product" },
+                { "data": "action" }
             ],
             "order": [[ 0, "desc" ]]
         });

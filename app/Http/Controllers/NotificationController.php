@@ -200,8 +200,12 @@ class NotificationController extends Controller
                                     0   =>  'id',
                                     1   =>  'title',
                                     2   =>  'created_at',
-                                    3   =>  'user_id',
-                                    4   =>  'status'
+                                    3   =>  'deliveries',
+                                    4   =>  'clicks',
+                                    5   =>  'publishdate',
+                                    6   =>  'publishdate',
+                                    7   =>  'user_id',
+                                    8   =>  'status'
 
                                 );
 
@@ -258,7 +262,8 @@ class NotificationController extends Controller
                                 $nestedData['author']           =   $post->user->name;
                                 $nestedData['status']           =   ($post->status == 2)?"sent":(($post->status == 1)?'picked':'pending');
                                 $nestedData['product']          =   $post->product->name;
-
+                                $nestedData['action']           =   "<a href='".route('product.edit',$post->id)."' class='text text-dark'><i class='fas fa-edit'></i></a>
+                                                                    <a href='".route('product.edit',$post->id)."' class='text text-dark'><i class='fas fa-redo-alt'></i></a>";
                                 $data[] = $nestedData;
                                 $pos++;
                             }
