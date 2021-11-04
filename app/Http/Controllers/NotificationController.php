@@ -139,13 +139,13 @@ class NotificationController extends Controller
                             {
                                 $d  =Dispatcher::dispatch($stories)->delay($time*60);
                                 $tp =TelegramPush::dispatch($stories)->delay($time*60);
-                                Log::info(json_encode($tp));
+                                Log::info(json_encode($tp).'Wait');
                             }
                         else
                             {
                                 $d  = Dispatcher::dispatch($stories);
                                 $tp = TelegramPush::dispatch($stories);
-                                Log::info(json_encode($tp));
+                                Log::info(json_encode($tp).'immediate');
                             }
                         return self::success('Notification','requeued successfully',route('product.notification.index',$stories->product_id));
                     }
