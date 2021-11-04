@@ -3,7 +3,7 @@
 <div class="col-12">
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h3 class="d-flex"><div class="text-danger  text-uppercase"> {{ $product->domain }} &nbsp; </div>  Add Notification</h3>
+            <h3 class="d-flex"><div class="text-danger  text-uppercase"> {{ $product->domain }} &nbsp; </div>  Edit Notification</h3>
         </div>
         <div class="card-body">
             <form action="{{ route('product.notification.edit',[$product->id,$story->id]) }}" class="create-form form form-horizontal" method="POST">
