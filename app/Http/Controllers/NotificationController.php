@@ -145,8 +145,9 @@ class NotificationController extends Controller
                                 Dispatcher::dispatch($stories);
                                 TelegramPush::dispatch($stories);
                             }
+                        return self::success('Notification','requeued successfully',route('product.notification.index',$stories->product_id));
                     }
-
+                return self::fail('Notification', 'Failed to requeue notification, story not found',route('product.notification.index',$stories->product_id));
             }
         /**
          * Remove the specified resource from storage.
