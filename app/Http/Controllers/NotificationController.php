@@ -122,9 +122,28 @@ class NotificationController extends Controller
             {
                 //
             }
-        public function redo(Request $request, $id)
+        public function redo(Request $request, $product,$notification)
             {
-                //
+                $stories    =   Stories::find($notification);
+                if(!is_null($stories))
+                    {
+                        $to     =   Carbon::createFromFormat('Y-m-d h:i a', $stories->publishdate);
+                        $from   =   Carbon::now();
+                        $time   =   $to->diffInMinutes($from);
+                        //Log::info('TIME : '.Carbon::createFromFormat('Y-m-d h:i a', $request->publishdate)->format('Y-m-d H:i:s'));
+                        //dd($time);
+                        if($this->pd($stories->publishdate))
+                            {
+                                Dispatcher::dispatch($stories)->delay($time*60);
+                                TelegramPush::dispatch($stories)->delay($time*60);
+                            }
+                        else
+                            {
+                                Dispatcher::dispatch($stories);
+                                TelegramPush::dispatch($stories);
+                            }
+                    }
+
             }
         /**
          * Remove the specified resource from storage.
