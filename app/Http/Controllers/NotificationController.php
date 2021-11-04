@@ -109,7 +109,7 @@ class NotificationController extends Controller
         public function edit($productid,$id)
             {
                 $this->data['product']  =   Product::find($productid);
-                $this->data['story']    =   Stories::find('id');
+                $this->data['story']    =   Stories::find($id);
                 return view('modules.posts.edit',$this->data);
             }
 
