@@ -72,7 +72,6 @@ class PushNotifications extends Notification implements ShouldQueue
             $initial    =   $this->generate($user->name);
             $title      =   $this->notificationData->title;
             $thumbnail  =   $this->notificationData->thumbnail;
-
             $url        =   $this->notificationData->link."?utm_source=".$initial."&utm_medium=BoxAlert&utm_campaign=".$this->notificationData->title;
             $body       =   $this->notificationData->summary;
             $icon       =   url($this->notificationData->product->logo);
