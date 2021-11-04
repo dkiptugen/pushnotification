@@ -33,7 +33,7 @@ Route::group([ 'role'=>['admin','audit'],'middleware'=>['auth','domain', 'auth.r
     Route::resource('product.notification',\App\Http\Controllers\NotificationController::class);
     Route::get('/product/{product}/notification/push',[App\Http\Controllers\NotificationController::class, 'push'])->name('product.notification.push');
     Route::post('/product/{product}/notification/get',[App\Http\Controllers\NotificationController::class, 'get'])->name('product.notification.datatable');
-    Route::post('/product/{product}/notification/redo',[App\Http\Controllers\NotificationController::class, 'redo'])->name('product.notification.redo');
+    Route::post('/product/{product}/notification/{notification}/redo',[App\Http\Controllers\NotificationController::class, 'redo'])->name('product.notification.redo');
 
     Route::resource('product',\App\Http\Controllers\ProductsController::class);
     Route::post('/products/get',[\App\Http\Controllers\ProductsController::class,'get'])->name('product.datatable');
