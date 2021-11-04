@@ -126,7 +126,7 @@ class NotificationController extends Controller
             {
 
 
-                Log::debug($notification);
+                Log::debug($product);
                 $stories    =   Stories::find($notification);
                 if(!is_null($stories))
                     {
