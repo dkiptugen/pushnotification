@@ -124,6 +124,9 @@ class NotificationController extends Controller
             }
         public function redo(Request $request, $product,$notification)
             {
+
+
+                Log::debug($notification);
                 $stories    =   Stories::find($notification);
                 if(!is_null($stories))
                     {
