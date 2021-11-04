@@ -133,19 +133,18 @@ class NotificationController extends Controller
                         $to     =   Carbon::parse($stories->publishdate);
                         $from   =   Carbon::now();
                         $time   =   $to->diffInMinutes($from);
-                        //Log::info('TIME : '.$this->pd($stories->publishdate));
-                        //dd($time);
+
                         if(!$this->pd($stories->publishdate))
                             {
-                                $d  =Dispatcher::dispatch($stories)->delay($time*60);
-                                $tp =TelegramPush::dispatch($stories)->delay($time*60);
-                                Log::info(json_encode($tp).'Wait');
+                                Dispatcher::dispatch($stories)->delay($time*60);
+                                TelegramPush::dispatch($stories)->delay($time*60);
+
                             }
                         else
                             {
-                                $d  = Dispatcher::dispatch($stories);
-                                $tp = TelegramPush::dispatch($stories);
-                                Log::info(json_encode($tp).'immediate');
+                                Dispatcher::dispatch($stories);
+                                TelegramPush::dispatch($stories);
+
                             }
                         return self::success('Notification','requeued successfully',route('product.notification.index',$stories->product_id));
                     }

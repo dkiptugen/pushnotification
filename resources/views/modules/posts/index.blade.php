@@ -75,7 +75,7 @@
                 { "data": "product" },
                 { "data": "action" }
             ],
-            "order": [[ 0, "desc" ]]
+            "order": [[ 5, "desc" ]]
         });
     </script>
 @endsection
