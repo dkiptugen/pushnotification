@@ -28,7 +28,7 @@
                 <div class="form-group form-row">
                     <div class="col-12 col-md">
                        {{-- <label for="ttl" class="control-label">TTL</label>--}}
-                        <input type="number" name="ttl" id="ttl" class="form-control" value="15" min="1">
+                        <input type="number" name="ttl" id="ttl" class="form-control inactive" value="15" min="1" >
                         <small class="text">Period of which the notification will stay active in days. Default is <strong>15 days</strong>.</small>
                     </div>
                     <div class="col-12 col-md">
