@@ -3,7 +3,7 @@
     <div class="card" aria-labelledby="add-role" id="edit-role-collapse">
         <div class="card-header">Edit Role</div>
         <div class="card-body">
-            <form action="{{ url('backend/user/roles/'.$role->id) }}" method="post" class="form form-horizontal create-form" enctype="multipart/form-data">
+            <form action="{{ route('user.roles.update',[0,$role->id]) }}" method="post" class="form form-horizontal create-form" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-group form-row">
