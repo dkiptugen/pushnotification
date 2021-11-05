@@ -39,7 +39,7 @@ class Dispatcher implements ShouldQueue
                 Log::info($this->data->product_id);
 
                 Guest::where('product_id',$this->data->product_id)
-                    ->chunk(1500, function ($subscriptions) {
+                    ->chunk(2000, function ($subscriptions) {
                         if(!is_null($subscriptions))
                             {
                                 foreach ($subscriptions as $subscription)

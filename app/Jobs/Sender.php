@@ -41,17 +41,16 @@ class Sender implements ShouldQueue
                 $response   =   Stories::find($this->msgid);
                 $Dispatch   =   Dispatch::where('story_id',$this->msgid)
                                         ->where('status',0)
-                                        ->chunkById(1500, function ($dispatches) use($response)
+                                        ->chunkById(2000, function ($dispatches) use($response)
                                             {
                                                  foreach ($dispatches as $dispatch)
                                                     {
                                                         Notification::send($dispatch->guest, new PushNotifications($response,$dispatch->guest));
+                                                        $x  =   Dispatch::find($dispatch->id);
+                                                        $x->update(['status' => 1]);
                                                         $response->increment('deliveries');
                                                         $response->save();
                                                     }
-                                                 $dispatches->each->update(['status' => 1]);
-
-
                                             }, $column = 'id');
                 $response->status = 2;
                 $response->save();
