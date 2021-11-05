@@ -3,7 +3,7 @@
     <section class="col py-3">
         <div class="accordion" id="accordionExample">
             <div class="card">
-                <div class="card-header" id="headingOne">
+                <div class="card-header bg-dark" id="headingOne">
                     <h2 class="mb-0">
                         <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             5 Nov 2021
