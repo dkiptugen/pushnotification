@@ -16,7 +16,7 @@
 
                             <li class="list-group-item">
                                 <a href="" class="text text-dark">
-                                    <span class="badge badge-danger">12:30</span>Lorem ipsum
+                                    <span class="badge badge-danger mr-3">12:30</span>Lorem ipsum
                                     dolor sit amet, consectetur adipisicing elit. Architecto atque harum molestiae
                                     recusandae tempora tenetur.
                                 </a>
