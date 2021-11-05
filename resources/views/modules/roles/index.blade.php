@@ -1,6 +1,6 @@
 @extends('includes.body')
 @section('content')
-    <div class="col-12">
+    <div class="col-8">
 
 
             <div class="card" id="view-table" aria-labelledby="view-table" >
