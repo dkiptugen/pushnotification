@@ -9,6 +9,7 @@ class Permission_Role extends Model
     {
         use HasFactory;
         protected $table = 'permission_role';
+        public $timestamps = FALSE;
         public function role()
             {
                 return $this->belongsTo(Role::class);
