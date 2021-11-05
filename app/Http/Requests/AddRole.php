@@ -24,8 +24,8 @@ class AddRole extends FormRequest
         public function rules()
             {
                 return [
-                            'name'          =>  ['required'],
-                            'description'   =>  ['nullable']
+                            'role'          =>  ['required'],
+                            'perm'          =>  ['nullable']
                 ];
             }
     }
