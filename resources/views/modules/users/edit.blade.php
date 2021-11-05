@@ -40,6 +40,12 @@
                         </div>
 
                     </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="1" name="status" id="active">
+                        <label class="form-check-label" for="active">
+                            Active
+                        </label>
+                    </div>
                     <div class="form-group form-row">
                         <button type="submit" class="btn  btn-dark ml-auto">Edit User</button>
                     </div>
