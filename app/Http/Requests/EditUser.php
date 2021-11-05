@@ -26,8 +26,8 @@ class EditUser extends FormRequest
                 return  [
                             'name'          =>  ['required'],
                             'email'         =>  ['required'],
-                            'password'      =>  ['required_with:con_password','same:con_password'],
-                            'con_password'  =>  ['required','min:6']
+                            'password'      =>  ['nullable','same:con_password'],
+                            'con_password'  =>  ['nullable','min:6']
                         ];
             }
     }
