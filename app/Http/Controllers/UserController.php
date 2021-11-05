@@ -91,7 +91,7 @@ class UserController extends Controller
          *
          * @param  \Illuminate\Http\Request  $request
          * @param  int  $id
-         * @return \Illuminate\Http\Response
+         * @return array|\Illuminate\Http\Response
          */
         public function update(EditUser $request, $id)
             {
@@ -102,7 +102,8 @@ class UserController extends Controller
                         $user           =   User::find($id);
                         $user->email    =   strtolower($request->email);
                         $user->name     =   $request->name;
-                        $user->password =   Hash::make($request->password);
+                        if($request->hasAny(['password','con_password']))
+                            $user->password =   Hash::make($request->password);
                         $user->status   =   $request->status??0;
                         $user->role_id  =   $request->role;
                         $usr            =   $user->save();
