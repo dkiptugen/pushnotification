@@ -12,9 +12,9 @@ class EditRole extends FormRequest
      * @return bool
      */
     public function authorize()
-    {
-        return false;
-    }
+        {
+            return true;
+        }
 
     /**
      * Get the validation rules that apply to the request.
@@ -24,7 +24,8 @@ class EditRole extends FormRequest
     public function rules()
     {
         return [
-            //
+            'role'          =>  ['required'],
+            'perm'          =>  ['nullable']
         ];
     }
 }
