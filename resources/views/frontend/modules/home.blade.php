@@ -1,6 +1,6 @@
 @extends('frontend.includes.body')
 @section('content')
-    <section class="col">
+    <section class="col py-3">
         <div class="accordion" id="accordionExample">
             <div class="card">
                 <div class="card-header" id="headingOne">
