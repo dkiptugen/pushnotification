@@ -189,7 +189,7 @@ class RolesController extends Controller
                                 $nestedData['pos']          =   $x;
                                 $nestedData['name']         =   $post->name;
                                 $nestedData['access']       =   Sdata::getperm($post->id) ;
-                                $nestedData['action']       =   '<a href="'.url('backend/user/permissions/'.$post->id).'" class="edit-role text-muted"><i class="fas fa-edit"></i></a>';
+                                $nestedData['action']       =   '<a href="'.route('user.roles.edit',[0,$post->id]).'" class="edit-role text-muted"><i class="fas fa-edit"></i></a>';
                                 $data[]                     =   $nestedData;
                                 $x++;
                             }
