@@ -125,7 +125,7 @@ class RolesController extends Controller
                                     foreach($request->perm as $value)
                                         {
                                             $pr                 =   new Permission_Role();
-                                            $pr->role_id        =   $request->id;
+                                            $pr->role_id        =   $id;
                                             $pr->permission_id  =   $value;
                                             $pr->save();
                                         }
