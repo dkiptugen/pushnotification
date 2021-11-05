@@ -2,7 +2,7 @@
 @section('content')
     <section class="col py-3">
         <div class="accordion" id="accordionExample">
-            <div class="card">
+            <div class="card bg-light">
                 <div class="card-header bg-dark" id="headingOne">
                     <h2 class="mb-0">
                         <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -21,25 +21,25 @@
                                     recusandae tempora tenetur.
                                 </a>
                             </li>
-                            <li class="list-group-item"><a href=""  class="text text-dark"><span class="badge badge-danger">12:28</span>Illo laboriosam
+                            <li class="list-group-item"><a href=""  class="text text-dark"><span class="badge badge-danger mr-3">12:28</span>Illo laboriosam
                                     odit officia quia ut. Deserunt exercitationem expedita fuga maiores nemo numquam soluta
                                     vitae.</a></li>
-                            <li class="list-group-item"><a href=""  class="text text-dark"><span class="badge badge-danger">12:23</span>At consequatur
+                            <li class="list-group-item"><a href=""  class="text text-dark"><span class="badge badge-danger mr-3">12:23</span>At consequatur
                                     eos fugiat fugit illo illum ipsa natus odit optio, pariatur rem, reprehenderit
                                     saepe?</a></li>
-                            <li class="list-group-item"><a href=""  class="text text-dark"><span class="badge badge-danger">12:00</span>Aliquid atque,
+                            <li class="list-group-item"><a href=""  class="text text-dark"><span class="badge badge-danger mr-3">12:00</span>Aliquid atque,
                                     autem deserunt dolores eligendi harum, illum inventore laborum nemo officiis quidem
                                     recusandae tempore?</a></li>
-                            <li class="list-group-item"><a href=""  class="text text-dark"><span class="badge badge-danger">11:53</span>Alias
+                            <li class="list-group-item"><a href=""  class="text text-dark"><span class="badge badge-danger mr-3">11:53</span>Alias
                                     blanditiis commodi dicta fuga obcaecati quasi totam! Accusamus asperiores at culpa, nisi
                                     optio similique!</a></li>
-                            <li class="list-group-item"><a href=""  class="text text-dark"><span class="badge badge-danger">11:49</span>Atque cum
+                            <li class="list-group-item"><a href=""  class="text text-dark"><span class="badge badge-danger mr-3">11:49</span>Atque cum
                                     dolores eligendi est excepturi impedit, inventore molestias omnis pariatur porro, quis
                                     repellat veniam.</a></li>
-                            <li class="list-group-item"><a href=""  class="text text-dark"><span class="badge badge-danger">11:30</span>Atque doloribus
+                            <li class="list-group-item"><a href=""  class="text text-dark"><span class="badge badge-danger mr-3">11:30</span>Atque doloribus
                                     esse et, ex excepturi non quas quia quidem reiciendis repellendus similique, sunt
                                     suscipit.</a></li>
-                            <li class="list-group-item"><a href=""  class="text text-dark"><span class="badge badge-danger">11:00</span>Amet animi dicta
+                            <li class="list-group-item"><a href=""  class="text text-dark"><span class="badge badge-danger mr-3">11:00</span>Amet animi dicta
                                     dolor, nulla odio, pariatur perferendis porro quia quisquam rerum soluta sunt totam.</a>
                             </li>
                         </ul>
