@@ -83,10 +83,9 @@ class PushNotifications extends Notification implements ShouldQueue
                         ->title($title)
                         ->icon($thumbnail)
                         ->body(strip_tags($body))
-                        ->options(['TTL'=>$ttl,'via'=>$this->notificationData->product->domain,'vibrate'=>[100,50,100]])
                         ->action('Read More', 'view_notification')
                         ->image($thumbnail)
-                        ->data(['url' => $url]);
+                        ->data(['url' => $url,'ttl'=>$ttl,'id'=>$this->notificationData->id,'via'=>$this->notificationData->product->domain,'vibrate'=>[100,50,100]]);
                 }
             else
                 {
@@ -94,10 +93,9 @@ class PushNotifications extends Notification implements ShouldQueue
                         ->title($title)
                         ->icon($icon)
                         ->body(strip_tags($body))
-                        ->options(['TTL'=>$ttl,'via'=>$this->notificationData->product->domain,'vibrate'=>[100,50,100]])
                         ->action('Read More', 'view_notification')
                         ->image($thumbnail)
-                        ->data(['url' => $url]);
+                        ->data(['url' => $url,'ttl'=>$ttl,'id'=>$this->notificationData->id,'via'=>$this->notificationData->product->domain,'vibrate'=>[100,50,100]]);
                 }
 
 
