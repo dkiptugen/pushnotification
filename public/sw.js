@@ -19,7 +19,7 @@ self.addEventListener('notificationclick', function(event) {
             self.clients.openWindow(event.notification.data);
         if (response === 'view_notification')
             {
-
+                console.log(event.notification);
                 fetch('https://alert.boxraft.net/api/click', {
                     method: 'POST',
                     body: JSON.parse('{"id":"'+event.notification.id+'"}'),
@@ -61,7 +61,7 @@ self.addEventListener('push', function (e) {
             icon: msg.icon,
             image:msg.image,
             ttl:msg.ttl,
-            actions: msg.actions,
+            actions: msg.action,
             data: msg.data.url
         }));
     }
