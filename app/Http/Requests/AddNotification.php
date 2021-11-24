@@ -32,7 +32,7 @@ class AddNotification extends FormRequest
                                     ->where('product_id',$request->product_id)
                                     ->where('title',$request->title);
                             })],
-                            'link'          =>  ['required','unique:stories,link'],
+                            'link'          =>  ['required'],
                             'thumbnail'     =>  'required',
                             'summary'       =>  'nullable',
                             'ttl'           =>  'nullable',
