@@ -66,18 +66,42 @@ Route::group([ 'role'=>['admin','audit'],'middleware'=>['auth','domain', 'auth.r
     Route::post('/logs/export',[\App\Http\Controllers\LogsController::class,'export'])->name('logs.export');
 
     Route::prefix('jobs')->group(function(){
+
         Route::get('/failed',[\App\Http\Controllers\JobsController::class,'failed'])->name('jobs.failed');
         Route::post('/failed/get',[\App\Http\Controllers\JobsController::class,'get_failed'])->name('jobs.failed_datatable');
+
         Route::get('/queued',[\App\Http\Controllers\JobsController::class,'queued'])->name('jobs.queued');
         Route::post('/queued/get',[\App\Http\Controllers\JobsController::class,'get_queued'])->name('jobs.queued_datatable');
     });
 
     Route::prefix('prime')->group(function(){
+
         Route::resource('prime-content', \App\Http\Controllers\Prime\ContentController::class);
         Route::post('prime-content/get',[\App\Http\Controllers\Prime\ContentController::class,'get'])->name('prime-content.datatable');
+
         Route::resource('prime-subscribers',\App\Http\Controllers\Prime\SubscriptionController::class);
         Route::post('prime-subscribers/get',[\App\Http\Controllers\Prime\SubscriptionController::class,'get'])->name('prime-subscribers.datatable');
+
         Route::resource('prime-transactions',\App\Http\Controllers\Prime\TransactionController::class);
         Route::post('prime-transactions/get',[\App\Http\Controllers\Prime\TransactionController::class,'get'])->name('prime-transactions.datatable');
     });
+
+    Route::prefix('newsletter')->group(function(){
+
+        Route::resource('newsletter_product',\App\Http\Controllers\Newsletter\ProductController::class);
+        Route::post('product/get',[\App\Http\Controllers\Newsletter\ProductController::class,'get'])->name('newsletter_product.datatable');
+
+        Route::resource('newsletter_product_type',\App\Http\Controllers\Newsletter\ProductTypeController::class);
+        Route::post('product_type/get',[\App\Http\Controllers\Newsletter\ProductTypeController::class,'get'])->name('newsletter_product_type.datatable');
+
+        Route::resource('newsletter_subscription',\App\Http\Controllers\Newsletter\SubscriptionController::class);
+        Route::post('subscription/get',[\App\Http\Controllers\Newsletter\SubscriptionController::class,'get'])->name('newsletter_subscription.datatable');
+
+        Route::resource('newsletter_template',\App\Http\Controllers\Newsletter\TemplateController::class);
+        Route::post('template/get',[\App\Http\Controllers\Newsletter\TemplateController::class,'get'])->name('newsletter_template.datatable');
+
+        Route::resource('newsletter_content',\App\Http\Controllers\Newsletter\ContentController::class);
+        Route::post('content/get',[\App\Http\Controllers\Newsletter\ContentController::class,'get'])->name('newsletter_content.datatable');
+    });
+
 });

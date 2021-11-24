@@ -22,7 +22,7 @@ class UsersSeeder extends Seeder
                 'email'             =>  'info@kenyans.co.ke',
                 'password'          =>  bcrypt('15442'), // password
                 'email_verified_at' =>  now()->format('Y-m-d H:i:s'),
-                'active'            =>  1,
+                'status'            =>  1,
                 'remember_token'    =>  Str::random(10)
 
 

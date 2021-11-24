@@ -22,7 +22,7 @@ class CreateStoriesTable extends Migration
             $table->unsignedBigInteger('product_id');
             $table->bigInteger('deliveries')->default(0);
             $table->tinyInteger('status')->default(0);
-            $table->timestamp('publishdate')->default('CURRENT_TIMESTAMP');
+            $table->timestamp('publishdate');
             $table->bigInteger('clicks')->default(0);
             $table->integer('ttl')->default(15);
             $table->unsignedBigInteger('user_id');

@@ -76,6 +76,41 @@
                     </a>
                 </li>
                 <li class="sidebar-header">
+                    Newsletter
+                </li>
+                <li class="sidebar-item">
+                    <a href="{{ route('newsletter_product_type.index') }}" class="font-weight-bold sidebar-link">
+                        <i class="align-middle fas fa-users" ></i>
+                        <span class="align-middle">Products Type</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="{{ route('newsletter_product.index') }}" class="font-weight-bold sidebar-link">
+                        <i class="align-middle fas fa-users" ></i>
+                        <span class="align-middle">Products</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="{{ route('newsletter_subscription.index') }}" class="font-weight-bold sidebar-link">
+                        <i class="align-middle fas fa-users" ></i>
+                        <span class="align-middle">Subscriptions</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="{{ route('newsletter_template.index') }}" class="font-weight-bold sidebar-link">
+                        <i class="align-middle fas fa-cash-register" ></i>
+                        <span class="align-middle">Template</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="{{ route('newsletter_content.index') }}" class="font-weight-bold sidebar-link">
+                        <i class="align-middle fas fa-book" ></i>
+                        <span class="align-middle">Newsletter</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-header">
                     Administration
                 </li>
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductsTable extends Migration
+class CreateNewsletterGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('newsletter_groups', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('newsletter_product_id');
+            $table->unsignedBigInteger('newsletter_product_type_id');
             $table->string('name');
-            $table->string('domain');
-            $table->bigInteger('subscriptions')->default(0);
-            $table->text('logo')->default('assets/img/logo.jpg');
-            $table->string('telegram_channel',100)->nullable();
-            $table->longText('telegram_access_token')->nullable();
-            $table->unsignedBigInteger('user_id');
+            $table->timestamp('publishdate');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
@@ -34,6 +31,6 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('newsletter_groups');
     }
 }
