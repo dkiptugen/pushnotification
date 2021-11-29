@@ -14,7 +14,7 @@ class TemplateController extends Controller
      */
     public function index()
     {
-        //
+        return view('modules.newsletter.template.index', $this->data);
     }
 
     /**
