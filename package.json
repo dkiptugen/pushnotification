@@ -10,8 +10,8 @@
         "production": "mix --production"
     },
     "devDependencies": {
-        "axios": "^0.21",
-        "laravel-mix": "^6.0.29",
+        "axios": "^0.21.4",
+        "laravel-mix": "^6.0.39",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
         "sass": "^1.36.0",
@@ -23,12 +23,12 @@
         "@fortawesome/fontawesome-free": "^5.15.3",
         "@popperjs/core": "^2.9.2",
         "apexcharts": "^3.27.3",
-        "bootstrap": "^4.6.0",
+        "bootstrap": "^4.6.1",
         "bootstrap-daterangepicker": "3.0.3",
         "bootstrap-markdown": "2.10.0",
         "chart.js": "^2.9.4",
-        "datatables.net": "^1.10.25",
-        "datatables.net-bs4": "1.10.19",
+        "datatables.net": "^1.11.3",
+        "datatables.net-bs4": "^1.11.3",
         "datatables.net-buttons": "1.5.4",
         "datatables.net-buttons-bs4": "1.5.4",
         "datatables.net-responsive": "2.2.3",
@@ -44,6 +44,7 @@
         "smartwizard": "4.3.1",
         "summernote": "^0.8.18",
         "tempusdominus-bootstrap-4": "5.1.2",
+        "tempusdominus-core": "^5.19.0",
         "toastr": "2.1.4"
     }
 }
