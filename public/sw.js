@@ -12,58 +12,77 @@ self.addEventListener('notificationclick', function(event) {
     }).then(function(clientList) {
         for (var i = 0; i < clientList.length; i++) {
             var client = clientList[i];
-            if (client.url == '/' && 'focus' in client)
+            if (client.url === '/' && 'focus' in client)
                 return client.focus();
         }
         if (clients.openWindow)
             self.clients.openWindow(event.notification.data);
         if (response === 'view_notification')
-            {
-                console.log(event.notification);
-                fetch('https://alert.boxraft.net/api/click', {
-                    method: 'POST',
-                    body: JSON.parse('{"id":"'+event.notification.id+'"}'),
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    }
+        {
+            fetch('https://alert.boxraft.net/api/click', {
+                method: 'POST',
+                body: JSON.parse('{"id":"'+event.notification.id+'"}'),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then((res) => {
+                    return res.json();
                 })
-                    .then((res) => {
-                        return res.json();
-                    })
-                    .then((res) => {
-                        console.log(res)
-                    })
-                    .catch((err) => {
-                        console.log(err)
-                    });
-                self.clients.openWindow(event.notification.data);
-            }
+                .then((res) => {
+                    console.log(res)
+                })
+                .catch((err) => {
+                    console.log(err)
+                });
+
+            self.clients.openWindow(event.notification.data)
+        }
 
     }));
 
 });
 
 
-self.addEventListener('push', function (e) {
-    //console.log("push called")
+self.addEventListener('push', function (notifications) {
+    console.log("push called")
 
     if (!(self.Notification && self.Notification.permission === 'granted')) {
         //notifications aren't supported or permission not granted!
         return;
     }
 
+    const promiseChain = registration.getNotifications()
+        .then(notifications => {
+            let currentNotification;
+
+            for(let i = 0; i < notifications.length; i++)
+            {
+
+                currentNotification = notifications[i];
+
+            }
+
+            return currentNotification;
+        })
+        .then((currentNotification) => {
+            notifications.waitUntil(self.registration.showNotification(currentNotification.title, {
+                body: currentNotification.body,
+                icon: currentNotification.icon,
+                image:currentNotification.image,
+                actions: currentNotification.action,
+                data: currentNotification.data.url,
+                vibrate:currentNotification.data.vibrate,
+                requireInteraction:true,
+                id:currentNotification.data.id
+            }));
+        });
+
+
     if (e.data) {
-        var msg = e.data.json();
-        //console.log(msg)
-        e.waitUntil(self.registration.showNotification(msg.title, {
-            body: msg.body,
-            icon: msg.icon,
-            image:msg.image,
-            ttl:msg.ttl,
-            actions: msg.action,
-            data: msg.data.url
-        }));
+
+
     }
 });
 
