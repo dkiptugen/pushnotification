@@ -82,10 +82,7 @@ self.addEventListener('push', function (notifications) {
         });
 
 
-    if (e.data) {
 
-
-    }
 });
 
 self.addEventListener('fetch', (event) => {
