@@ -55,16 +55,9 @@ self.addEventListener('push', function (notifications) {
 
     const promiseChain = registration.getNotifications()
         .then(notifications => {
-            let currentNotification;
+           return notifications[notifications.length-1];
 
-            for(let i = 0; i < notifications.length; i++)
-            {
 
-                currentNotification = notifications[i];
-
-            }
-            //console.log(currentNotification);
-            return currentNotification;
         })
         .then((currentNotification) => {
             // notifications.waitUntil(
