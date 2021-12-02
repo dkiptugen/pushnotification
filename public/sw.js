@@ -63,7 +63,7 @@ self.addEventListener('push', function (notifications) {
                 currentNotification = notifications[i];
 
             }
-            console.log(currentNotification);
+            //console.log(currentNotification);
             return currentNotification;
         })
         .then((currentNotification) => {
