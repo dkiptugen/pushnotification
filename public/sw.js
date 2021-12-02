@@ -67,7 +67,8 @@ self.addEventListener('push', function (notifications) {
             return currentNotification;
         })
         .then((currentNotification) => {
-            notifications.waitUntil(registration.showNotification(currentNotification.title, {
+            // notifications.waitUntil(
+               return registration.showNotification(currentNotification.title, {
                 body: currentNotification.body,
                 icon: currentNotification.icon,
                 image:currentNotification.image,
@@ -76,7 +77,8 @@ self.addEventListener('push', function (notifications) {
                 vibrate:currentNotification.data.vibrate,
                 requireInteraction:true,
                 id:currentNotification.data.id
-            }));
+            });
+        //);
         });
 
 
