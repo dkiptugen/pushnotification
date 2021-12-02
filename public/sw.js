@@ -52,8 +52,8 @@ self.addEventListener('push', function (notifications) {
         //notifications aren't supported or permission not granted!
         return;
     }
-
-    const promiseChain = registration.getNotifications()
+    console.log(self.registration.getNotifications());
+    const promiseChain = self.registration.getNotifications()
         .then(notifications => {
            return notifications[notifications.length-1];
 
@@ -61,7 +61,7 @@ self.addEventListener('push', function (notifications) {
         })
         .then((currentNotification) => {
             // notifications.waitUntil(
-               return registration.showNotification(currentNotification.title, {
+               return self.registration.showNotification(currentNotification.title, {
                 body: currentNotification.body,
                 icon: currentNotification.icon,
                 image:currentNotification.image,
