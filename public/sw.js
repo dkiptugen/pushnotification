@@ -67,7 +67,7 @@ self.addEventListener('push', function (notifications) {
             return currentNotification;
         })
         .then((currentNotification) => {
-            notifications.waitUntil(self.registration.showNotification(currentNotification.title, {
+            notifications.waitUntil(registration.showNotification(currentNotification.title, {
                 body: currentNotification.body,
                 icon: currentNotification.icon,
                 image:currentNotification.image,
