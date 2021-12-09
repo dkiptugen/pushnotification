@@ -72,11 +72,13 @@ self.addEventListener('push', function (notifications) {
                 id:currentNotification.data.id
             });
         //);
+
         });
 
 
 
 });
+
 
 self.addEventListener('fetch', (event) => {
     event.respondWith(

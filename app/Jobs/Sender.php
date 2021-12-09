@@ -54,7 +54,9 @@ class Sender implements ShouldQueue
                                             }, $column = 'id');
                 $response->status = 2;
                 $response->save();
+                Dispatch::where('story_id',$this->msgid)
+                        ->delete();
 
-                Log::info($Dispatch);
+                //Log::info($Dispatch);
             }
     }

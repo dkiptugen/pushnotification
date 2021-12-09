@@ -36,7 +36,7 @@ class Dispatcher implements ShouldQueue
          */
         public function handle()
             {
-                Log::info($this->data->product_id);
+                //Log::info($this->data->product_id);
 
                 Guest::where('product_id',$this->data->product_id)
                     ->chunk(2000, function ($subscriptions) {

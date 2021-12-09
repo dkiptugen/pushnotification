@@ -76,7 +76,7 @@ class PushNotifications extends Notification implements ShouldQueue
             $body       =   $this->notificationData->summary;
             $icon       =   url($this->notificationData->product->logo);
             $ttl        =   $this->notificationData->ttl??(3600*24*30);
-            Log::info(json_encode($this->notificationData));
+            //Log::info(json_encode($this->notificationData));
             if (preg_match("/\bmozilla\b/i",$this->guest))
                 {
                     return  (new WebPushMessage())
@@ -85,7 +85,8 @@ class PushNotifications extends Notification implements ShouldQueue
                         ->body(strip_tags($body))
                         ->action('Read More', 'view_notification')
                         ->image($thumbnail)
-                        ->data(['url' => $url,'ttl'=>$ttl,'id'=>$this->notificationData->id,'via'=>$this->notificationData->product->domain,'vibrate'=>[100,50,100]]);
+                        ->data(['url' => $url])
+                        ->options(['ttl'=>$ttl,'id'=>$this->notificationData->id,'via'=>$this->notificationData->product->domain,'vibrate'=>[100,50,100]]);
                 }
             else
                 {
@@ -95,7 +96,8 @@ class PushNotifications extends Notification implements ShouldQueue
                         ->body(strip_tags($body))
                         ->action('Read More', 'view_notification')
                         ->image($thumbnail)
-                        ->data(['url' => $url,'ttl'=>$ttl,'id'=>$this->notificationData->id,'via'=>$this->notificationData->product->domain,'vibrate'=>[100,50,100]]);
+                        ->data(['url' => $url])
+                        ->options(['ttl'=>$ttl,'id'=>$this->notificationData->id,'via'=>$this->notificationData->product->domain,'vibrate'=>[100,50,100]]);
                 }
 
 
