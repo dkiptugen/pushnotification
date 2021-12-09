@@ -76,7 +76,7 @@ class PushNotifications extends Notification implements ShouldQueue
             $body       =   $this->notificationData->summary;
             $icon       =   url($this->notificationData->product->logo);
             $ttl        =   $this->notificationData->ttl??(3600*24*30);
-            //Log::info(json_encode($this->notificationData));
+            Log::info(json_encode($this->notificationData));
             if (preg_match("/\bmozilla\b/i",$this->guest))
                 {
                     return  (new WebPushMessage())
