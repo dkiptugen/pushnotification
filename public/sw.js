@@ -19,7 +19,7 @@ self.addEventListener('notificationclick', function(event) {
             self.clients.openWindow(event.notification.data);
         if (response === 'view_notification')
         {
-            fetch('https://alert.boxraft.net/api/click', {
+            fetch('http://localhost/notification/api/click', {
                 method: 'POST',
                 body: JSON.parse('{"id":"'+event.notification.id+'"}'),
                 headers: {
@@ -45,35 +45,37 @@ self.addEventListener('notificationclick', function(event) {
 });
 
 
-self.addEventListener('push', function (notifications) {
-    console.log("push called")
-
+self.addEventListener('push', event => {
+    console.log("push called");
     if (!(self.Notification && self.Notification.permission === 'granted')) {
         //notifications aren't supported or permission not granted!
         return;
     }
-    console.log(self.registration.getNotifications());
-    const promiseChain = self.registration.getNotifications()
-        .then(notifications => {
-           return notifications[notifications.length-1];
+    const data = event.data.json();
+    console.log(event);
 
+    try {
+            event.waitUntil(
+                    self.registration.showNotification(data.title, {
+                        body: data.body,
+                        icon: data.icon,
+                        image: data.image,
+                        actions: [{
+                            action: 'not-action',
+                            title: 'Read story'
+                        }],
+                        data: data.data.url,
+                        vibrate: data.data.vibrate,
+                        requireInteraction: true,
+                        id: data.data.id
 
-        })
-        .then((currentNotification) => {
-            // notifications.waitUntil(
-               return self.registration.showNotification(currentNotification.title, {
-                body: currentNotification.body,
-                icon: currentNotification.icon,
-                image:currentNotification.image,
-                actions: currentNotification.action,
-                data: currentNotification.data.url,
-                vibrate:currentNotification.data.vibrate,
-                requireInteraction:true,
-                id:currentNotification.data.id
-            });
-        //);
+                    })
+        );
+    }
+    catch (e) {
+        console.log(e);
+    }
 
-        });
 
 
 

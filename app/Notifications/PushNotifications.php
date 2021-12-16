@@ -45,8 +45,9 @@ class PushNotifications extends Notification implements ShouldQueue
     {
         return [WebPushChannel::class];
     }
-    public function generate(string $name) : string
+    public function generate(string $name = 'Aston Martin')
         {
+            Log::error($name);
             $words = explode(' ', $name);
             if (count($words) >= 2)
                 {
@@ -69,7 +70,8 @@ class PushNotifications extends Notification implements ShouldQueue
     public function toWebPush($notifiable, $notification)
         {
             $user       =   User::find($this->notificationData->user_id);
-            $initial    =   $this->generate($user->name);
+            $initial    =   $this->generate($user->first_name.''.$user->last_name);
+            Log::info($user->first_name.''.$user->last_name.'\n');
             $title      =   $this->notificationData->title;
             $thumbnail  =   $this->notificationData->thumbnail;
             $url        =   $this->notificationData->link."?utm_source=".$initial."&utm_medium=BoxAlert&utm_campaign=".$this->notificationData->title;
@@ -85,8 +87,7 @@ class PushNotifications extends Notification implements ShouldQueue
                         ->body(strip_tags($body))
                         ->action('Read More', 'view_notification')
                         ->image($thumbnail)
-                        ->data(['url' => $url])
-                        ->options(['ttl'=>$ttl,'id'=>$this->notificationData->id,'via'=>$this->notificationData->product->domain,'vibrate'=>[100,50,100]]);
+                        ->data(['url' => $url,'ttl'=>$ttl,'id'=>$this->notificationData->id,'via'=>$this->notificationData->product->domain,'vibrate'=>[100,50,100]]);
                 }
             else
                 {
@@ -96,8 +97,7 @@ class PushNotifications extends Notification implements ShouldQueue
                         ->body(strip_tags($body))
                         ->action('Read More', 'view_notification')
                         ->image($thumbnail)
-                        ->data(['url' => $url])
-                        ->options(['ttl'=>$ttl,'id'=>$this->notificationData->id,'via'=>$this->notificationData->product->domain,'vibrate'=>[100,50,100]]);
+                        ->data(['url' => $url,'ttl'=>$ttl,'id'=>$this->notificationData->id,'via'=>$this->notificationData->product->domain,'vibrate'=>[100,50,100]]);
                 }
 
 

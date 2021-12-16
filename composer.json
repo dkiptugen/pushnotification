@@ -11,6 +11,7 @@
         "php": "^7.3|^8.0",
         "ext-curl": "*",
         "ext-json": "*",
+        "ext-openssl": "*",
         "ext-pdo": "*",
         "ext-simplexml": "*",
         "fideloper/proxy": "^4.4",
@@ -23,9 +24,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
         "predis/predis": "^1.1",
-        "rinvex/laravel-widgets": "^5.0",
-        "spatie/laravel-activitylog": "^4.1",
-      "ext-openssl": "*"
+        "spatie/laravel-activitylog": "^3.17"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

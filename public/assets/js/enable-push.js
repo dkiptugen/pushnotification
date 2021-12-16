@@ -15,7 +15,7 @@ function initSW() {
     }
 
     //register the service worker
-    navigator.serviceWorker.register('/sw.js', {
+    navigator.serviceWorker.register('http://localhost/notification/sw.js', {
         scope: '/'
 
     }).then(function(registration) {
@@ -64,7 +64,7 @@ function subscribeUser() {
                 userVisibleOnly: true,
                 applicationServerKey: urlBase64ToUint8Array(
 
-                    'BJwnak-5rLh_Fd2Mm3S0DKPcASSU64p_tfM5Q_cWHNEDN0bvFy7GENtwG38MWp8Ii2y8r6oGXG4wzNYCmvPeoJ8'
+                    'BPzeNrMPKavdDVrUtN1xn9Gvo88zHiN3QIfpgbLK0uwc5w8UC2F6P7E7vvoBSFroGbkdr1lZdhJeCGPBQjgCBKE'
                 )
             };
             console.log(subscribeOptions);
@@ -97,7 +97,7 @@ function storePushSubscription(pushSubscription) {
     //const token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
 
 
-    fetch('https://alert.boxraft.net/api/subscribe', {
+    fetch('http://localhost/notification/api/subscribe', {
         method: 'POST',
         body: JSON.stringify(pushSubscription),
         headers: {
