@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/test',[\App\Http\Controllers\CitizenRssController::class,'index']);
+Route::get('/rss',[\App\Http\Controllers\CitizenRssController::class,'index']);
 //Authentication routes
 Auth::routes(['register' => false]);
 Route::prefix('prime')->group(static function(){
