@@ -85,21 +85,23 @@ class PushNotifications extends Notification implements ShouldQueue
                         ->title($title)
                         ->icon($thumbnail)
                         ->body(strip_tags($body))
+                        ->badge(asset('assets/img/badge.png'))
                         ->action('Read More', 'view_notification')
                         ->image($thumbnail)
-                        ->data(['url' => $url,'id'=>$this->notificationData->id])
-                        ->options(['TTL'=>0,'via'=>$this->notificationData->product->domain,'vibrate'=>[100,50,100]]);
+                        ->options(['via'=>$this->notificationData->product->domain,'TTL' => 60])
+                        ->data(['url' => $url,'ttl'=>$ttl,'id'=>$this->notificationData->id,'vibrate'=>[100,50,100]]);
                 }
             else
                 {
                     return  (new WebPushMessage())
                         ->title($title)
                         ->icon($icon)
+                        ->badge(asset('assets/img/badge.png'))
                         ->body(strip_tags($body))
                         ->action('Read More', 'view_notification')
                         ->image($thumbnail)
-                        ->data(['url' => $url,'id'=>$this->notificationData->id])
-                        ->options(['TTL'=>0,'via'=>$this->notificationData->product->domain,'vibrate'=>[100,50,100]]);
+                        ->options(['TTL' => 60,'via'=>$this->notificationData->product->domain])
+                        ->data(['url' => $url,'ttl'=>$ttl,'id'=>$this->notificationData->id,'vibrate'=>[100,50,100]]);
                 }
 
 
