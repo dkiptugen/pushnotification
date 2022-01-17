@@ -10,6 +10,9 @@ class TestController extends Controller
         public function feed()
             {
                $xml = simplexml_load_string(file_get_contents('https://citizen.digital/sitemap.xml'));
-               dd($xml);
+               foreach($xml as $value)
+               {
+                   echo $value->loc.'</br>';
+               }
             }
     }
