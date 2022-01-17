@@ -22,11 +22,12 @@ class TestController extends Controller
 
                                 $crawler->filter('div.article-content')->each(function ($node)
                                    {
-                                         dd($node->text());
+                                         dump($node->text());
                                    });
                            }
 
                             echo $value->loc.' : '.(int)str_replace('-n','',$match[0]).'</br>';
+                       break;
 
                    }
             }
