@@ -25,19 +25,19 @@ class CitizenRssController extends Controller
 
                                 $d[$x]['content'] = $crawler->filter('.the-content ')->each(function ($node)
                                 {
-                                    return strip_tags($node->html(),'<p><br><h4><h3><h1><h2><h5><h6><a>');
+                                    return strip_tags($node->html(),'<p><br><h4><h3><h1><h2><h5><h6><a>')[0];
                                 });
                                 $d[$x]['title'] = $crawler->filter('h2.page-title ')->each(function ($node)
                                 {
-                                    return (string)$node->text();
+                                    return (string)$node->text()[0];
                                 });
                                 $d[$x]['author'] = $crawler->filter('.authorinfo a')->each(function ($node)
                                 {
-                                    return (string)$node->text();
+                                    return (string)$node->text()[0];
                                 });
                                 $d[$x]['time'] = $crawler->filter('.datepublished')->each(function ($node)
                                 {
-                                    return (string)date("D, d M Y H:i:s T", strtotime(str_replace('Published on: ','',$node->text())));
+                                    return (string)date("D, d M Y H:i:s T", strtotime(str_replace('Published on: ','',$node->text()[0])));
                                 });
                                 $d[$x]['id']  =   (int)str_replace('-n','',$match[0]);
                                 $d[$x]['link']    =    (string)$value->loc;
