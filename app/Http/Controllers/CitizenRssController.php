@@ -14,8 +14,9 @@ class CitizenRssController extends Controller
             {
                 $d= [];
                 $xmlx = simplexml_load_string(file_get_contents('https://citizen.digital/sitemap.xml'));
-                dd($xmlx);
-                $xmlx->chunk(2,function ($xml){
+
+                $xml = array_chunk($xmlx,30);
+                dd($xml);
                     $x = 0;
                     foreach($xml as $value) {
                         preg_match('/\-n[0-9]+/', $value->loc, $match);
