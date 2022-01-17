@@ -23,7 +23,7 @@ class TestController extends Controller
                                 $crawler->filter('div.article-content')->each(function ($node)
                                    {
                                        print  $node->filter('h2.pafe_title').text();
-                                   }
+                                   });
                            }
 
                             echo $value->loc.' : '.(int)str_replace('-n','',$match[0]).'</br>';
