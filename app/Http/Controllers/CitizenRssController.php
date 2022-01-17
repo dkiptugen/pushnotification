@@ -43,7 +43,7 @@ class CitizenRssController extends Controller
 
                             }
 
-
+                        break;
 
                     }
                 return collect($d);
