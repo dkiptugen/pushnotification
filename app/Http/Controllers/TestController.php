@@ -36,7 +36,7 @@ class TestController extends Controller
                                    });
                                $d['time'] = $crawler->filter('.datepublished')->each(function ($node)
                                {
-                                   return Carbon::parse(str_replace('Published on:  ','',$node->text()))->timestamp();
+                                   return Carbon::parse(str_replace('Published on:  ','',$node->text()))->timestamp;
                                });
                                 dump($d);
                            }
