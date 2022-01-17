@@ -13,10 +13,10 @@ class CitizenRssController extends Controller
         public function feed()
             {
                 $d= [];
-                $xmlx = simplexml_load_string(file_get_contents('https://citizen.digital/sitemap.xml'));
+                $xml = simplexml_load_string(file_get_contents('https://citizen.digital/sitemap.xml'));
 
-                $xml = array_chunk((array)$xmlx[0]["url"],30,TRUE);
-                dd($xml);
+
+                dd(collect($xml));
                     $x = 0;
                     foreach($xml as $value) {
                         preg_match('/\-n[0-9]+/', $value->loc, $match);
