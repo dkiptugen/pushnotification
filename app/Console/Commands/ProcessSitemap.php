@@ -66,9 +66,8 @@ class ProcessSitemap extends Command
                                     $author = $crawler->filter('.authorinfo a')->each(function ($node) {
                                         return $node->text();
                                     });
-                                    $time = $crawler->filter('.datepublished')->each(function ($node) {
-                                        return Carbon::parse(str_replace('Published on: ', '', $node->text()))->timezone('Africa/Nairobi')->format("D, d M Y H:i:s T");
-                                    });
+                                    $time =  Carbon::parse($value->lastmod)->timezone('Africa/Nairobi')->format("D, d M Y H:i:s T");
+
 
                                     $link = (string)$value->loc;
 
@@ -77,7 +76,7 @@ class ProcessSitemap extends Command
                                     $info->id = $id;
                                     $info->title = $title[0];
                                     $info->content = $content[0];
-                                    $info->time = $time[0];
+                                    $info->time = $time;
                                     $info->author = $author[0];
                                     $info->link = $link;
                                     $info->save();
