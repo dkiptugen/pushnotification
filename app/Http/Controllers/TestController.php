@@ -11,8 +11,10 @@ class TestController extends Controller
             {
                $xml = simplexml_load_string(file_get_contents('https://citizen.digital/sitemap.xml'));
                foreach($xml as $value)
-               {
-                   echo $value->loc.'</br>';
-               }
+                   {
+                       preg_match('/\-n[0-9]+/',$value->loc,$match);
+                       if(isset($match[0]))
+                            echo $value->loc.'</br>';
+                   }
             }
     }
