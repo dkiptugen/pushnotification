@@ -14,7 +14,7 @@ class TestController extends Controller
                    {
                        preg_match('/\-n[0-9]+/',$value->loc,$match);
                        if(isset($match[0]))
-                            echo $value->loc.'</br>';
+                            echo $value->loc.' : '.$match[0].'</br>';
                    }
             }
     }
