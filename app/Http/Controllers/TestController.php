@@ -22,7 +22,7 @@ class TestController extends Controller
 
                                 $crawler->filter('div.article-content')->each(function ($node)
                                    {
-                                         dd($node);
+                                         dd($node.filter('h2.page-title'));
                                    });
                            }
 
