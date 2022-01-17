@@ -43,8 +43,8 @@ class CitizenRssController extends Controller
                                 $d[$x]['link']    =    (string)$value->loc;
                                 $x++;
                             }
-
-                        break;
+                        if($x==2)
+                            break;
 
                     }
                 return collect($d);
