@@ -13,7 +13,8 @@ class CitizenRssController extends Controller
         public function feed()
             {
                 $d= [];
-                $xmlx = collect(simplexml_load_string(file_get_contents('https://citizen.digital/sitemap.xml')));
+                $xmlx = array_chunk(simplexml_load_string(file_get_contents('https://citizen.digital/sitemap.xml')),2);
+                dd($xmlx);
                 $xmlx->chunk(2,function ($xml){
                     $x = 0;
                     foreach($xml as $value) {
@@ -41,14 +42,14 @@ class CitizenRssController extends Controller
                         }
 
                     }
-                    dd($d);
+                    return collect($d);
                 });
 
 
             }
         public function index()
             {
-
+               $this->feed();
 
                 $xml = "<rss version='2.0'>" . PHP_EOL;
                 $xml .= "<channel>" .PHP_EOL;
