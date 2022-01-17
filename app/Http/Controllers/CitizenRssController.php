@@ -15,7 +15,7 @@ class CitizenRssController extends Controller
                 $d= [];
                 $xmlx = simplexml_load_string(file_get_contents('https://citizen.digital/sitemap.xml'));
 
-                $xml = collect($xmlx)->chunk(30);
+                $xml = array_chunk((array)$xmlx,30)
                 dd($xml);
                     $x = 0;
                     foreach($xml as $value) {
