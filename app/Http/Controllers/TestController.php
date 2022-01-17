@@ -21,11 +21,11 @@ class TestController extends Controller
 
                                 $crawler = $client->request('GET', $value->loc);
 
-                                $crawler->filter('.the-content ')->each(function ($node,$d)
+                                $content = $crawler->filter('.the-content ')->each(function ($node,$d)
                                    {
-                                         $d['content'] = strip_tags($node->html(),'<p><br><h4><h3><h1><h2><h5><h6><a>');
+                                         return strip_tags($node->html(),'<p><br><h4><h3><h1><h2><h5><h6><a>');
                                    });
-                                dump($d);
+                                dump($content);
                            }
 
                             echo $value->loc.' : '.(int)str_replace('-n','',$match[0]).'</br>';
