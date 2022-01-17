@@ -21,7 +21,7 @@ class TestController extends Controller
 
                                 $crawler = $client->request('GET', $value->loc);
 
-                                $crawler->filter('.the-content ')->each(function ($node)
+                                $crawler->filter('.the-content ')->each(function ($node,$d)
                                    {
                                          $d['content'] = strip_tags($node->html(),'<p><br><h4><h3><h1><h2><h5><h6><a>');
                                    });
