@@ -13,7 +13,7 @@ class CitizenRssController extends Controller
         public function feed()
             {
                 $d= [];
-                $xmlx = array_chunk(simplexml_load_string(file_get_contents('https://citizen.digital/sitemap.xml')),2);
+                $xmlx = simplexml_load_string(file_get_contents('https://citizen.digital/sitemap.xml'));
                 dd($xmlx);
                 $xmlx->chunk(2,function ($xml){
                     $x = 0;
