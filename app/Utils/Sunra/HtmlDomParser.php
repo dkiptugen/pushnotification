@@ -2,7 +2,7 @@
 
 namespace App\Utils\Sunra;
 
-use App\Utils\Sunra\simple_html_dom;
+require( App\Utils\Sunra\simple_html_dom);
 
 class HtmlDomParser {
 
