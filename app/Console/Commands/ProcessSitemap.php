@@ -82,11 +82,7 @@ class ProcessSitemap extends Command
                                     $info->link = $link;
                                     $info->save();
                                 }
-                            else
-                                {
 
-                                    return 'no new record';
-                                }
                         }
 
 
