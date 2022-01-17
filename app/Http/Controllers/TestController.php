@@ -16,7 +16,7 @@ class TestController extends Controller
                        preg_match('/\-n[0-9]+/',$value->loc,$match);
                        if(isset($match[0]))
                            {
-                               $content = HtmlDomParser::file_get_html($value->loc);
+                               $content = HtmlDomParser::str_get_html($value->loc);
                                foreach($content->find('div.article-content') as $val)
                                    {
                                        dd(val);
