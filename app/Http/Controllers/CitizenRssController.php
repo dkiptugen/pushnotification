@@ -29,15 +29,15 @@ class CitizenRssController extends Controller
                                 });
                                 $d[$x]['title'] = $crawler->filter('h2.page-title ')->each(function ($node)
                                 {
-                                    return $node->text();
+                                    return (string)$node->text();
                                 });
                                 $d[$x]['author'] = $crawler->filter('.authorinfo a')->each(function ($node)
                                 {
-                                    return $node->text();
+                                    return (string)$node->text();
                                 });
                                 $d[$x]['time'] = $crawler->filter('.datepublished')->each(function ($node)
                                 {
-                                    return date("D, d M Y H:i:s T", strtotime(str_replace('Published on: ','',$node->text())));
+                                    return (string)date("D, d M Y H:i:s T", strtotime(str_replace('Published on: ','',$node->text())));
                                 });
                                 $d[$x]['id']  =   (int)str_replace('-n','',$match[0]);
                                 $d[$x]['link']    =    (string)$value->loc;
