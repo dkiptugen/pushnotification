@@ -13,6 +13,7 @@ class CitizenRssController extends Controller
             {
                 $d= [];
                 $xml = simplexml_load_string(file_get_contents('https://citizen.digital/sitemap.xml'));
+                $x=0;
                 foreach($xml as $value)
                     {
                         preg_match('/\-n[0-9]+/',$value->loc,$match);
@@ -22,25 +23,25 @@ class CitizenRssController extends Controller
                                 $client = new Client();
                                 $crawler = $client->request('GET', $value->loc);
 
-                                $d[]['content'] = $crawler->filter('.the-content ')->each(function ($node)
+                                $d[$x]['content'] = $crawler->filter('.the-content ')->each(function ($node)
                                 {
                                     return strip_tags($node->html(),'<p><br><h4><h3><h1><h2><h5><h6><a>');
                                 });
-                                $d[]['title'] = $crawler->filter('h2.page-title ')->each(function ($node)
+                                $d[$x]['title'] = $crawler->filter('h2.page-title ')->each(function ($node)
                                 {
                                     return $node->text();
                                 });
-                                $d[]['author'] = $crawler->filter('.authorinfo a')->each(function ($node)
+                                $d[$x]['author'] = $crawler->filter('.authorinfo a')->each(function ($node)
                                 {
                                     return $node->text();
                                 });
-                                $d[]['time'] = $crawler->filter('.datepublished')->each(function ($node)
+                                $d[$x]['time'] = $crawler->filter('.datepublished')->each(function ($node)
                                 {
                                     return date("D, d M Y H:i:s T", strtotime(str_replace('Published on: ','',$node->text())));
                                 });
-                                $d[]['id']  =   (int)str_replace('-n','',$match[0]);
-                                $d[]['link']    =    $value->loc[0];
-
+                                $d[$x]['id']  =   (int)str_replace('-n','',$match[0]);
+                                $d[$x]['link']    =    $value->loc;
+                                $x++;
                             }
 
                         break;
