@@ -19,6 +19,7 @@ class TestController extends Controller
                                $content = HtmlDomParser::file_get_html($value->loc);
                                foreach($content->find('div.article-content') as $val)
                                    {
+                                       dd(val);
                                        $details["title"]			= 	strip_tags($val->getElementByTagName("h2")->innertext);
                                    }
                            }
