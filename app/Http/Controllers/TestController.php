@@ -17,6 +17,7 @@ class TestController extends Controller
                        if(isset($match[0]))
                            {
                                $content = HtmlDomParser::file_get_html($value->loc, false, null, 0);
+                               dd($content);
                                foreach($content->find('div.article-content') as $val)
                                    {
                                        dd(val);
