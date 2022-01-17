@@ -41,7 +41,7 @@ class CitizenRssController extends Controller
                             $d[$x]['link'] = (string)$value->loc;
                             $x++;
                         }
-                        if($x == 9)
+                        if($x == 50)
                             break;
 
                     }
