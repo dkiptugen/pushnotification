@@ -36,7 +36,7 @@ class TestController extends Controller
                                    });
                                $d['time'] = $crawler->filter('.datepublished')->each(function ($node)
                                {
-                                   return str_replace('Published on:  ','',$node->text());
+                                   return str_replace('Published on: ','',$node->text());
                                });
                                 dump($d);
                            }
