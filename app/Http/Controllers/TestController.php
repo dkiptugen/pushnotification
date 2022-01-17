@@ -22,7 +22,7 @@ class TestController extends Controller
 
                                 $crawler->filter('.the-content ')->each(function ($node)
                                    {
-                                         dump($node->html());
+                                         dump(strip_tags($node->html(),'<span>'));
                                    });
                            }
 
