@@ -52,7 +52,7 @@ class CitizenRssController extends Controller
             }
         public function index()
             {
-                dd($this->feed()->flatten(1));
+                dd($this->feed()->flatten(2));
 
                 $xml = "<rss version='2.0'>" . PHP_EOL;
                 $xml .= "<channel>" .PHP_EOL;
