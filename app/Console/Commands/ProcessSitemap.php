@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Info;
+use Carbon\Carbon;
 use Goutte\Client;
 use Illuminate\Console\Command;
 
@@ -66,7 +67,7 @@ class ProcessSitemap extends Command
                                         return $node->text();
                                     });
                                     $time = $crawler->filter('.datepublished')->each(function ($node) {
-                                        return date("D, d M Y H:i:s T", strtotime(str_replace('Published on: ', '', $node->text())));
+                                        return Carbon::parse(str_replace('Published on: ', '', $node->text()))->timezone('Africa/Nairobi')->format("D, d M Y H:i:s T");
                                     });
 
                                     $link = (string)$value->loc;
