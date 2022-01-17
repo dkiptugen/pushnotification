@@ -22,7 +22,7 @@ class TestController extends Controller
 
                                 $crawler->filter('.the-content p')->each(function ($node)
                                    {
-                                         dump($node->text());
+                                         dump($node);
                                    });
                            }
 
