@@ -67,7 +67,7 @@ class ProcessSitemap extends Command
                                         return $node->text();
                                     });
                                     $time = $crawler->filter('.datepublished')->each(function ($node) {
-                                        return Carbon::createFromFormat('F d,Y h:m T',str_replace('Published on: ', '', $node->text()))->format("D, d M Y H:i:s T");
+                                        return Carbon::parse(str_replace('Published on: ', '', $node->text()))->format("D, d M Y H:i:s T");
                                     });
 
                                     $link = (string)$value->loc;
