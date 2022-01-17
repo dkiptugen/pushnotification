@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Utils\Sunra\HtmlDomParser;
+use Sunra\PhpSimple\HtmlDomParser;
 use App\Utils\TelegramPost;
 use Illuminate\Http\Request;
 
