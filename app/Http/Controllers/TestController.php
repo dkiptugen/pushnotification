@@ -21,7 +21,7 @@ class TestController extends Controller
                            }
 
                             echo $value->loc.' : '.(int)str_replace('-n','',$match[0]).'</br>';
-                       die();
+                       break;
                    }
             }
     }
