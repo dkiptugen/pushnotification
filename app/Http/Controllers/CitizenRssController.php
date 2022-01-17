@@ -16,7 +16,7 @@ class CitizenRssController extends Controller
                 $xml = simplexml_load_string(file_get_contents('https://citizen.digital/sitemap.xml'));
 
 
-                dd($xml->xpath('array'));
+
                     $x = 0;
                     foreach($xml as $value) {
                         preg_match('/\-n[0-9]+/', $value->loc, $match);
@@ -41,6 +41,8 @@ class CitizenRssController extends Controller
                             $d[$x]['link'] = (string)$value->loc;
                             $x++;
                         }
+                        if($x == 9)
+                            break;
 
                     }
                     return collect($d);
