@@ -20,7 +20,7 @@ class CitizenRssController extends Controller
                 $xml .= "<title>Citizen.digital | RSS</title>" . PHP_EOL;
                 $xml .= "<description>Citizen Digital feed RSS</description>";
                 $xml .= "<language>en-us</language>" . PHP_EOL;
-                foreach(Info::orderBy('time','desc')->limit(100)->get() as $value)
+                foreach(Info::orderBy('id','desc')->limit(100)->get() as $value)
                     {
                         $xml .= "<item xmlns:dc='ns:1'>" . PHP_EOL;
                         $xml .= "<title><![CDATA[" . $value->title . "]]></title>" . PHP_EOL;
