@@ -44,7 +44,7 @@ class CitizenRssController extends Controller
 
                     }
                     return collect($d);
-                });
+
 
 
             }
