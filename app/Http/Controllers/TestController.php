@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Goutte\Client;
 use App\Utils\TelegramPost;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class TestController extends Controller
     {
@@ -33,6 +34,10 @@ class TestController extends Controller
                                    {
                                        return $node->text();
                                    });
+                               $d['time'] = $crawler->filter('.datepublished')->each(function ($node)
+                               {
+                                   return Carbon::parse(str_replace('Published on:  ','',$node->text()))->timestamp();
+                               });
                                 dump($d);
                            }
 
