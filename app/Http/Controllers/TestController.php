@@ -20,7 +20,7 @@ class TestController extends Controller
 
                                 $crawler = $client->request('GET', $value->loc);
 
-                                $crawler->filter('div.article-content')->each(function ($node)
+                                $crawler->filter('h2.page-title')->each(function ($node)
                                    {
                                          dump($node->text());
                                    });
