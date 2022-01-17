@@ -16,16 +16,11 @@ class TestController extends Controller
                        preg_match('/\-n[0-9]+/',$value->loc,$match);
                        if(isset($match[0]))
                            {
-                               $content = HtmlDomParser::file_get_html($value->loc);
-                               dd($content);
-                               foreach($content->find('div.article-content') as $val)
-                                   {
-                                       dd(val);
-                                       $details["title"]			= 	strip_tags($val->getElementByTagName("h2")->innertext);
-                                   }
+                               $fdff = simplexml_load_string(file_get_contents('https://citizen.digital/sitemap.xml'));
+                               dd($fdff);
                            }
 
-                            echo $value->loc.' : '.(int)str_replace('-n','',$match[0]).' - '.$details["title"].'</br>';
+                            echo $value->loc.' : '.(int)str_replace('-n','',$match[0]).'</br>';
                    }
             }
     }
