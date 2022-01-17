@@ -25,19 +25,19 @@ class CitizenRssController extends Controller
 
                                 $d[$x]['content'] = $crawler->filter('.the-content ')->each(function ($node)
                                 {
-                                    return strip_tags($node->html(),'<p><br><h4><h3><h1><h2><h5><h6><a>')[0];
+                                    return strip_tags($node->html(),'<p><br><h4><h3><h1><h2><h5><h6><a>');
                                 });
                                 $d[$x]['title'] = $crawler->filter('h2.page-title ')->each(function ($node)
                                 {
-                                    return (string)$node->text()[0];
+                                    return $node->text();
                                 });
                                 $d[$x]['author'] = $crawler->filter('.authorinfo a')->each(function ($node)
                                 {
-                                    return (string)$node->text()[0];
+                                    return $node->text();
                                 });
                                 $d[$x]['time'] = $crawler->filter('.datepublished')->each(function ($node)
                                 {
-                                    return (string)date("D, d M Y H:i:s T", strtotime(str_replace('Published on: ','',$node->text()[0])));
+                                    return date("D, d M Y H:i:s T", strtotime(str_replace('Published on: ','',$node->text())));
                                 });
                                 $d[$x]['id']  =   (int)str_replace('-n','',$match[0]);
                                 $d[$x]['link']    =    (string)$value->loc;
@@ -52,7 +52,7 @@ class CitizenRssController extends Controller
             }
         public function index()
             {
-                dd($this->feed());
+                dd($this->feed()[0]['title']);
 
                 $xml = "<rss version='2.0'>" . PHP_EOL;
                 $xml .= "<channel>" .PHP_EOL;
