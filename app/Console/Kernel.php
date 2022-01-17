@@ -16,8 +16,9 @@ class Kernel extends ConsoleKernel
         Commands\DailyPushNotifications::class,
         Commands\QueueNotifications::class,
         Commands\EpaperOfTheDay::class,
+        Commands\ProcessSitemap::class
 
-        
+
     ];
 
     /**

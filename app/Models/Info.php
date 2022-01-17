@@ -10,4 +10,5 @@ class Info extends Model
     use HasFactory;
     protected $connection   =   'sqlite';
     protected $table        =   'info';
+    public $timestamps      =   false;
 }
