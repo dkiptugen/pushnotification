@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Sunra\PhpSimple\HtmlDomParser;
+use Goutte\Client;
 use App\Utils\TelegramPost;
 use Illuminate\Http\Request;
 
@@ -16,12 +16,18 @@ class TestController extends Controller
                        preg_match('/\-n[0-9]+/',$value->loc,$match);
                        if(isset($match[0]))
                            {
-                               $fdff = simplexml_load_string(file_get_contents($value->loc));
-                               dd($fdff);
+                               $client = new Client();
+
+                                $crawler = $client->request('GET', $value->loc);
+
+                                $crawler->filter('div.article-content')->each(function ($node)
+                                   {
+                                       print  $node->filter('h2.pafe_title').text();
+                                   }
                            }
 
                             echo $value->loc.' : '.(int)str_replace('-n','',$match[0]).'</br>';
-                       break;
+
                    }
             }
     }
