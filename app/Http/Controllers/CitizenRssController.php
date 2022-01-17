@@ -39,7 +39,7 @@ class CitizenRssController extends Controller
                                     return date("D, d M Y H:i:s T", strtotime(str_replace('Published on: ','',$node->text())));
                                 });
                                 $d[]['id']  =   (int)str_replace('-n','',$match[0]);
-                                $d[]['link']    =    $value->loc;
+                                $d[]['link']    =    $value->loc[0];
 
                             }
 
