@@ -7,15 +7,9 @@ use Illuminate\Http\Request;
 
 class TestController extends Controller
     {
-        public function telegram()
+        public function feed()
             {
-                $t  =   new TelegramPost([  'title'                 =>  '',
-                                            'telegram_access_token' =>  '',
-                                            'telegram_channel'      =>  '',
-                                            'image'                 =>  '',
-                                            'url'                   =>  '',
-                                            'content'               =>  ''
-                                        ]);
-                $t->post_data();
+               $xml = simplexml_load_string(file_get_contents('https://citizen.digital/sitemap.xml'));
+               dd($xml);
             }
     }

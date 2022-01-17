@@ -8,6 +8,7 @@ def link(x):
     r = s.get(x)
     r.html.render(sleep=1)
     news = r.html.xpath('/html/body/div/div/div/main/div/div[10]', first=True)
+
     for item in news.absolute_links:
         r = s.get(item)
         title = r.html.find('h2.page-title', first=True).text
