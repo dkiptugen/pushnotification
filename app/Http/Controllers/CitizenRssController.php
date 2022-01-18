@@ -26,7 +26,7 @@ class CitizenRssController extends Controller
                         $xml .= "<title><![CDATA[" . $value->title . "]]></title>" . PHP_EOL;
                         $xml .= "<description><![CDATA[" . $value->content . "]]></description>" . PHP_EOL;
                         $xml .= "<link>" . $value->loc . "</link>" . PHP_EOL;
-                        $xml .= "<guid>" . md5(rand(0, 1000)) . "</guid>" . PHP_EOL;
+                        $xml .= "<guid>" . md5($value->title) . "</guid>" . PHP_EOL;
                         $xml .= "<pubDate>" .$value->time . "</pubDate>" . PHP_EOL;
                         $xml .= "<dc:creator>" . $value->author . "</dc:creator>" . PHP_EOL;
                         $xml .= "</item>" . PHP_EOL;
