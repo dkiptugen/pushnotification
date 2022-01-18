@@ -3,6 +3,7 @@
 /public/storage
 /storage/*.key
 /public/uploads
+/database/citizeninfo.db
 /vendor
 .env
 .env.backup

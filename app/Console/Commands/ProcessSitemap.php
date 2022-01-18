@@ -58,7 +58,7 @@ class ProcessSitemap extends Command
                                     $crawler = $client->request('GET', $value->loc);
 
                                     $content = $crawler->filter('.the-content ')->each(function ($node) {
-                                        return strip_tags($node->html(), '<p><br><h4><h3><h1><h2><h5><h6><a>');
+                                        return \App\Traits\Meta::RenderArticle($node->html());
                                     });
                                     $title = $crawler->filter('h2.page-title ')->each(function ($node) {
                                         return $node->text();

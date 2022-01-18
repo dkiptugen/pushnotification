@@ -31,7 +31,6 @@ class CitizenRssController extends Controller
                         $xml .= "<dc:creator>" . $value->author . "</dc:creator>" . PHP_EOL;
                         $xml .= "</item>" . PHP_EOL;
 
-
                     }
 
                 $xml .= "</channel>".PHP_EOL;
