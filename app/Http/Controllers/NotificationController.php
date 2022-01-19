@@ -220,6 +220,7 @@ class NotificationController extends Controller
             }
         public function click(Request $request)
             {
+                //Log::error('feewwe: '.$request->all);
                 $story      =   Stories::find($request->id);
                 $story->increment('clicks');
                 $story->save();

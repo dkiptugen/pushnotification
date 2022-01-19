@@ -74,7 +74,8 @@ class PushNotifications extends Notification implements ShouldQueue
             Log::info($user->first_name.''.$user->last_name.'\n');
             $title      =   $this->notificationData->title;
             $thumbnail  =   $this->notificationData->thumbnail;
-            $url        =   $this->notificationData->link."?utm_source=".$initial."&utm_medium=BoxAlert&utm_campaign=".$this->notificationData->title;
+            $url        =   $this->notificationData->link;
+            $url       .=   (strpos($url, '?') ? '&' : '?') . http_build_query(['utm_source'=>$initial,'utm_medium'=>'BoxAlert','utm_campaign'=>$this->notificationData->title,'id'=>$this->notificationData->id]);
             $body       =   $this->notificationData->summary;
             $icon       =   url($this->notificationData->product->logo);
             $ttl        =   $this->notificationData->ttl??(3600*24*30);
@@ -89,7 +90,7 @@ class PushNotifications extends Notification implements ShouldQueue
                         ->action('Read More', 'view_notification')
                         ->image($thumbnail)
                         ->options(['via'=>$this->notificationData->product->domain,'TTL' => 60])
-                        ->data(['url' => $url,'ttl'=>$ttl,'id'=>$this->notificationData->id,'vibrate'=>[100,50,100]]);
+                        ->data(['url' => $url,'vibrate'=>[100,50,100]]);
                 }
             else
                 {
@@ -101,7 +102,7 @@ class PushNotifications extends Notification implements ShouldQueue
                         ->action('Read More', 'view_notification')
                         ->image($thumbnail)
                         ->options(['TTL' => 60,'via'=>$this->notificationData->product->domain])
-                        ->data(['url' => $url,'ttl'=>$ttl,'id'=>$this->notificationData->id,'vibrate'=>[100,50,100]]);
+                        ->data(['url' => $url,'vibrate'=>[100,50,100]]);
                 }
 
 
