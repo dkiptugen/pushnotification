@@ -13,7 +13,7 @@ class CreateNewsletterContentDetailsTable extends Migration
          */
         public function up()
             {
-                Schema::create('content_details', function (Blueprint $table) {
+                Schema::create('newsletter_content_details', function (Blueprint $table) {
                     $table->id();
                     $table->unsignedBigInteger('newsletter_content_id')->index();
                     $table->string('title');
@@ -32,6 +32,6 @@ class CreateNewsletterContentDetailsTable extends Migration
          */
         public function down()
             {
-                Schema::dropIfExists('content_details');
+                Schema::dropIfExists('newsletter_content_details');
             }
     }
