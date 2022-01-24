@@ -10,7 +10,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover">
+                    <table class="table table-striped table-hover" id="template-table">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -44,5 +44,26 @@
 
 @endsection
 @section('footer')
-
+    <script type="application/javascript">
+        $('#template-table').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "ajax":{
+                "url": "{{ route('newsletter-template.datatable') }}",
+                "dataType": "json",
+                "type": "POST",
+                "data":{ _token: "{{csrf_token()}}"}
+            },
+            "columns": [
+                { "data": "pos" },
+                { "data": "title" },
+                { "data": "product" },
+                { "data": "noofposts" },
+                { "data": "status" },
+                { "data": "createddate" },
+                { "data": "action" }
+            ],
+            "order": [[ 5, "desc" ]]
+        });
+    </script>
 @endsection
