@@ -3,7 +3,7 @@
     <div class="col">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h2 class="card-header">Subscriptions</h2>
+                <h2 class="card-title">Subscriptions</h2>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

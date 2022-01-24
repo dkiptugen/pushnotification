@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNewsletterUsersTable extends Migration
+class CreateNewsletterSubscriptionsTable extends Migration
     {
         /**
          * Run the migrations.
@@ -17,7 +17,7 @@ class CreateNewsletterUsersTable extends Migration
                     $table->id();
                     $table->string('email');
                     $table->tinyInteger('is_subscribed')->default(1);
-                    $table->unsignedBigInteger('newsletter_product_id');
+                    $table->unsignedBigInteger('product_id');
                     $table->timestamps();
                 });
             }

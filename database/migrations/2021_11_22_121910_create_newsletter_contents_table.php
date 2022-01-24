@@ -15,11 +15,10 @@ class CreateNewsletterContentsTable extends Migration
             {
                 Schema::create('newsletter_contents', function (Blueprint $table) {
                     $table->id();
-                    $table->unsignedBigInteger('newsletter_group_id');
                     $table->string('title');
-                    $table->text('link');
-                    $table->longText('summary');
-                    $table->integer('listorder');
+                    $table->unsignedBigInteger('newsletter_template_id')->index();
+                    $table->dateTime('send_time');
+                    $table->tinyInteger('status')->default(0);
                     $table->timestamps();
                 });
             }

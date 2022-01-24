@@ -15,8 +15,8 @@ class CreateNewsletterDispatchesTable extends Migration
             {
                 Schema::create('newsletter_dispatches', function (Blueprint $table) {
                     $table->id();
-                    $table->unsignedBigInteger('newsletter_group_id');
-                    $table->unsignedBigInteger('newsletter_user_id');
+                    $table->unsignedBigInteger('newsletter_content_id');
+                    $table->unsignedBigInteger('newsletter_subscription_id');
                     $table->tinyInteger('delivery')->default(0);
                     $table->timestamps();
                 });
