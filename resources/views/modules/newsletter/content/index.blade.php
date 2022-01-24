@@ -1,34 +1,33 @@
 @extends('includes.body')
 @section('content')
-    <div class="col">
+    <div class="col-12">
         <div class="card">
-            <div class="card-header d-flex justify-content-center align-items-center">
-                <h2 class="card-header">Subscriptions</h2>
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h2  class="card-title">Newsletter</h2>
+                <a class="btn btn-outline-dark btn-sm " href="">
+                    <i class="align-middle" data-feather="plus"></i> Add Newsletter
+                </a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-hover table-striped">
+                    <table class="table table-striped table-hover" id="newsletter-content-table">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Product</th>
+                                <th>Title</th>
+                                <th>Template</th>
+                                <th>Send Date</th>
                                 <th>Status</th>
-                                <th>Created At</th>
-                                <th>Updated At</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>#</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Product</th>
+                                <th>Title</th>
+                                <th>Template</th>
+                                <th>Send Date</th>
                                 <th>Status</th>
-                                <th>Created At</th>
-                                <th>Updated At</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>

@@ -1,8 +1,4 @@
 {
-    "/assets/js/app.js": "/assets/js/app.js",
-    "/assets/js/script.js": "/assets/js/script.js",
-    "/assets/css/app.css": "/assets/css/app.css",
-    "/assets/css/style.css": "/assets/css/style.css",
     "/assets/webfonts/fa-brands-400.eot": "/assets/webfonts/fa-brands-400.eot",
     "/assets/webfonts/fa-brands-400.svg": "/assets/webfonts/fa-brands-400.svg",
     "/assets/webfonts/fa-brands-400.ttf": "/assets/webfonts/fa-brands-400.ttf",
@@ -19,6 +15,7 @@
     "/assets/webfonts/fa-solid-900.woff": "/assets/webfonts/fa-solid-900.woff",
     "/assets/webfonts/fa-solid-900.woff2": "/assets/webfonts/fa-solid-900.woff2",
     "/assets/css/font/summernote.eot": "/assets/css/font/summernote.eot",
+    "/assets/css/font/summernote.hash": "/assets/css/font/summernote.hash",
     "/assets/css/font/summernote.ttf": "/assets/css/font/summernote.ttf",
     "/assets/css/font/summernote.woff": "/assets/css/font/summernote.woff",
     "/assets/css/font/summernote.woff2": "/assets/css/font/summernote.woff2"

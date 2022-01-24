@@ -89,20 +89,15 @@ Route::group([ 'role'=>['admin','audit'],'middleware'=>['auth','domain', 'auth.r
 
     Route::prefix('newsletter')->group(function(){
 
-        Route::resource('newsletter_product',\App\Http\Controllers\Newsletter\ProductController::class);
-        Route::post('product/get',[\App\Http\Controllers\Newsletter\ProductController::class,'get'])->name('newsletter_product.datatable');
 
-        Route::resource('newsletter_product_type',\App\Http\Controllers\Newsletter\ProductTypeController::class);
-        Route::post('product_type/get',[\App\Http\Controllers\Newsletter\ProductTypeController::class,'get'])->name('newsletter_product_type.datatable');
+        Route::resource('newsletter-subscription',\App\Http\Controllers\Newsletter\SubscriptionController::class);
+        Route::post('newsletter-subscription/get',[\App\Http\Controllers\Newsletter\SubscriptionController::class,'get'])->name('newsletter-subscription.datatable');
 
-        Route::resource('newsletter_subscription',\App\Http\Controllers\Newsletter\SubscriptionController::class);
-        Route::post('subscription/get',[\App\Http\Controllers\Newsletter\SubscriptionController::class,'get'])->name('newsletter_subscription.datatable');
+        Route::resource('newsletter-template',\App\Http\Controllers\Newsletter\TemplateController::class);
+        Route::post('newsletter-template/get',[\App\Http\Controllers\Newsletter\TemplateController::class,'get'])->name('newsletter-template.datatable');
 
-        Route::resource('newsletter_template',\App\Http\Controllers\Newsletter\TemplateController::class);
-        Route::post('template/get',[\App\Http\Controllers\Newsletter\TemplateController::class,'get'])->name('newsletter_template.datatable');
-
-        Route::resource('newsletter_content',\App\Http\Controllers\Newsletter\ContentController::class);
-        Route::post('content/get',[\App\Http\Controllers\Newsletter\ContentController::class,'get'])->name('newsletter_content.datatable');
+        Route::resource('newsletter-content',\App\Http\Controllers\Newsletter\ContentController::class);
+        Route::post('newsletter-content/get',[\App\Http\Controllers\Newsletter\ContentController::class,'get'])->name('newsletter-content.datatable');
     });
 
 });
