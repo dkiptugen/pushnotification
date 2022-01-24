@@ -19,6 +19,7 @@ class CreateNewsletterTemplatesTable extends Migration
                     $table->unsignedBigInteger('product_id')->index();
                     $table->bigInteger('noofposts');
                     $table->tinyInteger('status');
+                    $table->text('template_loc');
                     $table->unsignedBigInteger('user_id')->index();
                     $table->timestamps();
                 });
