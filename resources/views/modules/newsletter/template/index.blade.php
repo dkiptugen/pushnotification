@@ -2,8 +2,8 @@
 @section('content')
     <div class="col">
         <div class="card">
-            <div class="card-header d-flex justify-content-center align-items-center">
-                <h2 class="card-header">Templates</h2>
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h2 class="card-title">Templates</h2>
                 <a class="btn btn-outline-dark btn-sm " href="">
                     <i class="align-middle" data-feather="plus"></i> Add Template
                 </a>

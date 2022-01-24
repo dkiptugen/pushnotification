@@ -15,8 +15,9 @@ class CreateNewsletterSubscriptionsTable extends Migration
             {
                 Schema::create('newsletter_users', function (Blueprint $table) {
                     $table->id();
+                    $table->string('name')->nullable();
                     $table->string('email');
-                    $table->tinyInteger('is_subscribed')->default(1);
+                    $table->tinyInteger('status')->default(1);
                     $table->unsignedBigInteger('product_id');
                     $table->timestamps();
                 });
