@@ -56,7 +56,7 @@
             },
             "columns": [
                 { "data": "pos" },
-                { "data": "title" },
+                { "data": "name" },
                 { "data": "product" },
                 { "data": "noofposts" },
                 { "data": "status" },
