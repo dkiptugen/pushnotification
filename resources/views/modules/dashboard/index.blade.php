@@ -3,7 +3,18 @@
     <div class="d-flex justify-content-end w-100">
         <div class="ml-auto">
             <form action="" class="form" method="get">
-                <input class="form-control" type="text" name="daterange" value="01/01/2018 - 01/15/2018" id="reportrange" />
+                <div class="input-group">
+                    <input class="form-control" type="text" name="date"  id="startdate" />
+                    <div class="input-group-text">-</div>
+                    <input class="form-control" type="text" name="date"  id="enddate" />
+                    <button class="btn btn-outline-dark">
+                        Submit
+                    </button>
+                </div>
+
+
+
+
             </form>
 
         </div>
