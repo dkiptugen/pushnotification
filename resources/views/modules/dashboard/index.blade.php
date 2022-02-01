@@ -11,7 +11,7 @@
                     <input class="form-control date" type="text" name="enddate"  id="enddate" />
                     <div class="input-group-append">
                         <button class="btn btn-outline-dark">
-                            Submit
+                            FILTER
                         </button>
                     </div>
 
