@@ -5,11 +5,17 @@
             <form action="" class="form" method="get">
                 <div class="input-group">
                     <input class="form-control" type="text" name="date"  id="startdate" />
-                    <div class="input-group-text">-</div>
+                    <div class="input-group-append">
+                        <div class="input-group-text">-</div>
+                    </div>
+
                     <input class="form-control" type="text" name="date"  id="enddate" />
-                    <button class="btn btn-outline-dark">
-                        Submit
-                    </button>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-dark">
+                            Submit
+                        </button>
+                    </div>
+
                 </div>
 
 
