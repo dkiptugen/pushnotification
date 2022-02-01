@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Guest;
 use App\Models\Product;
 use App\Models\Stories;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -15,13 +16,15 @@ class DashboardController extends Controller
                     {
                         if($request->has('startdate'))
                             {
+                                $startdate  =   Carbon::parse(urldecode($request->startdate))->format('Y-m-d H:i:s');
+                                $enddate    =   Carbon::parse(urldecode($request->enddate??date('Y-m-d')))->format('Y-m-d H:i:s');
                                 $this->data['product'][$value->name]['subscriptions']     =   Guest::where('product_id',$value->id)
-                                                                                                        ->whereDate('created_at','>=',$request->startdate)
-                                                                                                        ->whereDate('created_at','<=',$request->enddate)
+                                                                                                        ->whereDate('created_at','>=',$startdate)
+                                                                                                        ->whereDate('created_at','<=',$enddate)
                                                                                                         ->count();
                                 $this->data['product'][$value->name]['notifications']     =   Stories::where('product_id',$value->id)
-                                                                                                        ->whereDate('created_at','>=',$request->startdate)
-                                                                                                        ->whereDate('created_at','<=',$request->enddate)
+                                                                                                        ->whereDate('created_at','>=',$startdate)
+                                                                                                        ->whereDate('created_at','<=',$enddate)
                                                                                                         ->count();
                             }
                         else
