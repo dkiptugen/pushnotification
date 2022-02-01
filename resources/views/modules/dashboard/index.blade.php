@@ -4,12 +4,11 @@
         <div class="ml-auto">
             <form action="" class="form" method="get">
                 <div class="input-group">
-                    <input class="form-control" type="text" name="date"  id="startdate" />
+                    <input class="form-control date" type="text" name="startdate"  id="startdate" />
                     <div class="input-group-append">
                         <div class="input-group-text">-</div>
                     </div>
-
-                    <input class="form-control" type="text" name="date"  id="enddate" />
+                    <input class="form-control date" type="text" name="enddate"  id="enddate" />
                     <div class="input-group-append">
                         <button class="btn btn-outline-dark">
                             Submit
