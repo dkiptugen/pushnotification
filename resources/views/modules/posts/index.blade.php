@@ -16,7 +16,7 @@
                             <th>title</th>
                             <th>Date</th>
                             <th>Deliveries</th>
-                            <th>Clicks</th>
+                            <th>CTR</th>
                             <th>Publishdate</th>
                             <th>On Schedule</th>
                             <th>Author</th>
@@ -34,7 +34,7 @@
                             <th>title</th>
                             <th>Date</th>
                             <th>Deliveries</th>
-                            <th>Clicks</th>
+                            <th>CTR</th>
                             <th>Publishdate</th>
                             <th>On Schedule</th>
                             <th>Author</th>
