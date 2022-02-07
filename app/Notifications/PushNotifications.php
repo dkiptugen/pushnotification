@@ -89,7 +89,7 @@ class PushNotifications extends Notification implements ShouldQueue
                         ->badge(asset('assets/img/badge.png'))
                         ->action('Read More', 'view_notification')
                         ->image($thumbnail)
-                        ->options(['via'=>$this->notificationData->product->domain,'TTL' => 2700])
+                        ->options(['via'=>$this->notificationData->product->domain,'TTL' => 1800])
                         ->data(['url' => $url,'vibrate'=>[100,50,100]]);
                 }
             else
@@ -101,7 +101,7 @@ class PushNotifications extends Notification implements ShouldQueue
                         ->body(strip_tags($body))
                         ->action('Read More', 'view_notification')
                         ->image($thumbnail)
-                        ->options(['TTL' => 2700,'via'=>$this->notificationData->product->domain])
+                        ->options(['TTL' => 1800,'via'=>$this->notificationData->product->domain])
                         ->data(['url' => $url,'vibrate'=>[100,50,100]]);
                 }
 
