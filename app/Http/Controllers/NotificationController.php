@@ -296,7 +296,7 @@ class NotificationController extends Controller
                                 $nestedData['title']            =   $post->title;
                                 $nestedData['date']             =   $post->created_at->format('h:ia d-m-Y');
                                 $nestedData['deliveries']       =   $post->deliveries;
-                                $nestedData['clicks']           =   $post->clicks;
+                                $nestedData['clicks']           =   number_format(($post->clicks/$post->deliveries)*100,2) .'%';
                                 $nestedData['publishdate']      =   $post->publishdate;
                                 $nestedData['onschedule']       =   ($this->pd($post->publishdate))?'No':'Yes';
                                 $nestedData['author']           =   $post->user->name;
