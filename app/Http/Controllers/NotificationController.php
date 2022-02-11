@@ -175,7 +175,7 @@ class NotificationController extends Controller
             }
         public function resubscribe(Request $request)
             {
-                //Log::error('Re :',$request->all());
+                Log::error('Resubscribe :',$request->all());
 
 
                 $this->validate($request,   [

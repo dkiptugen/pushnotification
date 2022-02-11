@@ -19,6 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 //['middleware'=>['domain']],
 Route::group(['middleware'=>['domain']],function(){
+    //Resubscribe a user
+    Route::post('/resubscribe', [App\Http\Controllers\NotificationController::class, 'resubscribe']);
     //Subscribe a user
     Route::post('/subscribe', [App\Http\Controllers\NotificationController::class, 'subscribe']);
     //make a push notification.
