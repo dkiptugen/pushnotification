@@ -347,7 +347,7 @@ $s2bs-form-control-transition: border-color ease-in-out .15s, box-shadow ease-in
       .select2-search__field {
         background: transparent;
         padding: 0 $s2bs-padding-base-horizontal;
-        height: $s2bs-input-height-base - 2;
+        height: var($s2bs-input-height-base) - 2;
         line-height: $s2bs-line-height;
         margin-top: 0;
         min-width: 5em;
@@ -406,7 +406,7 @@ $s2bs-form-control-transition: border-color ease-in-out .15s, box-shadow ease-in
     .select2-search--inline .select2-search__field {
       padding: 0 $s2bs-padding-small-horizontal;
       font-size: $s2bs-font-size-small;
-      height: $s2bs-input-height-small - 2;
+      height: var($s2bs-input-height-small) - 2;
       line-height: $s2bs-line-height;
     }
 
@@ -453,7 +453,7 @@ $s2bs-form-control-transition: border-color ease-in-out .15s, box-shadow ease-in
     .select2-search--inline .select2-search__field {
       padding: 0 $s2bs-padding-large-horizontal;
       font-size: $s2bs-font-size-large;
-      height: $s2bs-input-height-large - 2;
+      height: var($s2bs-input-height-large) - 2;
       line-height: $s2bs-line-height;
     }
 
