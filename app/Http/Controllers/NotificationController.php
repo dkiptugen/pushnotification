@@ -186,8 +186,8 @@ class NotificationController extends Controller
                                             ]);
 
                 $endpoint   =   $request->endpoint;
-                $token      =   $request->keys['auth'];
-                $key        =   $request->keys['p256dh'];
+                $token      =   $request->auth;
+                $key        =   $request->p256dh;
                 $check      =   Guest::where('endpoint',$request->old_endpoint)
                                     ->update(['endpoint' => $endpoint]);
                 $check->updatePushSubscription($endpoint, $key, $token);
