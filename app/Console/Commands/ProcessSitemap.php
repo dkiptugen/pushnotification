@@ -75,10 +75,10 @@ class ProcessSitemap extends Command
 
                                     $info = new Info();
                                     $info->id = $id;
-                                    $info->title = $title;
-                                    $info->content = $content;
-                                    $info->time = $time;
-                                    $info->author = $author;
+                                    $info->title = $title[0];
+                                    $info->content = $content[0];
+                                    $info->time = $time[0];
+                                    $info->author = $author[0];
                                     $info->link = $link;
                                     $info->save();
                                 }
