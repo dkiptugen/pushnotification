@@ -60,7 +60,7 @@ class ProcessSitemap extends Command
                                     $content = $crawler->filter('.the-content ')->each(function ($node) {
                                         return \App\Traits\Meta::RenderArticle($node->html());
                                     });
-                                    $title = $crawler->filter('h2.page-title ')->each(function ($node) {
+                                    $title = $crawler->filter('h1.page-title ')->each(function ($node) {
                                         return $node->text();
                                     });
                                     $author = $crawler->filter('.authorinfo a')->each(function ($node) {
