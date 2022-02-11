@@ -173,6 +173,28 @@ class NotificationController extends Controller
                                     ->get();
                 return $subscribers->toJson();
             }
+        public function resubscribe(Request $request)
+            {
+                //Log::error('Re :',$request->all());
+
+
+                $this->validate($request,   [
+                                                'endpoint'      =>  'required',
+                                                'old_endpoint'  =>  'required',
+                                                'keys.auth'     =>  'required',
+                                                'keys.p256dh'   =>  'required'
+                                            ]);
+
+                $endpoint   =   $request->endpoint;
+                $token      =   $request->keys['auth'];
+                $key        =   $request->keys['p256dh'];
+                $check      =   Guest::where('endpoint',$request->old_endpoint)
+                                    ->update(['endpoint' => $endpoint]);
+                $check->updatePushSubscription($endpoint, $key, $token);
+
+                return response()->json(['success' => true], 200);
+
+            }
         public function subscribe(Request $request)
             {
                 //Log::error('Re :',$request->all());
@@ -296,7 +318,7 @@ class NotificationController extends Controller
                                 $nestedData['title']            =   $post->title;
                                 $nestedData['date']             =   $post->created_at->format('h:ia d-m-Y');
                                 $nestedData['deliveries']       =   $post->deliveries;
-                                $nestedData['clicks']           =   number_format(($post->clicks/$post->deliveries)*100,2) .'%';
+                                $nestedData['clicks']           =   (($post->clicks !== 0)?number_format(($post->clicks/$post->deliveries)*100,2):0).'%';
                                 $nestedData['publishdate']      =   $post->publishdate;
                                 $nestedData['onschedule']       =   ($this->pd($post->publishdate))?'No':'Yes';
                                 $nestedData['author']           =   $post->user->name;
