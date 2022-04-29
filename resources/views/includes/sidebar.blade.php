@@ -57,47 +57,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link font-weight-bold " href="{{ url('backend/jobs/failed') }}"><i class="align-middle" data-feather="monitor"></i>Failed</a>
                 </li>
-                <li class="sidebar-header">
-                    Prime
-                </li>
-                <li class="sidebar-item">
-                    <a href="{{ route('prime-subscribers.index') }}" class="font-weight-bold sidebar-link">
-                        <i class="align-middle fas fa-users" ></i> <span class="align-middle">Subscriber</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="{{ route('prime-transactions.index') }}" class="font-weight-bold sidebar-link">
-                        <i class="align-middle fas fa-cash-register" ></i> <span class="align-middle">Transactions</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="{{ route('prime-content.index') }}" class="font-weight-bold sidebar-link">
-                        <i class="align-middle fas fa-book" ></i> <span class="align-middle">Content</span>
-                    </a>
-                </li>
-                <li class="sidebar-header">
-                    Newsletter
-                </li>
 
-                <li class="sidebar-item">
-                    <a href="{{ route('newsletter-subscription.index') }}" class="font-weight-bold sidebar-link">
-                        <i class="align-middle fas fa-users" ></i>
-                        <span class="align-middle">Subscriptions</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a href="{{ route('newsletter-template.index') }}" class="font-weight-bold sidebar-link">
-                        <i class="align-middle fas fa-cash-register" ></i>
-                        <span class="align-middle">Template</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="{{ route('newsletter-content.index') }}" class="font-weight-bold sidebar-link">
-                        <i class="align-middle fas fa-book" ></i>
-                        <span class="align-middle">Newsletter</span>
-                    </a>
-                </li>
 
                 <li class="sidebar-header">
                     Administration

@@ -9,12 +9,12 @@ trait Meta
         public static function site_def() :array
             {
                 return  [
-                            'name'          =>  'BoxAlert',
-                            'title'         =>  'BoxAlert',
+                            'name'          =>  'RAGS To Riches',
+                            'title'         =>  'Radio Africa Group',
                             'description'   =>  'The biggest push notification platform',
                             'keywords'      =>  'Web push, alert, telegram',
                             'author'        =>  'Dennis Kiptugen',
-                            'logo'          =>  'assets/img/logo.png'
+                            'logo'          =>  'assets/img/logo.jpg'
                         ];
             }
         public static function success($title,$message,$redirecturl="") : array
