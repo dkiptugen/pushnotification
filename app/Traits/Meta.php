@@ -9,8 +9,8 @@ trait Meta
         public static function site_def() :array
             {
                 return  [
-                            'name'          =>  'RAGS To Riches',
-                            'title'         =>  'Radio Africa Group',
+                            'name'          =>  'The Standard Notification System',
+                            'title'         =>  'Web Push Notification System',
                             'description'   =>  'The biggest push notification platform',
                             'keywords'      =>  'Web push, alert, telegram',
                             'author'        =>  'Dennis Kiptugen',
