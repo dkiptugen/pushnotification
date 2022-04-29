@@ -14,7 +14,7 @@ trait Meta
                             'description'   =>  'The biggest push notification platform',
                             'keywords'      =>  'Web push, alert, telegram',
                             'author'        =>  'Dennis Kiptugen',
-                            'logo'          =>  'assets/img/logo.jpg'
+                            'logo'          =>  'assets/img/logo.png'
                         ];
             }
         public static function success($title,$message,$redirecturl="") : array
