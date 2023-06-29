@@ -1,0 +1,15 @@
+{
+    "name": "Pusher",
+    "short_name": "pusher",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "Push Notification platform",
+    "gcm_sender_id": "482941778795",
+    "gcm_sender_id_comment": "Do not change the GCM Sender ID",
+    "icons": [{
+        "src": "/assets/img/logo.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }]
+}

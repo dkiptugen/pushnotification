@@ -1,0 +1,34 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use App\Models\User;
+use Illuminate\Support\Str;
+
+class UsersSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        (new User)->upsert([
+            [
+                'first_name'        => 'System',
+                'last_name'         => 'Administrator',
+                'email'             =>  'info@kenyans.co.ke',
+                'password'          =>  bcrypt('15442'), // password
+                'email_verified_at' =>  now()->format('Y-m-d H:i:s'),
+                'status'            =>  1,
+                'remember_token'    =>  Str::random(10)
+
+
+            ],
+
+        ], ['email'], ['first_name','last_name','password' ,'email_verified_at', 'remember_token']);
+
+    }
+}
